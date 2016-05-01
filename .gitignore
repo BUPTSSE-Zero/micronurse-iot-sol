@@ -1,0 +1,13 @@
+#Node Modules
+node_modules/*
+!node_modules/hope-demo
+
+#Log Files
+*.log
+
+#Other Files
+.directory
+*~
+
+#Project files
+.idea
