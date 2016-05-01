@@ -6,10 +6,10 @@
 
   // Optional - give a meaningful name for this instance
   // It isn't the id of this instance so no need to be unique
-  "name": "hub_micro_nurse",
+  "name": "micro_nurse_hub",
 
   // Optional - ID of this instance, and need to be globally unique
-  // id: "hub_micro_nurse",   
+  "id": "micro_nurse_hub",   
 
 
   // Optional - A script to run when the HUB starts

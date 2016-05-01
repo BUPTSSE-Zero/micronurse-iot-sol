@@ -1,4 +1,5 @@
 {
   "name": "Thermometer A",
-  "description": "Mock thermometer"
+  "description": "Mock thermometer",
+  "id": "micro_nurse_hub_thermometer_a"
 }

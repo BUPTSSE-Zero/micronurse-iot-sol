@@ -9,7 +9,7 @@
   "name": "Micro Nurse Iot-SOL Center",
 
   // Optional - ID of this instance, and need to be globally unique
-  //"id": "micro_nurse_iot_sol_center",
+  "id": "micro_nurse_iot_sol_center",
 
   // Defines how it can talk with other instances in the system
   // instances talk with each other through a message broker
