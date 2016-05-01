@@ -35,7 +35,7 @@ var stepper = new Stepper(3, 6, 6);
 console.log("TA kernel")
 shared.sensor.start(function() {
   var value = 25 + stepper.next();
-  console.log("[TEMPERATURE A]:", value);
+  console.log("[Micro nurse hub - Temperature A]:", value);
   sendOUT({
     T: value
   });

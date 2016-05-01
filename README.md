@@ -1,3 +1,6 @@
+#Micro Nurse IoT-SOL
+运行方法：按下方的说明配置好Intel IoT SOL环境后，运行`start_micronurse.sh`脚本即可。
+
 Intel(r) IoT Services Orchestration Layer
 ====================================================
 ## Introduction

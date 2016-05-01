@@ -16,7 +16,7 @@
   // "init_script": "init.js",
 
   // Optional - A script to run when the HUB ends 
-  // "destroy_script": "destroy.js"
+  // "destroy_script": "stop.js"
 
 
   // Defines how it can talk with other instances in the system

@@ -1,4 +1,4 @@
-console.log("TA init");
+console.log("Micro nurse hub - Temperature A init");
 
 shared.sensor = {
   timer: null,
