@@ -1,0 +1,35 @@
+{
+  "id": "UI_13af0e90-0fac-11e6-89c2-a3567a4d11f1",
+  "name": "Family Security UI",
+  "description": "",
+  "widgets": [
+    {
+      "config": {
+        "waveColor": "#178BCA"
+      },
+      "spec": "hope/ui/lfg-gauge",
+      "x": 4,
+      "y": 2,
+      "width": 3,
+      "height": 3,
+      "id": "WIDGET_767bb870-0fac-11e6-89c2-a3567a4d11f1",
+      "name": "HumidAGauge1"
+    },
+    {
+      "config": {
+        "min": -30,
+        "max": 100,
+        "minor_ticks": 5,
+        "title": "TemA"
+      },
+      "spec": "hope/ui/gauge",
+      "x": 1,
+      "y": 2,
+      "width": 3,
+      "height": 3,
+      "id": "WIDGET_7c054310-0fac-11e6-89c2-a3567a4d11f1",
+      "name": "TemAGauge1"
+    }
+  ],
+  "app": "HOPE_APP_96e357b0_0fa9_11e6_9807_abec83c8fa4b"
+}
