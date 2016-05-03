@@ -1,0 +1,33 @@
+{
+  "description":"report the humidity at intervals",
+  "spec": {
+    "id":"humidometer_report",
+    "name": "humidometer report",
+    "in": {
+      "ports": [{
+        "name": "interval",
+        "type": "int",
+        "default": 2000
+      }, {
+        "name": "name",
+        "type": "string",
+        "default": "humidometer"
+      }]
+    },
+    "out": {
+      "ports": [{
+        "name": "value",
+        "type": "int"
+      },{
+        "name": "sensor_type",
+        "type": "string"
+      },{
+        "name": "name",
+        "type": "string"
+      },{
+        "name": "timestamp",
+        "type": "long"
+      }]
+    }
+  }
+}

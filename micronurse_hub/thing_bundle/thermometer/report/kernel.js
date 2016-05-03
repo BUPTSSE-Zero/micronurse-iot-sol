@@ -29,14 +29,16 @@ Stepper.prototype.next = function() {
     (this.number_of_splits - Math.abs(this.number_of_splits - n)) / this.number_of_splits;
 };
 
-
 var stepper = new Stepper(3, 6, 6);
 
-console.log("TA kernel")
+console.log("Micro nurse hub - Temperature kernel")
 shared.sensor.start(function() {
   var value = 25 + stepper.next();
-  console.log("[Micro nurse hub - Temperature A]:", value);
+  console.log("[Micro nurse hub - Temperature " + IN.name + "]:", value);
   sendOUT({
-    T: value
+    value: value,
+    device_type: "thermometer",
+    name: IN.name,
+    timestamp: Date.parse(new Date())
   });
 }, IN.interval);

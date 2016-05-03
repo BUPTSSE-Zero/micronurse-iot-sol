@@ -1,0 +1,33 @@
+{
+  "description":"report the temprature at intervals",
+  "spec": {
+    "id":"thermometer_report",
+    "name": "thermometer report",
+    "in": {
+      "ports": [{
+        "name": "interval",
+        "type": "int",
+        "default": 2000
+      },{
+        "name": "name",
+        "type": "string",
+        "default": "thermometer"
+      }]
+    },
+    "out": {
+      "ports": [{
+        "name": "value",
+        "type": "int"
+      },{
+        "name": "sensor_type",
+        "type": "string"
+      },{
+        "name": "name",
+        "type": "string"
+      },{
+        "name": "timestamp",
+        "type": "long"
+      }]
+    }
+  }
+}

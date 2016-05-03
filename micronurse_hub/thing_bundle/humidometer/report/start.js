@@ -1,8 +1,8 @@
-console.log("Micro nurse hub - Temperature A init");
+console.log("Micro nurse hub - humidometer init");
 
-shared.sensor = {
+shared.humidiometer = {
   timer: null,
-  interval: 3000,
+  interval: 2000,
   callback: function() {},
   pause: function() {
     if (this.timer) {
@@ -10,24 +10,26 @@ shared.sensor = {
     }
     this.timer = null;
   },
+
   stop: function() {
     this.pause();
   },
+
   resume: function() {
     this.timer = setInterval(this.callback, this.interval);
   },
+
   start: function(cb, interval) {
     if (this.interval !== interval || this.callback !== cb) {
       this.stop();
       this.callback = cb;
       this.interval = interval;
-      if (this.interval <= 100) {
-        this.interval = 100;
+      if (this.interval <= 500) {
+        this.interval = 500;
       }
     }
     this.resume();
   }
 };
-
 
 done();
