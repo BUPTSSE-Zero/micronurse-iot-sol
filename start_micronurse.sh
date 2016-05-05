@@ -23,4 +23,4 @@ sleep 2
 echo "start micro nurse hub..."
 ./hub ./micronurse_hub/config.json > micronurse_hub.log &
 
-echo "visit ip:8080 for develop, ip:3000 for ui view"
+echo "visit http://localhost:8080 for develop, http://localhost:3000 for ui view"

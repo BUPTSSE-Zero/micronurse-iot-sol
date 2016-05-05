@@ -1,11 +1,19 @@
-console.log("Micro nurse hub - humidometer +" + IN.name + " kernel")
+console.log("Micro nurse hub - humidometer +" + CONFIG.name + " kernel")
 shared.humidiometer.start(function() {
   var value = Math.random() * 100;
-  console.log("[Micro nurse hub - humidometer " + IN.name + "]:", value);
-  sendOUT({
+  console.log("[Micro nurse hub - humidometer " + CONFIG.name + "]:", value);
+
+  var outdata = {
     value: value,
-    device_type: "humidometer",
-    name: IN.name,
+    sensor_type: "humidometer",
+    name: CONFIG.name,
     timestamp: Date.parse(new Date())
+  }
+
+  sendOUT({
+    value: outdata.value,
+    name: outdata.name,
+    timestamp: outdata.timestamp,
+    json_data: JSON.stringify(outdata)
   });
-}, IN.interval);
+}, CONFIG.interval);

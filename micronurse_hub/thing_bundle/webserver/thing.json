@@ -1,0 +1,5 @@
+{
+  "name": "webserver",
+  "description": "Communicate with micro nurse web server.",
+  "id": "micro_nurse_hub_webserver"
+}

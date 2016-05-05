@@ -1,0 +1,21 @@
+{
+  "description":"Send the sensor data to web server",
+  "spec": {
+    "id":"webserver_send_sensor_data",
+    "name": "send sensor data",
+    "data_cache_size": 5,
+
+    "config": [{
+      "name": "timeout",
+      "type": "int",
+      "default": 5000
+    }],
+
+    "in": {
+      "ports": [{
+        "name": "json_data",
+        "type": "string"
+      }]
+    }
+  }
+}

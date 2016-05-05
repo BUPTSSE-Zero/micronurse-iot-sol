@@ -34,11 +34,19 @@ var stepper = new Stepper(3, 6, 6);
 console.log("Micro nurse hub - Temperature kernel")
 shared.sensor.start(function() {
   var value = 25 + stepper.next();
-  console.log("[Micro nurse hub - Temperature " + IN.name + "]:", value);
-  sendOUT({
+  console.log("[Micro nurse hub - Temperature " + CONFIG.name + "]:", value);
+
+  var outdata = {
     value: value,
-    device_type: "thermometer",
-    name: IN.name,
+    sensor_type: "thermometer",
+    name: CONFIG.name,
     timestamp: Date.parse(new Date())
+  }
+
+  sendOUT({
+    value: outdata.value,
+    name: outdata.name,
+    timestamp: outdata.timestamp,
+    json_data: JSON.stringify(outdata)
   });
-}, IN.interval);
+}, CONFIG.interval);
