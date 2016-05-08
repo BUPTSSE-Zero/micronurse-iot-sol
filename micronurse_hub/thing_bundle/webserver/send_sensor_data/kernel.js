@@ -38,8 +38,8 @@ outdata = require('querystring').stringify(outdata);
 var opt = {
     method: "POST",
     host: "micronurse-webserver",
-    port: 12080,
-    path: "/micronurse-webserver/ReportServlet",
+    port: 13000,
+    path: "/micronurse/iot/report",
     headers: {
         "Content-Type": "application/x-www-form-urlencoded",
         "Content-Length": outdata.length
@@ -48,7 +48,7 @@ var opt = {
 
 var req = requestWithTimeout(opt, CONFIG.timeout, function (res) {
     if (res.statusCode == 200) {
-        console.log("Return header:" + JSON.stringify(res.headers));
+        console.log('Return header:' + res.headers);
     }
 });
 
