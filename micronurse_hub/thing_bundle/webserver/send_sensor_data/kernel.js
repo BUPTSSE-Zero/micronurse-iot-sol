@@ -48,7 +48,7 @@ var opt = {
 
 var req = requestWithTimeout(opt, CONFIG.timeout, function (res) {
     if (res.statusCode == 200) {
-        console.log('Return header:' + res.headers);
+        console.log('Return Header:' + JSON.stringify(res.headers));
     }
 });
 
