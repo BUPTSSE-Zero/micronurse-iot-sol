@@ -1,0 +1,42 @@
+{
+  "type": "hope_service",
+  "name": "report",
+  "description": "report the pulse  at intervals",
+  "spec": {
+    "name": "pulseTransduce report",
+    "config": [
+      {
+        "name": "interval",
+        "type": "int",
+        "default": 5000
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "default": "pulseTransduce"
+      }
+    ],
+    "out": {
+      "ports": [
+        {
+          "name": "value",
+          "type": "int"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "timestamp",
+          "type": "long"
+        },
+        {
+          "name": "json_data",
+          "type": "string"
+        }
+      ]
+    }
+  },
+  "id": "HOPE_SERVICE_5c48c270_16b6_11e6_8101_49597fbd4db9",
+  "thing": "HOPE_THING_6609d5e0_16ae_11e6_8101_49597fbd4db9"
+}

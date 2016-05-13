@@ -1,0 +1,42 @@
+{
+  "type": "hope_service",
+  "name": "report",
+  "description": "report the body heat at intervals",
+  "spec": {
+    "name": "feverThermometer report",
+    "config": [
+      {
+        "name": "interval",
+        "type": "int",
+        "default": 2000
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "default": "thermometer"
+      }
+    ],
+    "out": {
+      "ports": [
+        {
+          "name": "value",
+          "type": "double"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "timestamp",
+          "type": "long"
+        },
+        {
+          "name": "json_data",
+          "type": "string"
+        }
+      ]
+    }
+  },
+  "id": "HOPE_SERVICE_27570ef0_16d9_11e6_8101_49597fbd4db9",
+  "thing": "HOPE_THING_d516b140_16d8_11e6_8101_49597fbd4db9"
+}
