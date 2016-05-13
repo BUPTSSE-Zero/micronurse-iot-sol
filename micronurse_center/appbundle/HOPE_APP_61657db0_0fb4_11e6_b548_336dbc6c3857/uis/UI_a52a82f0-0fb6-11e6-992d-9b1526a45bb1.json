@@ -81,6 +81,32 @@
       "height": 3,
       "id": "WIDGET_e53311c0-113f-11e6-b318-950740551333",
       "name": "TemGauge1"
+    },
+    {
+      "config": {
+        "align": "left"
+      },
+      "spec": "hope/ui/text",
+      "x": 9,
+      "y": 1,
+      "width": 2,
+      "height": 1,
+      "id": "WIDGET_b204f350-18cd-11e6-9777-43e50d8dac88",
+      "name": "TurgoscopeReport",
+      "data_cache_size": 1
+    },
+    {
+      "config": {
+        "align": "left"
+      },
+      "spec": "hope/ui/text",
+      "x": 9,
+      "y": 3,
+      "width": 2,
+      "height": 1,
+      "id": "WIDGET_cd34ca10-18cd-11e6-9777-43e50d8dac88",
+      "name": "SmoketransducerReport",
+      "data_cache_size": 1
     }
   ],
   "app": "HOPE_APP_61657db0_0fb4_11e6_b548_336dbc6c3857"

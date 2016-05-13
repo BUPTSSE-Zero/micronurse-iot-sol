@@ -10,39 +10,51 @@
     "nodes": {
       "NODE_d7d90020-12a7-11e6-93eb-3f5ad9f1b52f": {
         "x": 12,
-        "y": 502
+        "y": 892
       },
       "NODE_e04b79e0-12a7-11e6-93eb-3f5ad9f1b52f": {
         "x": 12,
-        "y": 322
+        "y": 712
       },
       "NODE_1387a040-12a8-11e6-93eb-3f5ad9f1b52f": {
-        "x": 253,
+        "x": 264,
         "y": 292
       },
       "NODE_1698b0d0-12a8-11e6-93eb-3f5ad9f1b52f": {
-        "x": 253,
-        "y": 152
-      },
-      "NODE_1805ae50-12a8-11e6-93eb-3f5ad9f1b52f": {
-        "x": 253,
-        "y": 12
-      },
-      "NODE_1c9f0c90-12a8-11e6-93eb-3f5ad9f1b52f": {
-        "x": 253,
+        "x": 264,
         "y": 572
       },
+      "NODE_1805ae50-12a8-11e6-93eb-3f5ad9f1b52f": {
+        "x": 264,
+        "y": 432
+      },
+      "NODE_1c9f0c90-12a8-11e6-93eb-3f5ad9f1b52f": {
+        "x": 264,
+        "y": 1132
+      },
       "NODE_1daa8920-12a8-11e6-93eb-3f5ad9f1b52f": {
-        "x": 253,
-        "y": 852
+        "x": 264,
+        "y": 992
       },
       "NODE_1fc41a50-12a8-11e6-93eb-3f5ad9f1b52f": {
-        "x": 253,
-        "y": 712
+        "x": 264,
+        "y": 852
       },
       "NODE_eb9ce090-152c-11e6-8901-5342d62e445f": {
-        "x": 255,
-        "y": 423
+        "x": 264,
+        "y": 712
+      },
+      "NODE_9b3912f0-18cd-11e6-9777-43e50d8dac88": {
+        "x": 12,
+        "y": 392
+      },
+      "NODE_9fd72c20-18cd-11e6-9777-43e50d8dac88": {
+        "x": 12,
+        "y": 212
+      },
+      "NODE_3df959a0-18ce-11e6-9777-43e50d8dac88": {
+        "x": 12,
+        "y": 572
       }
     },
     "edges": {}
@@ -107,6 +119,25 @@
       "thing": "micro_nurse_hub_webserver",
       "hub": "micro_nurse_hub",
       "service": "send_sensor_data@micro_nurse_hub_webserver"
+    },
+    "NODE_9b3912f0-18cd-11e6-9777-43e50d8dac88": {
+      "type": "fixed",
+      "thing": "micro_nurse_hub_smoketransducer",
+      "hub": "micro_nurse_hub",
+      "service": "report@micro_nurse_hub_smoketransducer"
+    },
+    "NODE_9fd72c20-18cd-11e6-9777-43e50d8dac88": {
+      "type": "fixed",
+      "thing": "micro_nurse_hub_turgoscope",
+      "hub": "micro_nurse_hub",
+      "service": "report@micro_nurse_hub_turgoscope"
+    },
+    "NODE_3df959a0-18ce-11e6-9777-43e50d8dac88": {
+      "type": "fixed",
+      "thing": "HOPE_UI_THING__micro_nurse_iot_sol_center__built_in_hub__HOPE_APP_61657db0_0fb4_11e6_b548_336dbc6c3857",
+      "hub": "micro_nurse_iot_sol_center__built_in_hub__",
+      "service": "UI_SERVICE__WIDGET_cd34ca10-18cd-11e6-9777-43e50d8dac88",
+      "widget": "WIDGET_cd34ca10-18cd-11e6-9777-43e50d8dac88"
     }
   },
   "graph": {
@@ -171,6 +202,39 @@
           "user_phone_num": "123456",
           "password": "123456"
         }
+      },
+      {
+        "name": "",
+        "description": "",
+        "spec": "smoketransducer_report",
+        "id": "NODE_9b3912f0-18cd-11e6-9777-43e50d8dac88",
+        "config": {
+          "interval": 2000,
+          "name": "厨房烟雾浓度"
+        }
+      },
+      {
+        "name": "",
+        "description": "",
+        "out": {
+          "amended_ports": [
+            {
+              "type": "int",
+              "name": "value"
+            }
+          ]
+        },
+        "spec": "turgoscope_report",
+        "id": "NODE_9fd72c20-18cd-11e6-9777-43e50d8dac88",
+        "config": {
+          "interval": 2000,
+          "name": "血压值"
+        }
+      },
+      {
+        "name": "",
+        "spec": "hope/ui/text",
+        "id": "NODE_3df959a0-18ce-11e6-9777-43e50d8dac88"
       }
     ],
     "edges": [
@@ -255,6 +319,28 @@
         "id": "EDGE_f13dc3c0-152c-11e6-8901-5342d62e445f",
         "source": {
           "node": "NODE_d7d90020-12a7-11e6-93eb-3f5ad9f1b52f",
+          "port": "json_data"
+        },
+        "target": {
+          "node": "NODE_eb9ce090-152c-11e6-8901-5342d62e445f",
+          "port": "json_data"
+        }
+      },
+      {
+        "id": "EDGE_c63cb720-18d4-11e6-9ce3-7bc7b9468207",
+        "source": {
+          "node": "NODE_9fd72c20-18cd-11e6-9777-43e50d8dac88",
+          "port": "json_data"
+        },
+        "target": {
+          "node": "NODE_eb9ce090-152c-11e6-8901-5342d62e445f",
+          "port": "json_data"
+        }
+      },
+      {
+        "id": "EDGE_c948bea0-18d4-11e6-9ce3-7bc7b9468207",
+        "source": {
+          "node": "NODE_9b3912f0-18cd-11e6-9777-43e50d8dac88",
           "port": "json_data"
         },
         "target": {

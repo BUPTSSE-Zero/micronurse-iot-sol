@@ -1,0 +1,33 @@
+{
+  "description":"report the smoke at intervals",
+  "spec": {
+    "id":"smoketransducer_report",
+    "name": "smoketransducer report",
+
+    "config": [{
+      "name": "interval",
+      "type": "int",
+      "default": 2000
+    },{
+      "name": "name",
+      "type": "string",
+      "default": "smoketransducer"
+    }],
+
+    "out": {
+      "ports": [{
+        "name": "value",
+        "type": "int"
+      },{
+        "name": "name",
+        "type": "string"
+      },{
+        "name": "timestamp",
+        "type": "long"
+      },{
+        "name": "json_data",
+        "type": "string"
+      }]
+    }
+  }
+}
