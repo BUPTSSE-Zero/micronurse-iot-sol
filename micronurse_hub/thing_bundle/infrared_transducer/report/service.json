@@ -1,0 +1,47 @@
+{
+  "type": "hope_service",
+  "name": "report",
+  "description": "",
+  "spec": {
+    "name": "infrared_transducer report",
+    "config": [
+      {
+        "name": "value",
+        "type": "int",
+        "default": 1
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "default": "infrared_transducer"
+      },
+      {
+        "name":"internal",
+        "type":"int",
+        "default":2000
+      }
+    ],
+    "out": {
+      "ports": [
+        {
+          "name": "value",
+          "type": "Boolean"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "timestamp",
+          "type": "long"
+        },
+        {
+          "name": "json_data",
+          "type": "string"
+        }
+      ]
+    }
+  },
+  "id": "HOPE_SERVICE_e8e03ed0_18e0_11e6_ad78_45731ff73023",
+  "thing": "HOPE_THING_c4a30de0_18e0_11e6_ad78_45731ff73023"
+}

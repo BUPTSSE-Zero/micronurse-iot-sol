@@ -1,0 +1,52 @@
+{
+  "type": "hope_service",
+  "name": "locate",
+  "description": "get the position of the device in details",
+  "spec": {
+    "name": "GPS",
+    "config": [
+      {
+        "name": "x",
+        "type": "double",
+        "default": 52.9276
+      },
+      {
+        "name": "y",
+        "type": "double",
+        "default": 27.4283
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "default": "GPS"
+      },
+      {
+        "name": "interval",
+        "type": "int",
+        "default": 2000
+      }
+    ],
+    "out": {
+      "ports": [
+        {
+          "name": "value",
+          "type": "string"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "timestamp",
+          "type": "long"
+        },
+        {
+          "name": "json_data",
+          "type": "string"
+        }
+      ]
+    }
+  },
+  "id": "HOPE_SERVICE_5d6b5710_1843_11e6_84fc_93bf6a12bc6a",
+  "thing": "HOPE_THING_a0052a20_1842_11e6_84fc_93bf6a12bc6a"
+}
