@@ -3,6 +3,7 @@ console.log("Micro nurse hub - humidometer init");
 shared.humidiometer = {
   timer: null,
   interval: 2000,
+  base_value: Math.random() * 100,
   callback: function() {},
   pause: function() {
     if (this.timer) {

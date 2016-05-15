@@ -1,5 +1,5 @@
-var http = require("http");
-console.log("Micro nurse hub - send sensor data kernel");
+var http = require('http');
+console.log('Micro nurse hub - send sensor data kernel');
 
 function requestWithTimeout(options, timeout, callback){
     var timeoutEventId;
@@ -9,12 +9,12 @@ function requestWithTimeout(options, timeout, callback){
     });
 
     req.on('error', function (e) {
-        console.log("Request error: " + e.message);
+        console.log('Request error: ' + e.message);
         clearTimeout(timeoutEventId);
     });
 
     req.on('timeout', function(e){
-        console.log("Request timeout.");
+        console.log('Request timeout.');
         if(req.res){
             req.res.abort();
         }
@@ -29,20 +29,28 @@ function requestWithTimeout(options, timeout, callback){
 }
 
 var outdata={
-  data: IN.json_data
+    data: IN.json_data,
+    timestamp: Date.parse(new Date())
 };
 
-console.log("JSON:" + JSON.stringify(outdata));
+var md5 = require('crypto').createHash('md5');
+md5.update(outdata.data);
+md5.update(outdata.timestamp.toString());
+md5.update(shared.token);
+outdata.sign = md5.digest('hex');
+
+console.log('JSON:' + JSON.stringify(outdata));
 outdata = require('querystring').stringify(outdata);
 
 var opt = {
-    method: "POST",
-    host: "micronurse-webserver",
+    method: 'POST',
+    host: 'micronurse-webserver',
     port: 13000,
-    path: "/micronurse/iot/report",
+    path: '/micronurse/iot/report',
     headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        "Content-Length": outdata.length
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Cookie': 'sessionid=' + shared.sessionid,
+        'Content-Length': outdata.length
     }
 };
 
