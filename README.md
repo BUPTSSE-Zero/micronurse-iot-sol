@@ -1,5 +1,24 @@
 #Micro Nurse IoT-SOL
-运行方法：按下方的说明配置好Intel IoT SOL环境后，运行`start_micronurse.sh`脚本即可。
+## 配置与启动
+
+### 软件依赖
+nodejs >= 0.12
+
+### 环境配置
+将工作目录切换到项目根目录，依次执行以下命令：
+
+```bash
+# 安装iot-sol所需的nodejs包
+npm install
+# 构建UI
+cd ./micronurse_ui
+bash ./buildui.sh install
+sudo bash ./buildui.sh link
+bash ./buildui.sh
+```
+### 启动
+运行项目根目录下的`start_micronurse.sh`脚本即可。
+
 
 Intel(r) IoT Services Orchestration Layer
 ====================================================
