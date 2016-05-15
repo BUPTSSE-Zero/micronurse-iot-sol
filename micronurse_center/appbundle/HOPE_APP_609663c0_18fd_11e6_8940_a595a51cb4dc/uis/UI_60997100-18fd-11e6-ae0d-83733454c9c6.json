@@ -1,0 +1,33 @@
+{
+  "id": "UI_60997100-18fd-11e6-ae0d-83733454c9c6",
+  "name": "Default UI",
+  "description": "",
+  "app": "HOPE_APP_609663c0_18fd_11e6_8940_a595a51cb4dc",
+  "widgets": [
+    {
+      "config": {
+        "align": "left"
+      },
+      "spec": "hope/ui/text",
+      "x": 2,
+      "y": 1,
+      "width": 6,
+      "height": 1,
+      "id": "WIDGET_6bfdda90-18fd-11e6-ae0d-83733454c9c6",
+      "name": "GPSText",
+      "data_cache_size": 1
+    },
+    {
+      "config": {
+        "align": "left"
+      },
+      "spec": "hope/ui/text",
+      "x": 5,
+      "y": 4,
+      "width": 1,
+      "height": 1,
+      "id": "WIDGET_b91cd9f0-192c-11e6-a699-b9364b7c9c06",
+      "name": "text1"
+    }
+  ]
+}

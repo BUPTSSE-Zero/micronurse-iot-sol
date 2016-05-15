@@ -1,6 +1,5 @@
 #Node Modules
-node_modules/*
-!node_modules/hope-center
+**/node_modules/*
 
 #Log Files
 *.log
@@ -11,3 +10,38 @@ node_modules/*
 
 #Project files
 .idea
+
+**/bower_components/*
+micronurse_ui/ui-widgets/plugins.js
+micronurse_ui/ui-widgets/generated
+**/new_things_by_user/*
+micronurse_ui/ui-dev/ui/js/lib/font-awesome.js
+/TODO
+*.orig
+**/cache/*
+*.tmp
+tmp_*
+/test/temp/*
+/test/mockup/storage/*
+/test/mockup/local/data/*
+/test/mockup/local/apps/*
+/test/mockup/local2/data/*
+/test/mockup/local3/apps/*
+**/hope_resource/*
+ui.json
+/local
+public/
+.*cache
+/test/mockup/local/bundle/apps/*
+!/test/mockup/local/bundle/apps/test_app
+/publish
+/tmp
+/dist
+.id
+.hope/
+.tern-port
+*.sublime*
+.local
+**/coverage/*
+out
+

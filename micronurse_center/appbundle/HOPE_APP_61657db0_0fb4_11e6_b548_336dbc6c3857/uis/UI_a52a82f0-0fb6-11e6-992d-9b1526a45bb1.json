@@ -8,8 +8,13 @@
         "waveColor": "#178BCA"
       },
       "spec": "hope/ui/lfg-gauge",
+<<<<<<< HEAD
       "x": 3,
       "y": 2,
+=======
+      "x": 5,
+      "y": 4,
+>>>>>>> 650ea800a18e80a5e86126c2b7e5b1dd5acc0dc1
       "width": 3,
       "height": 3,
       "id": "WIDGET_becb2e30-0fb6-11e6-992d-9b1526a45bb1",
@@ -17,7 +22,12 @@
     },
     {
       "config": {
+<<<<<<< HEAD
         "align": "center"
+=======
+        "align": "left",
+        "font_size": "20"
+>>>>>>> 650ea800a18e80a5e86126c2b7e5b1dd5acc0dc1
       },
       "spec": "hope/ui/text",
       "x": 3,
@@ -30,6 +40,7 @@
     },
     {
       "config": {
+<<<<<<< HEAD
         "align": "center"
       },
       "spec": "hope/ui/text",
@@ -44,6 +55,10 @@
     {
       "config": {
         "align": "center"
+=======
+        "align": "left",
+        "font_size": "20"
+>>>>>>> 650ea800a18e80a5e86126c2b7e5b1dd5acc0dc1
       },
       "spec": "hope/ui/text",
       "x": 0,
@@ -56,6 +71,7 @@
     },
     {
       "config": {
+<<<<<<< HEAD
         "align": "center"
       },
       "spec": "hope/ui/text",
@@ -69,14 +85,21 @@
     },
     {
       "config": {
+=======
+>>>>>>> 650ea800a18e80a5e86126c2b7e5b1dd5acc0dc1
         "min": -30,
         "max": 100,
         "minor_ticks": 5,
         "title": "Tem"
       },
       "spec": "hope/ui/gauge",
+<<<<<<< HEAD
       "x": 0,
       "y": 2,
+=======
+      "x": 1,
+      "y": 4,
+>>>>>>> 650ea800a18e80a5e86126c2b7e5b1dd5acc0dc1
       "width": 3,
       "height": 4,
       "id": "WIDGET_cfe21bc0-1849-11e6-b446-b571310cf419",
@@ -84,6 +107,7 @@
     },
     {
       "config": {
+<<<<<<< HEAD
 <<<<<<< HEAD
         "align": "center"
       },
@@ -187,6 +211,33 @@
       "name": "SmoketransducerReport",
 >>>>>>> 9985f5516c7ac37d9df6904699efc795ad1ae45a
       "data_cache_size": 1
+=======
+        "align": "left",
+        "date_font_size": 25,
+        "time_font_size": 40
+      },
+      "spec": "micronurse_ui_digiclock",
+      "x": 1,
+      "y": 2,
+      "width": 3,
+      "height": 2,
+      "id": "WIDGET_09a8b980-19e0-11e6-902f-559b11ab8e14",
+      "name": "TemClock1"
+    },
+    {
+      "config": {
+        "align": "left",
+        "date_font_size": 25,
+        "time_font_size": 40
+      },
+      "spec": "micronurse_ui_digiclock",
+      "x": 5,
+      "y": 2,
+      "width": 3,
+      "height": 2,
+      "id": "WIDGET_fa7617a0-19e4-11e6-8284-e7126eb9440b",
+      "name": "HumidClock1"
+>>>>>>> 650ea800a18e80a5e86126c2b7e5b1dd5acc0dc1
     }
   ],
   "app": "HOPE_APP_61657db0_0fb4_11e6_b548_336dbc6c3857"

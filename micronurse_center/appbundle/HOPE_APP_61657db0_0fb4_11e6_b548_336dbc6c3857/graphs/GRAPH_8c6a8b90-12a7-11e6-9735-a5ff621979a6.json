@@ -9,34 +9,27 @@
   "styles": {
     "nodes": {
       "NODE_d7d90020-12a7-11e6-93eb-3f5ad9f1b52f": {
-        "x": 12,
-        "y": 892
+        "x": 22,
+        "y": 512
       },
       "NODE_e04b79e0-12a7-11e6-93eb-3f5ad9f1b52f": {
-        "x": 12,
-        "y": 712
+        "x": 22,
+        "y": 152
       },
       "NODE_1387a040-12a8-11e6-93eb-3f5ad9f1b52f": {
-        "x": 264,
-        "y": 292
-      },
-      "NODE_1698b0d0-12a8-11e6-93eb-3f5ad9f1b52f": {
-        "x": 264,
-        "y": 572
+        "x": 292,
+        "y": 22
       },
       "NODE_1805ae50-12a8-11e6-93eb-3f5ad9f1b52f": {
-        "x": 264,
-        "y": 432
+        "x": 292,
+        "y": 162
       },
       "NODE_1c9f0c90-12a8-11e6-93eb-3f5ad9f1b52f": {
-        "x": 264,
-        "y": 1132
-      },
-      "NODE_1daa8920-12a8-11e6-93eb-3f5ad9f1b52f": {
-        "x": 264,
-        "y": 992
+        "x": 292,
+        "y": 442
       },
       "NODE_1fc41a50-12a8-11e6-93eb-3f5ad9f1b52f": {
+<<<<<<< HEAD
         "x": 264,
         "y": 852
       },
@@ -84,19 +77,33 @@
 =======
         "x": 264,
         "y": 712
+=======
+        "x": 292,
+        "y": 722
+>>>>>>> 650ea800a18e80a5e86126c2b7e5b1dd5acc0dc1
       },
       "NODE_9b3912f0-18cd-11e6-9777-43e50d8dac88": {
-        "x": 12,
-        "y": 392
+        "x": 22,
+        "y": 332
       },
       "NODE_9fd72c20-18cd-11e6-9777-43e50d8dac88": {
-        "x": 12,
-        "y": 212
+        "x": 22,
+        "y": 692
       },
+<<<<<<< HEAD
       "NODE_3df959a0-18ce-11e6-9777-43e50d8dac88": {
         "x": 12,
         "y": 572
 >>>>>>> 9985f5516c7ac37d9df6904699efc795ad1ae45a
+=======
+      "NODE_747a4e40-19e0-11e6-902f-559b11ab8e14": {
+        "x": 292,
+        "y": 582
+      },
+      "NODE_4653c8c0-19e5-11e6-8284-e7126eb9440b": {
+        "x": 299,
+        "y": 305.0085220336914
+>>>>>>> 650ea800a18e80a5e86126c2b7e5b1dd5acc0dc1
       }
     },
     "edges": {}
@@ -121,13 +128,6 @@
       "service": "UI_SERVICE__WIDGET_5b96b3f0-1139-11e6-a23b-6d72315afdf6",
       "widget": "WIDGET_5b96b3f0-1139-11e6-a23b-6d72315afdf6"
     },
-    "NODE_1698b0d0-12a8-11e6-93eb-3f5ad9f1b52f": {
-      "type": "fixed",
-      "thing": "HOPE_UI_THING__micro_nurse_iot_sol_center__built_in_hub__HOPE_APP_61657db0_0fb4_11e6_b548_336dbc6c3857",
-      "hub": "micro_nurse_iot_sol_center__built_in_hub__",
-      "service": "UI_SERVICE__WIDGET_9b42c3a0-113d-11e6-b2ff-010f04411ad5",
-      "widget": "WIDGET_9b42c3a0-113d-11e6-b2ff-010f04411ad5"
-    },
     "NODE_1805ae50-12a8-11e6-93eb-3f5ad9f1b52f": {
       "type": "fixed",
       "thing": "HOPE_UI_THING__micro_nurse_iot_sol_center__built_in_hub__HOPE_APP_61657db0_0fb4_11e6_b548_336dbc6c3857",
@@ -142,13 +142,6 @@
       "service": "UI_SERVICE__WIDGET_c3243280-113f-11e6-b318-950740551333",
       "widget": "WIDGET_c3243280-113f-11e6-b318-950740551333"
     },
-    "NODE_1daa8920-12a8-11e6-93eb-3f5ad9f1b52f": {
-      "type": "fixed",
-      "thing": "HOPE_UI_THING__micro_nurse_iot_sol_center__built_in_hub__HOPE_APP_61657db0_0fb4_11e6_b548_336dbc6c3857",
-      "hub": "micro_nurse_iot_sol_center__built_in_hub__",
-      "service": "UI_SERVICE__WIDGET_d43fc660-113f-11e6-b318-950740551333",
-      "widget": "WIDGET_d43fc660-113f-11e6-b318-950740551333"
-    },
     "NODE_1fc41a50-12a8-11e6-93eb-3f5ad9f1b52f": {
       "type": "fixed",
       "thing": "HOPE_UI_THING__micro_nurse_iot_sol_center__built_in_hub__HOPE_APP_61657db0_0fb4_11e6_b548_336dbc6c3857",
@@ -156,6 +149,7 @@
       "service": "UI_SERVICE__WIDGET_e53311c0-113f-11e6-b318-950740551333",
       "widget": "WIDGET_e53311c0-113f-11e6-b318-950740551333"
     },
+<<<<<<< HEAD
     "NODE_eb9ce090-152c-11e6-8901-5342d62e445f": {
       "type": "fixed",
       "thing": "micro_nurse_hub_webserver",
@@ -217,6 +211,8 @@
       "service": "UI_SERVICE__WIDGET_55a3b190-186a-11e6-94b3-8f89df5f489d",
       "widget": "WIDGET_55a3b190-186a-11e6-94b3-8f89df5f489d"
 =======
+=======
+>>>>>>> 650ea800a18e80a5e86126c2b7e5b1dd5acc0dc1
     "NODE_9b3912f0-18cd-11e6-9777-43e50d8dac88": {
       "type": "fixed",
       "thing": "micro_nurse_hub_smoketransducer",
@@ -229,13 +225,25 @@
       "hub": "micro_nurse_hub",
       "service": "report@micro_nurse_hub_turgoscope"
     },
-    "NODE_3df959a0-18ce-11e6-9777-43e50d8dac88": {
+    "NODE_747a4e40-19e0-11e6-902f-559b11ab8e14": {
       "type": "fixed",
       "thing": "HOPE_UI_THING__micro_nurse_iot_sol_center__built_in_hub__HOPE_APP_61657db0_0fb4_11e6_b548_336dbc6c3857",
       "hub": "micro_nurse_iot_sol_center__built_in_hub__",
+      "service": "UI_SERVICE__WIDGET_09a8b980-19e0-11e6-902f-559b11ab8e14",
+      "widget": "WIDGET_09a8b980-19e0-11e6-902f-559b11ab8e14"
+    },
+    "NODE_4653c8c0-19e5-11e6-8284-e7126eb9440b": {
+      "type": "fixed",
+      "thing": "HOPE_UI_THING__micro_nurse_iot_sol_center__built_in_hub__HOPE_APP_61657db0_0fb4_11e6_b548_336dbc6c3857",
+      "hub": "micro_nurse_iot_sol_center__built_in_hub__",
+<<<<<<< HEAD
       "service": "UI_SERVICE__WIDGET_cd34ca10-18cd-11e6-9777-43e50d8dac88",
       "widget": "WIDGET_cd34ca10-18cd-11e6-9777-43e50d8dac88"
 >>>>>>> 9985f5516c7ac37d9df6904699efc795ad1ae45a
+=======
+      "service": "UI_SERVICE__WIDGET_fa7617a0-19e4-11e6-8284-e7126eb9440b",
+      "widget": "WIDGET_fa7617a0-19e4-11e6-8284-e7126eb9440b"
+>>>>>>> 650ea800a18e80a5e86126c2b7e5b1dd5acc0dc1
     }
   },
   "graph": {
@@ -267,11 +275,6 @@
       },
       {
         "name": "",
-        "spec": "hope/ui/text",
-        "id": "NODE_1698b0d0-12a8-11e6-93eb-3f5ad9f1b52f"
-      },
-      {
-        "name": "",
         "spec": "hope/ui/lfg-gauge",
         "id": "NODE_1805ae50-12a8-11e6-93eb-3f5ad9f1b52f"
       },
@@ -282,17 +285,13 @@
       },
       {
         "name": "",
-        "spec": "hope/ui/text",
-        "id": "NODE_1daa8920-12a8-11e6-93eb-3f5ad9f1b52f"
-      },
-      {
-        "name": "",
         "spec": "hope/ui/gauge",
         "id": "NODE_1fc41a50-12a8-11e6-93eb-3f5ad9f1b52f"
       },
       {
         "name": "",
         "description": "",
+<<<<<<< HEAD
         "spec": "webserver_send_sensor_data",
         "id": "NODE_eb9ce090-152c-11e6-8901-5342d62e445f",
         "config": {
@@ -312,6 +311,8 @@
         },
         "id": "NODE_02379d90-1848-11e6-b446-b571310cf419"
 =======
+=======
+>>>>>>> 650ea800a18e80a5e86126c2b7e5b1dd5acc0dc1
         "spec": "smoketransducer_report",
         "id": "NODE_9b3912f0-18cd-11e6-9777-43e50d8dac88",
         "config": {
@@ -377,6 +378,7 @@
       },
       {
         "name": "",
+<<<<<<< HEAD
         "spec": "hope/ui/text",
 <<<<<<< HEAD
         "id": "NODE_55cbc110-186c-11e6-a6a8-eb1de0b00795"
@@ -396,6 +398,15 @@
 =======
         "id": "NODE_3df959a0-18ce-11e6-9777-43e50d8dac88"
 >>>>>>> 9985f5516c7ac37d9df6904699efc795ad1ae45a
+=======
+        "spec": "micronurse_ui_digiclock",
+        "id": "NODE_747a4e40-19e0-11e6-902f-559b11ab8e14"
+      },
+      {
+        "name": "",
+        "spec": "micronurse_ui_digiclock",
+        "id": "NODE_4653c8c0-19e5-11e6-8284-e7126eb9440b"
+>>>>>>> 650ea800a18e80a5e86126c2b7e5b1dd5acc0dc1
       }
     ],
     "edges": [
@@ -407,17 +418,6 @@
         },
         "target": {
           "node": "NODE_1387a040-12a8-11e6-93eb-3f5ad9f1b52f",
-          "port": "text"
-        }
-      },
-      {
-        "id": "EDGE_2506b0e0-12a8-11e6-93eb-3f5ad9f1b52f",
-        "source": {
-          "node": "NODE_e04b79e0-12a7-11e6-93eb-3f5ad9f1b52f",
-          "port": "timestamp"
-        },
-        "target": {
-          "node": "NODE_1698b0d0-12a8-11e6-93eb-3f5ad9f1b52f",
           "port": "text"
         }
       },
@@ -455,20 +455,21 @@
         }
       },
       {
-        "id": "EDGE_333c14c0-12a8-11e6-93eb-3f5ad9f1b52f",
+        "id": "EDGE_78859d50-19e0-11e6-902f-559b11ab8e14",
         "source": {
           "node": "NODE_d7d90020-12a7-11e6-93eb-3f5ad9f1b52f",
           "port": "timestamp"
         },
         "target": {
-          "node": "NODE_1daa8920-12a8-11e6-93eb-3f5ad9f1b52f",
-          "port": "text"
+          "node": "NODE_747a4e40-19e0-11e6-902f-559b11ab8e14",
+          "port": "time"
         }
       },
       {
-        "id": "EDGE_ed67dc90-152c-11e6-8901-5342d62e445f",
+        "id": "EDGE_493a1fd0-19e5-11e6-8284-e7126eb9440b",
         "source": {
           "node": "NODE_e04b79e0-12a7-11e6-93eb-3f5ad9f1b52f",
+<<<<<<< HEAD
           "port": "json_data"
         },
         "target": {
@@ -548,10 +549,13 @@
           "node": "NODE_9b3912f0-18cd-11e6-9777-43e50d8dac88",
 >>>>>>> 9985f5516c7ac37d9df6904699efc795ad1ae45a
           "port": "json_data"
+=======
+          "port": "timestamp"
+>>>>>>> 650ea800a18e80a5e86126c2b7e5b1dd5acc0dc1
         },
         "target": {
-          "node": "NODE_eb9ce090-152c-11e6-8901-5342d62e445f",
-          "port": "json_data"
+          "node": "NODE_4653c8c0-19e5-11e6-8284-e7126eb9440b",
+          "port": "time"
         }
 <<<<<<< HEAD
       },
