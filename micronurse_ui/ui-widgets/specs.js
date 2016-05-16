@@ -743,6 +743,38 @@ var specs = [{
   out: {
     ports: []
   }
+}, {
+  id:           "micronurse_ui_map",
+  type:         "spec",
+  is_ui:        true,
+  catalog:      "micronurse",
+  name:         "Map",
+  description:  "Show specific position",
+  icon:			"image",
+
+  use_ract:     true,
+  data_cache_size: 1,
+
+  config: [{
+    name: "ak",
+    display: "Baidu map API access key",
+    type: "string",
+  },{
+    name: "zoom",
+    display: "Zoom",
+    type: "int",
+    default: 13
+  }],
+
+  in: {
+    ports: [{
+      name: "position",
+      type: "string"
+    }]
+  },
+  out: {
+    ports: []
+  }
 }];
 
 if (process.browser) {

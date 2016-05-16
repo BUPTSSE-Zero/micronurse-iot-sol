@@ -8,12 +8,12 @@
       {
         "name": "x",
         "type": "double",
-        "default": 52.9276
+        "default": 116.381493
       },
       {
         "name": "y",
         "type": "double",
-        "default": 27.4283
+        "default": 40.114757
       },
       {
         "name": "name",
@@ -23,7 +23,7 @@
       {
         "name": "interval",
         "type": "int",
-        "default": 2000
+        "default": 5000
       }
     ],
     "out": {

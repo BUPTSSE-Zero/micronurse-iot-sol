@@ -1,0 +1,38 @@
+{
+  "id": "UI_f039d050-1b16-11e6-b6d6-db4f64c5a32a",
+  "name": "Default UI",
+  "description": "",
+  "app": "HOPE_APP_f0338ec0_1b16_11e6_888e_1fb72398316c",
+  "widgets": [
+    {
+      "config": {
+        "caption": "Going Out Security",
+        "style": "primary",
+        "action": "ui",
+        "target_ui": "UI_2337b530-1b17-11e6-b6d6-db4f64c5a32a"
+      },
+      "spec": "hope/ui/button",
+      "x": 1,
+      "y": 1,
+      "width": 4,
+      "height": 1,
+      "id": "WIDGET_79097700-1b17-11e6-b6d6-db4f64c5a32a",
+      "name": "btn_goingout_ui"
+    },
+    {
+      "config": {
+        "align": "center",
+        "font_size": "50",
+        "defval": "Micro Nurse UI"
+      },
+      "spec": "hope/ui/text",
+      "x": 1,
+      "y": 0,
+      "width": 8,
+      "height": 1,
+      "id": "WIDGET_e1bdaa00-1b17-11e6-b6d6-db4f64c5a32a",
+      "name": "index_title_text",
+      "data_cache_size": 1
+    }
+  ]
+}

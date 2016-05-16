@@ -49,7 +49,8 @@ var widgets = {
   "hope/ui/webrtc":    require("./generated/webrtc"),
 
   // Micro Nurse
-  "micronurse_ui_digiclock":	require("./generated/micronurse_digiclock")
+  "micronurse_ui_digiclock":	require("./generated/micronurse_digiclock"),
+  "micronurse_ui_map":          require("./generated/micronurse_map")
 };
 
 require("./plugins").forEach(function(m) {

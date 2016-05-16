@@ -1,0 +1,73 @@
+{
+  "version": "1.0.0",
+  "type": "graph",
+  "id": "GRAPH_1a3b7200-1b17-11e6-b6d6-db4f64c5a32a",
+  "name": "Going Out Security Workflow",
+  "description": "",
+  "timestamp": 1463369671968,
+  "specs": [],
+  "styles": {
+    "nodes": {
+      "NODE_95d750e0-1b18-11e6-b6d6-db4f64c5a32a": {
+        "x": 10,
+        "y": 40
+      },
+      "NODE_9e708c80-1b18-11e6-b6d6-db4f64c5a32a": {
+        "x": 252,
+        "y": 32
+      }
+    },
+    "edges": {}
+  },
+  "bindings": {
+    "NODE_95d750e0-1b18-11e6-b6d6-db4f64c5a32a": {
+      "type": "fixed",
+      "thing": "HOPE_THING_a0052a20_1842_11e6_84fc_93bf6a12bc6a",
+      "hub": "micro_nurse_hub",
+      "service": "HOPE_SERVICE_5d6b5710_1843_11e6_84fc_93bf6a12bc6a"
+    },
+    "NODE_9e708c80-1b18-11e6-b6d6-db4f64c5a32a": {
+      "type": "fixed",
+      "thing": "HOPE_UI_THING__micro_nurse_iot_sol_center__built_in_hub__HOPE_APP_f0338ec0_1b16_11e6_888e_1fb72398316c",
+      "hub": "micro_nurse_iot_sol_center__built_in_hub__",
+      "service": "UI_SERVICE__WIDGET_5bee0770-1b18-11e6-b6d6-db4f64c5a32a",
+      "widget": "WIDGET_5bee0770-1b18-11e6-b6d6-db4f64c5a32a"
+    }
+  },
+  "graph": {
+    "nodes": [
+      {
+        "name": "",
+        "description": "",
+        "spec": "gps/locate/service@SpecBundlemicro_nurse_hub",
+        "config": {
+          "x": 116.381493,
+          "y": 40.114757,
+          "name": "GPS",
+          "interval": 5000
+        },
+        "id": "NODE_95d750e0-1b18-11e6-b6d6-db4f64c5a32a"
+      },
+      {
+        "name": "",
+        "spec": "micronurse_ui_map",
+        "id": "NODE_9e708c80-1b18-11e6-b6d6-db4f64c5a32a"
+      }
+    ],
+    "edges": [
+      {
+        "id": "EDGE_a0b880b0-1b18-11e6-b6d6-db4f64c5a32a",
+        "source": {
+          "node": "NODE_95d750e0-1b18-11e6-b6d6-db4f64c5a32a",
+          "port": "value"
+        },
+        "target": {
+          "node": "NODE_9e708c80-1b18-11e6-b6d6-db4f64c5a32a",
+          "port": "position"
+        }
+      }
+    ],
+    "tags": []
+  },
+  "app": "HOPE_APP_f0338ec0_1b16_11e6_888e_1fb72398316c"
+}

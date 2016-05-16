@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+quick_build=0
+
 if [ $# -gt 0 ]; then
     if [ $1 == "install" ]; then
         cd ./ui-widgets
@@ -11,14 +13,14 @@ if [ $# -gt 0 ]; then
         npm install
         bower --allow-root install
         exit 0
-    fi
-
-    if [ $1 == "link" ]; then
+    elif [ $1 == "link" ]; then
         cd ./ui-dev/
         npm link ../ui-widgets
         cd ../ui-user
         npm link ../ui-widgets
         exit 0
+    elif [ $1 == "quick" ]; then
+        quick_build=1
     fi
 fi
 
@@ -30,20 +32,32 @@ mkdir -p ../node_modules/ui-widgets
 cp ./ui-widgets/{specs.js,plugins-specs.json} ../node_modules/ui-widgets
 
 echo ">>> ui dev"
-cd ./ui-dev
-rm -rf ./public
-NODE_ENV=production gulp build
-cd ../
 mkdir -p ../node_modules/ui-dev
-cp -r ./ui-dev/public ../node_modules/ui-dev/.
+cd ./ui-dev
+if [ $quick_build -eq 0 ]; then
+    rm -rf ./public
+    NODE_ENV=production gulp build
+    cd ../
+    cp -r ./ui-dev/public ../node_modules/ui-dev/.
+else
+    NODE_ENV=production gulp hope_js
+    cd ../
+    cp ./ui-dev/public/js/hope.js ../node_modules/ui-dev/public/js
+fi
 
 echo ">>> ui user"
-cd ./ui-user
-rm -rf ./public
-NODE_ENV=production gulp build
-cd ../
 mkdir -p ../node_modules/ui-user
-cp -r ./ui-user/public ../node_modules/ui-user/.
+cd ./ui-user
+if [ $quick_build -eq 0 ]; then
+    rm -rf ./public
+    NODE_ENV=production gulp build
+    cd ../
+    cp -r ./ui-user/public ../node_modules/ui-user/.
+else
+    NODE_ENV=production gulp hope_js
+    cd ../
+    cp ./ui-user/public/js/hope.js ../node_modules/ui-user/public/js
+fi
 
 #chmod -R 777 ../node_modules/ui-dev
 #chmod -R 777 ../node_modules/ui-user

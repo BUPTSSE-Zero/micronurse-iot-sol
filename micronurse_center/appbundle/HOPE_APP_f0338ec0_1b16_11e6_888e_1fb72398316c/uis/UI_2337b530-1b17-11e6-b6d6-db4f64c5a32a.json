@@ -1,0 +1,21 @@
+{
+  "id": "UI_2337b530-1b17-11e6-b6d6-db4f64c5a32a",
+  "name": "Going Out Security UI",
+  "description": "",
+  "app": "HOPE_APP_f0338ec0_1b16_11e6_888e_1fb72398316c",
+  "widgets": [
+    {
+      "config": {
+        "zoom": 16,
+        "ak": "Bq0ed2LDR2qiz0aHFAxaxZunjGPqXdsg"
+      },
+      "spec": "micronurse_ui_map",
+      "x": 0,
+      "y": 0,
+      "width": 9,
+      "height": 7,
+      "id": "WIDGET_5bee0770-1b18-11e6-b6d6-db4f64c5a32a",
+      "name": "map"
+    }
+  ]
+}
