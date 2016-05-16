@@ -34,6 +34,7 @@ cp ./ui-widgets/{specs.js,plugins-specs.json} ../node_modules/ui-widgets
 echo ">>> ui dev"
 mkdir -p ../node_modules/ui-dev
 cd ./ui-dev
+cp -r ../ui-widgets/public ../../node_modules/ui-dev/.
 if [ $quick_build -eq 0 ]; then
     rm -rf ./public
     NODE_ENV=production gulp build
@@ -48,6 +49,7 @@ fi
 echo ">>> ui user"
 mkdir -p ../node_modules/ui-user
 cd ./ui-user
+cp -r ../ui-widgets/public ../../node_modules/ui-user/.
 if [ $quick_build -eq 0 ]; then
     rm -rf ./public
     NODE_ENV=production gulp build

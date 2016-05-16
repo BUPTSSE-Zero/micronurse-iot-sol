@@ -31,6 +31,7 @@ tmp_*
 ui.json
 /local
 public/
+!micronurse_ui/ui-widgets/public
 .*cache
 /test/mockup/local/bundle/apps/*
 !/test/mockup/local/bundle/apps/test_app

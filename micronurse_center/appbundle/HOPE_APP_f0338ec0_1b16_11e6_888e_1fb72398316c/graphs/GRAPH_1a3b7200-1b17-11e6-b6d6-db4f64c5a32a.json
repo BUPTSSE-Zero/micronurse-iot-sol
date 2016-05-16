@@ -9,12 +9,16 @@
   "styles": {
     "nodes": {
       "NODE_95d750e0-1b18-11e6-b6d6-db4f64c5a32a": {
-        "x": 10,
-        "y": 40
+        "x": 22,
+        "y": 62
       },
       "NODE_9e708c80-1b18-11e6-b6d6-db4f64c5a32a": {
         "x": 252,
-        "y": 32
+        "y": 152
+      },
+      "NODE_a426a260-1b39-11e6-9fde-f7dda31ea4a5": {
+        "x": 252,
+        "y": 12
       }
     },
     "edges": {}
@@ -32,6 +36,13 @@
       "hub": "micro_nurse_iot_sol_center__built_in_hub__",
       "service": "UI_SERVICE__WIDGET_5bee0770-1b18-11e6-b6d6-db4f64c5a32a",
       "widget": "WIDGET_5bee0770-1b18-11e6-b6d6-db4f64c5a32a"
+    },
+    "NODE_a426a260-1b39-11e6-9fde-f7dda31ea4a5": {
+      "type": "fixed",
+      "thing": "HOPE_UI_THING__micro_nurse_iot_sol_center__built_in_hub__HOPE_APP_f0338ec0_1b16_11e6_888e_1fb72398316c",
+      "hub": "micro_nurse_iot_sol_center__built_in_hub__",
+      "service": "UI_SERVICE__WIDGET_5d2a06e0-1b39-11e6-9fde-f7dda31ea4a5",
+      "widget": "WIDGET_5d2a06e0-1b39-11e6-9fde-f7dda31ea4a5"
     }
   },
   "graph": {
@@ -52,6 +63,11 @@
         "name": "",
         "spec": "micronurse_ui_map",
         "id": "NODE_9e708c80-1b18-11e6-b6d6-db4f64c5a32a"
+      },
+      {
+        "name": "",
+        "spec": "micronurse_ui_digiclock",
+        "id": "NODE_a426a260-1b39-11e6-9fde-f7dda31ea4a5"
       }
     ],
     "edges": [
@@ -64,6 +80,17 @@
         "target": {
           "node": "NODE_9e708c80-1b18-11e6-b6d6-db4f64c5a32a",
           "port": "position"
+        }
+      },
+      {
+        "id": "EDGE_a57605c0-1b39-11e6-9fde-f7dda31ea4a5",
+        "source": {
+          "node": "NODE_95d750e0-1b18-11e6-b6d6-db4f64c5a32a",
+          "port": "timestamp"
+        },
+        "target": {
+          "node": "NODE_a426a260-1b39-11e6-9fde-f7dda31ea4a5",
+          "port": "time"
         }
       }
     ],

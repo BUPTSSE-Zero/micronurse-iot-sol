@@ -80,7 +80,25 @@ var specs = [{
     name: "caption",
     type: "string",
     default: "Command"
-  }, {
+  },{
+    name: "fontsize",
+    display: "Font Size",
+    type: "int"
+  },{
+    name: "align",
+    display: "Align",
+    type: "option",
+    default: "left",
+    options: ["left", "center", "right"]
+  },{
+    name: "padding_horizontal",
+    display: "Horizontal Padding",
+    type: "int",
+  },{
+    name: "padding_vertical",
+    display: "Vertical Padding",
+    type: "int",
+  },{
     name: "style",
     type: "option",
     default: "default",
@@ -707,6 +725,50 @@ var specs = [{
 ///////////////////////////////////////////////
 /*Micro Nurse UI*/
 {
+  id:           "micronurse_single_line_text",
+  type:         "spec",
+  is_ui:        true,
+  catalog:      "micronurse",
+  name:         "Single Line Text",
+  description:  "Show Text",
+  icon:         "text-width",
+
+  use_ract:     true,
+  data_cache_size: 1,
+
+  config: [{
+    name: "defval",
+    display: "Default",
+    type: "string"
+  }, {
+    name: "align",
+    display: "Text Align",
+    type: "option",
+    default: "left",
+    options: ["left", "center", "right"]
+  }, {
+    name: "font_size",
+    display: "Font Size",
+    type: "int"
+  }, {
+    name: "font_weight",
+    display: "Font Weight",
+    type: "option",
+    default: "normal",
+    options: ["normal", "bold"]
+  }],
+
+  in: {
+    ports: [{
+      name: "text",
+      type: "string"
+    }]
+  },
+
+  out: {
+    ports: []
+  }
+}, {
   id:           "micronurse_ui_digiclock",
   type:         "spec",
   is_ui:        true,
@@ -724,14 +786,43 @@ var specs = [{
     type: "option",
     default: "left",
     options: ["left", "center", "right"]
-  }, {
+  },{
+    name: "orientation",
+    display: "Text Orientation",
+    type: "option",
+    default: "vertical",
+    options: ["vertical", "horizontal"]
+  },{
     name: "date_font_size",
     display: "Date Font Size",
     type: "int"
   },{
+    name: "date_font_weight",
+    display: "Date Font Weight",
+    type: "option",
+    default: "normal",
+    options: ["normal", "bold"]
+  },{
     name: "time_font_size",
     display: "Time Font Size",
     type: "int"
+  },{
+    name: "time_font_weight",
+    display: "Time Font Weight",
+    type: "option",
+    default: "normal",
+    options: ["normal", "bold"]
+  },{
+    name: "icon",
+    display: "Icon",
+    type: "boolean",
+    default: false
+  },{
+    name: "icon_size",
+    display: "Icon Size",
+    type: "int",
+    default: 24,
+    depend: "$$.icon === true"
   }],
 
   in: {
@@ -739,9 +830,6 @@ var specs = [{
       name: "time",
       type: "int"
     }]
-  },
-  out: {
-    ports: []
   }
 }, {
   id:           "micronurse_ui_map",

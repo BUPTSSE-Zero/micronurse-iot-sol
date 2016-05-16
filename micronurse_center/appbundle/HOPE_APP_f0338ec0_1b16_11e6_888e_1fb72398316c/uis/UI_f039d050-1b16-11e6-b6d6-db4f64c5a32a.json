@@ -6,33 +6,36 @@
   "widgets": [
     {
       "config": {
-        "caption": "Going Out Security",
-        "style": "primary",
+        "caption": "出行安全监测",
+        "align": "center",
+        "style": "info",
         "action": "ui",
-        "target_ui": "UI_2337b530-1b17-11e6-b6d6-db4f64c5a32a"
+        "target_ui": "UI_2337b530-1b17-11e6-b6d6-db4f64c5a32a",
+        "fontsize": 30,
+        "padding_horizontal": 100
       },
       "spec": "hope/ui/button",
       "x": 1,
       "y": 1,
-      "width": 4,
-      "height": 1,
+      "width": 8,
+      "height": 2,
       "id": "WIDGET_79097700-1b17-11e6-b6d6-db4f64c5a32a",
       "name": "btn_goingout_ui"
     },
     {
       "config": {
         "align": "center",
-        "font_size": "50",
-        "defval": "Micro Nurse UI"
+        "font_weight": "bold",
+        "defval": "“微保姆”——空巢老人监护平台",
+        "font_size": 45
       },
-      "spec": "hope/ui/text",
+      "spec": "micronurse_single_line_text",
       "x": 1,
       "y": 0,
       "width": 8,
       "height": 1,
-      "id": "WIDGET_e1bdaa00-1b17-11e6-b6d6-db4f64c5a32a",
-      "name": "index_title_text",
-      "data_cache_size": 1
+      "id": "WIDGET_d2a7a420-1b59-11e6-9424-139e8de59701",
+      "name": "singleLineText1"
     }
   ]
 }

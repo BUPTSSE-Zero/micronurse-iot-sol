@@ -61,6 +61,12 @@ export default class ButtonWidget extends Widget {
   render() {
     var w = this.props.widget;
     var props = {};
+    var button_style = {};
+    var div_style = {};
+
+    //button_style.width = '90%';
+    //button_style.height = '90%';
+
     switch (w.config.action) {
       case "event":
       case "ui":
@@ -71,14 +77,27 @@ export default class ButtonWidget extends Widget {
         props.onMouseUp = props.onTouchEnd = props.onMouseOut = emit.bind(this, false);
         break;
     }
+
+    if(w.config.fontsize){
+      button_style.fontSize = w.config.fontsize;
+    }
+    if(w.config.padding_horizontal){
+      button_style.paddingLeft = button_style.paddingRight = w.config.padding_horizontal;
+    }
+    if(w.config.padding_vertical){
+      button_style.paddingTop = button_style.paddingBottom = w.config.padding_vertical;
+    }
+
+    div_style.height = this.get_height();
+    div_style.textAlign = w.config.align;
+    div_style.lineHeight = this.get_height() + 'px';
     return super.render(
-      <div className="hv-center" style={{
-        height: this.get_height()
-      }}>
-        <button {...props}
-          className={"btn btn-" + (w.config.style || "default")}>
+      <div lassName="hv-center" style={div_style}>
+        <div {...props}
+            className={"btn btn-" + (w.config.style || "default")}
+            style={button_style}>
           {w.config.caption || "Button"}
-        </button>
+        </div>
       </div>
     );
   }
