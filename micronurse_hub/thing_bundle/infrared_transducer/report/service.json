@@ -16,9 +16,9 @@
         "default": "infrared_transducer"
       },
       {
-        "name":"internal",
+        "name":"interval",
         "type":"int",
-        "default":2000
+        "default": 100
       }
     ],
     "out": {

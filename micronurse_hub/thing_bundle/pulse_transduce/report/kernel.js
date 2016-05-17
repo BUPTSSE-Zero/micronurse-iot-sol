@@ -1,6 +1,6 @@
 console.log("Micro nurse hub - pulseTransduce +" + CONFIG.name + "kernel");
 shared.pulseTransduce.start(function(){
-    var value = (int)(Math.random() * 220);
+    var value = parseInt(Math.random() * 220);
     console.log("Micro nurse hub - pulseTransduce " + CONFIG.name + "]:",value);
     
     var outdata = {

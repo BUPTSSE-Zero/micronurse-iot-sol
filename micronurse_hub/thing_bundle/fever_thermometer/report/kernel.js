@@ -1,6 +1,6 @@
 console.log("Micro nurse hub - feverThermometer +" + CONFIG.name + " kernel")
 shared.feverThermometer.start(function(){
-    var value = Math.random() * 6 + 35 
+    var value = Math.random() * 6 + 35;
     console.log("[Micro nurse hub - feverThermometer " + CONFIG.name + "]:", value);
     
     var outdata = {
@@ -16,4 +16,4 @@ shared.feverThermometer.start(function(){
         timestamp:outdata.timestamp,
         json_data:JSON.stringify(outdata)
     });
-},CONFUG.interval);
+},CONFIG.interval);
