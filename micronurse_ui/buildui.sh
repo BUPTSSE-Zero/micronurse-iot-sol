@@ -3,7 +3,17 @@
 quick_build=0
 
 if [ $# -gt 0 ]; then
-    if [ $1 == "install" ]; then
+	if [ $1 == "global-install" ]; then
+		npm install -g mocha
+		npm install -g bower
+		npm install -g gulp
+		npm install -g stylus
+		npm install -g browserify
+		npm install -g reactify
+		npm install -g babel@5.8.x
+		npm install -g http-server
+		exit 0
+    elif [ $1 == "install" ]; then
         cd ./ui-widgets
         npm install
         cd ../ui-dev

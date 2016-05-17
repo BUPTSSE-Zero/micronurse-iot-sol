@@ -12,6 +12,7 @@ nodejs >= 0.12
 npm install
 # 构建UI
 cd ./micronurse_ui
+sudo bash ./buildui.sh global-install
 bash ./buildui.sh install
 sudo bash ./buildui.sh link
 bash ./buildui.sh
