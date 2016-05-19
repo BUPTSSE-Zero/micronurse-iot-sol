@@ -1,0 +1,22 @@
+{
+  "description":"Login or logout.",
+  "spec": {
+    "id":"webserver_account",
+    "name": "account",
+    "data_cache_size": 1,
+
+    "in": {
+      "ports": [{
+        "name": "action",
+        "type": "string"
+      }]
+    },
+
+    "out": {
+      "ports": [{
+        "name": "json_result",
+        "type": "string"
+      }]
+    }
+  }
+}

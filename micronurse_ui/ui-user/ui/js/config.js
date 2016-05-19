@@ -26,7 +26,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *****************************************************************************/
 export default {
   max_ports_per_side: 20,
-  widget_cell_height: 60,
+  widget_width: 45,
+  widget_cell_height: 10,
   widget_vertical_margin: 0,
 
   // only categories enabled would be logged

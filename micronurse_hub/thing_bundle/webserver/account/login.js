@@ -51,6 +51,7 @@ exports.login = function (shared, phone_number, password, success_cb, fail_cb){
                 if(res_data.result_code == 0) {
                     console.log("Return token:" + res_data.token);
                     shared.token = res_data.token;
+                    shared.nickname = res_data.nickname;
                     success_cb(res.statusCode, res_data.result_code, res_data.message);
                 }else
                     fail_cb(res.statusCode, res_data.result_code, res_data.message);
@@ -60,12 +61,12 @@ exports.login = function (shared, phone_number, password, success_cb, fail_cb){
                 console.log('Return SessionID:' + shared.sessionid);
             })
         }else{
-            fail_cb(res.statusCode);
+            fail_cb(res.statusCode, -1, 'Server error');
         }
     });
 
     req.on('error', function (e){
-        fail_cb(-1);
+        fail_cb(-1, -10, 'Network error');
     });
 
     req.write(outdata);

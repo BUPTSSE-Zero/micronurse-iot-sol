@@ -1,12 +1,14 @@
 #!/usr/bin/env bash
 
 quick_build=0
+grid_col=0
 
 if [ $# -gt 0 ]; then
 	if [ $1 == "global-install" ]; then
 		npm install -g mocha
 		npm install -g bower
 		npm install -g gulp
+		npm install -g grunt-cli
 		npm install -g stylus
 		npm install -g browserify
 		npm install -g reactify
@@ -19,9 +21,23 @@ if [ $# -gt 0 ]; then
         cd ../ui-dev
         npm install
         bower --allow-root install
-        cd ../ui-user
+        cd ./ui/bower_components/gridstack
+        npm install
+        sed -e '1i\@import "properties";' ./src/gridstack.scss > ./src/gridstack.txt
+        mv ./src/gridstack.txt ./src/gridstack.scss
+        sed -e '1i\@import "properties";' ./src/gridstack-extra.scss > ./src/gridstack.txt
+        mv ./src/gridstack.txt ./src/gridstack-extra.scss
+        echo "\$gridstack-columns: 12;" > ./src/_properties.scss
+        cd ../../../../ui-user
         npm install
         bower --allow-root install
+        cd ./ui/bower_components/gridstack
+        npm install
+        sed -e '1i\@import "properties";' ./src/gridstack.scss > ./src/gridstack.txt
+        mv ./src/gridstack.txt ./src/gridstack.scss
+        sed -e '1i\@import "properties";' ./src/gridstack-extra.scss > ./src/gridstack.txt
+        mv ./src/gridstack.txt ./src/gridstack-extra.scss
+        echo "\$gridstack-columns: 12;" > ./src/_properties.scss
         exit 0
     elif [ $1 == "link" ]; then
         cd ./ui-dev/
@@ -31,6 +47,8 @@ if [ $# -gt 0 ]; then
         exit 0
     elif [ $1 == "quick" ]; then
         quick_build=1
+    elif [ $1 -gt 0 ]; then
+        grid_col=$1
     fi
 fi
 
@@ -47,6 +65,13 @@ cd ./ui-dev
 cp -r ../ui-widgets/public ../../node_modules/ui-dev/.
 if [ $quick_build -eq 0 ]; then
     rm -rf ./public
+    cd ./ui/bower_components/gridstack
+    if [ $grid_col -gt 0 ]; then
+        echo "\$gridstack-columns: ${grid_col};" > ./src/_properties.scss
+    fi
+    grunt sass
+    grunt cssmin
+    cd ../../../
     NODE_ENV=production gulp build
     cd ../
     cp -r ./ui-dev/public ../node_modules/ui-dev/.
@@ -62,6 +87,13 @@ cd ./ui-user
 cp -r ../ui-widgets/public ../../node_modules/ui-user/.
 if [ $quick_build -eq 0 ]; then
     rm -rf ./public
+    cd ./ui/bower_components/gridstack
+    if [ $grid_col -gt 0 ]; then
+        echo "\$gridstack-columns: ${grid_col};" > ./src/_properties.scss
+    fi
+    grunt sass
+    grunt cssmin
+    cd ../../../
     NODE_ENV=production gulp build
     cd ../
     cp -r ./ui-user/public ../node_modules/ui-user/.

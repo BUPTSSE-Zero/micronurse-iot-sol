@@ -13,9 +13,9 @@ npm install
 # 构建UI
 cd ./micronurse_ui
 sudo bash ./buildui.sh global-install
-bash ./buildui.sh install
 sudo bash ./buildui.sh link
-bash ./buildui.sh
+bash ./buildui.sh install
+bash ./buildui.sh 30
 ```
 ### 启动
 运行项目根目录下的`start_micronurse.sh`脚本即可。

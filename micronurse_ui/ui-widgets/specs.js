@@ -863,7 +863,44 @@ var specs = [{
   out: {
     ports: []
   }
-}];
+},{
+    id:           "micronurse_ui_account",
+    type:         "spec",
+    is_ui:        true,
+    catalog:      "micronurse",
+    name:         "Account",
+    description:  "Login or logout",
+    icon:			    "edit",
+
+    use_ract:     true,
+    data_cache_size: 1,
+
+    config: [{
+      name: "font_size",
+      display: "Font Size",
+      type: "int",
+    },{
+      name: "align",
+      display: "Align",
+      type: "option",
+      default: "left",
+      options: ["left", "center", "right"]
+    }],
+
+    in: {
+      ports: [{
+        name: "action_result",
+        type: "string"
+      }]
+    },
+
+    out: {
+      ports: [{
+        name: "action",
+        type: "string"
+      }]
+    }
+  }];
 
 if (process.browser) {
   require("./plugins").forEach(function(m) {

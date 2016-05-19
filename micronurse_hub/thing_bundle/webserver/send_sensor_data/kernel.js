@@ -28,37 +28,39 @@ function requestWithTimeout(options, timeout, callback){
     return req;
 }
 
-var outdata={
-    data: IN.json_data,
-    timestamp: Date.parse(new Date())
-};
+if(hub_shared.token) {
+    var outdata = {
+        data: IN.json_data,
+        timestamp: Date.parse(new Date())
+    };
 
-var md5 = require('crypto').createHash('md5');
-md5.update(outdata.data);
-md5.update(outdata.timestamp.toString());
-md5.update(shared.token);
-outdata.sign = md5.digest('hex');
+    var md5 = require('crypto').createHash('md5');
+    md5.update(outdata.data);
+    md5.update(outdata.timestamp.toString());
+    md5.update(hub_shared.token);
+    outdata.sign = md5.digest('hex');
 
-console.log('JSON:' + JSON.stringify(outdata));
-outdata = require('querystring').stringify(outdata);
+    console.log('JSON:' + JSON.stringify(outdata));
+    outdata = require('querystring').stringify(outdata);
 
-var opt = {
-    method: 'POST',
-    host: 'micronurse-webserver',
-    port: 13000,
-    path: '/micronurse/iot/report',
-    headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Cookie': 'sessionid=' + shared.sessionid,
-        'Content-Length': outdata.length
-    }
-};
+    var opt = {
+        method: 'POST',
+        host: 'micronurse-webserver',
+        port: 13000,
+        path: '/micronurse/iot/report',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Cookie': 'sessionid=' + hub_shared.sessionid,
+            'Content-Length': outdata.length
+        }
+    };
 
-var req = requestWithTimeout(opt, CONFIG.timeout, function (res) {
-    if (res.statusCode == 200) {
-        console.log('Return Header:' + JSON.stringify(res.headers));
-    }
-});
+    var req = requestWithTimeout(opt, CONFIG.timeout, function (res) {
+        if (res.statusCode == 200) {
+            console.log('Return Header:' + JSON.stringify(res.headers));
+        }
+    });
 
-req.write(outdata);
-req.end();
+    req.write(outdata);
+    req.end();
+}

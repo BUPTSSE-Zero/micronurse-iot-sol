@@ -51,7 +51,8 @@ var widgets = {
   // Micro Nurse
   "micronurse_single_line_text":    require("./generated/micronurse_single_line_text"),
   "micronurse_ui_digiclock":	      require("./generated/micronurse_digiclock"),
-  "micronurse_ui_map":              require("./generated/micronurse_map")
+  "micronurse_ui_map":              require("./generated/micronurse_map"),
+  "micronurse_ui_account":          require("./generated/micronurse_account")
 };
 
 require("./plugins").forEach(function(m) {

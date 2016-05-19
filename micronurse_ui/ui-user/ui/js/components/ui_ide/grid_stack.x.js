@@ -94,6 +94,7 @@ export default class Grid extends ReactComponent {
       cell_height:      $hope.config.widget_cell_height,
       vertical_margin:  $hope.config.widget_vertical_margin,
       height:           this.props.maxHeight || 0,
+      width:            $hope.config.widget_width,
       auto:             false     // we will add_widget by ourselves
     };
     var gridstack = $(ReactDOM.findDOMNode(this)).gridstack(options);

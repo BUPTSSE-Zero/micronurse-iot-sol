@@ -1,0 +1,40 @@
+{
+  "version": "1.0.0",
+  "type": "graph",
+  "id": "GRAPH_f24504a0-1dbe-11e6-a05e-ef3190d244e4",
+  "name": "Index Workflow",
+  "description": "",
+  "timestamp": 1463661662698,
+  "specs": [],
+  "styles": {
+    "nodes": {
+      "NODE_fac8bc70-1dbe-11e6-a05e-ef3190d244e4": {
+        "x": 231.36398005539553,
+        "y": 78.1544288937627
+      }
+    },
+    "edges": {}
+  },
+  "bindings": {
+    "NODE_fac8bc70-1dbe-11e6-a05e-ef3190d244e4": {
+      "type": "fixed",
+      "thing": "micro_nurse_hub_webserver",
+      "hub": "micro_nurse_hub",
+      "service": "account@micro_nurse_hub_webserver"
+    }
+  },
+  "graph": {
+    "nodes": [
+      {
+        "name": "",
+        "description": "",
+        "spec": "webserver_account",
+        "id": "NODE_fac8bc70-1dbe-11e6-a05e-ef3190d244e4",
+        "config": {}
+      }
+    ],
+    "edges": [],
+    "tags": []
+  },
+  "app": "HOPE_APP_f0338ec0_1b16_11e6_888e_1fb72398316c"
+}
