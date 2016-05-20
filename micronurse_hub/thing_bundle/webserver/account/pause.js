@@ -1,0 +1,2 @@
+shared.account.pause();
+done();

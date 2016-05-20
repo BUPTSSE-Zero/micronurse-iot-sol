@@ -168,7 +168,7 @@ class Widget extends ReactComponent {
 
   get_width() {
     var w = this.props.widget.width;
-    return w * this.props.gw / 12;
+    return w * this.props.gw / $hope.config.widget_cols;
   }
 
   set_css(id, css) {

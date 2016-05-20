@@ -8,19 +8,30 @@
   "specs": [],
   "styles": {
     "nodes": {
-      "NODE_fac8bc70-1dbe-11e6-a05e-ef3190d244e4": {
-        "x": 231.36398005539553,
-        "y": 78.1544288937627
+      "NODE_ddfad230-1e23-11e6-8429-6916e08aabb9": {
+        "x": 252,
+        "y": 12
+      },
+      "NODE_fbdd5c20-1e3f-11e6-bc7e-1322551bae47": {
+        "x": 22,
+        "y": 12
       }
     },
     "edges": {}
   },
   "bindings": {
-    "NODE_fac8bc70-1dbe-11e6-a05e-ef3190d244e4": {
+    "NODE_ddfad230-1e23-11e6-8429-6916e08aabb9": {
       "type": "fixed",
       "thing": "micro_nurse_hub_webserver",
       "hub": "micro_nurse_hub",
       "service": "account@micro_nurse_hub_webserver"
+    },
+    "NODE_fbdd5c20-1e3f-11e6-bc7e-1322551bae47": {
+      "type": "fixed",
+      "thing": "HOPE_UI_THING__micro_nurse_iot_sol_center__built_in_hub__HOPE_APP_f0338ec0_1b16_11e6_888e_1fb72398316c",
+      "hub": "micro_nurse_iot_sol_center__built_in_hub__",
+      "service": "UI_SERVICE__WIDGET_a4d8f570-1e39-11e6-acfe-1d76a8258d9a",
+      "widget": "WIDGET_a4d8f570-1e39-11e6-acfe-1d76a8258d9a"
     }
   },
   "graph": {
@@ -29,11 +40,41 @@
         "name": "",
         "description": "",
         "spec": "webserver_account",
-        "id": "NODE_fac8bc70-1dbe-11e6-a05e-ef3190d244e4",
-        "config": {}
+        "id": "NODE_ddfad230-1e23-11e6-8429-6916e08aabb9",
+        "config": {
+          "interval": 1000
+        }
+      },
+      {
+        "name": "",
+        "spec": "micronurse_ui_account",
+        "id": "NODE_fbdd5c20-1e3f-11e6-bc7e-1322551bae47"
       }
     ],
-    "edges": [],
+    "edges": [
+      {
+        "id": "EDGE_ff12bd90-1e3f-11e6-bc7e-1322551bae47",
+        "source": {
+          "node": "NODE_fbdd5c20-1e3f-11e6-bc7e-1322551bae47",
+          "port": "action"
+        },
+        "target": {
+          "node": "NODE_ddfad230-1e23-11e6-8429-6916e08aabb9",
+          "port": "action"
+        }
+      },
+      {
+        "id": "EDGE_025f7790-1e40-11e6-bc7e-1322551bae47",
+        "source": {
+          "node": "NODE_ddfad230-1e23-11e6-8429-6916e08aabb9",
+          "port": "json_result"
+        },
+        "target": {
+          "node": "NODE_fbdd5c20-1e3f-11e6-bc7e-1322551bae47",
+          "port": "action_result"
+        }
+      }
+    ],
     "tags": []
   },
   "app": "HOPE_APP_f0338ec0_1b16_11e6_888e_1fb72398316c"

@@ -15,9 +15,9 @@
         "padding_horizontal": 100
       },
       "spec": "hope/ui/button",
-      "x": 6,
-      "y": 24,
-      "width": 20,
+      "x": 0,
+      "y": 21,
+      "width": 30,
       "height": 8,
       "id": "WIDGET_79097700-1b17-11e6-b6d6-db4f64c5a32a",
       "name": "btn_goingout_ui"
@@ -30,9 +30,9 @@
         "font_size": 45
       },
       "spec": "micronurse_single_line_text",
-      "x": 7,
+      "x": 0,
       "y": 0,
-      "width": 17,
+      "width": 30,
       "height": 6,
       "id": "WIDGET_d2a7a420-1b59-11e6-9424-139e8de59701",
       "name": "singleLineText1"
@@ -48,10 +48,10 @@
         "target_ui": "UI_e078a290-1ca6-11e6-9696-b5de9897aecc"
       },
       "spec": "hope/ui/button",
-      "x": 6,
-      "y": 14,
-      "width": 20,
-      "height": 10,
+      "x": 0,
+      "y": 12,
+      "width": 30,
+      "height": 9,
       "id": "WIDGET_21323200-1ca8-11e6-9696-b5de9897aecc",
       "name": "button1"
     },
@@ -64,8 +64,8 @@
       "x": 0,
       "y": 6,
       "width": 30,
-      "height": 8,
-      "id": "WIDGET_ad38ddc0-1dda-11e6-8a20-95f44f28d134",
+      "height": 6,
+      "id": "WIDGET_a4d8f570-1e39-11e6-acfe-1d76a8258d9a",
       "name": "micronurse_account"
     }
   ]

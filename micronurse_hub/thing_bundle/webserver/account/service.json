@@ -5,6 +5,12 @@
     "name": "account",
     "data_cache_size": 1,
 
+    "config": [{
+      "name": "interval",
+      "type": "int",
+      "default": 1000
+    }],
+
     "in": {
       "ports": [{
         "name": "action",

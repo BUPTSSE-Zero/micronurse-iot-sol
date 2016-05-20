@@ -12,8 +12,8 @@
       "spec": "micronurse_ui_map",
       "x": 0,
       "y": 10,
-      "width": 14,
-      "height": 29,
+      "width": 20,
+      "height": 36,
       "id": "WIDGET_5bee0770-1b18-11e6-b6d6-db4f64c5a32a",
       "name": "map"
     },
@@ -45,7 +45,7 @@
       "spec": "micronurse_single_line_text",
       "x": 5,
       "y": 0,
-      "width": 12,
+      "width": 21,
       "height": 6,
       "id": "WIDGET_c8f0dfd0-1b33-11e6-a52f-1d0e92a35b1b",
       "name": "singleLineText1"
@@ -77,7 +77,7 @@
         "time_font_size": 18
       },
       "spec": "micronurse_ui_digiclock",
-      "x": 7,
+      "x": 13,
       "y": 6,
       "width": 7,
       "height": 4,

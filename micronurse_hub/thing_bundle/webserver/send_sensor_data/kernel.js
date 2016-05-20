@@ -1,12 +1,13 @@
 var http = require('http');
 console.log('Micro nurse hub - send sensor data kernel');
 
-function requestWithTimeout(options, timeout, callback){
+function requestWithTimeout(outdata, timeout, callback){
     var timeoutEventId;
-    var req = http.request(options, function(res){
-        clearTimeout(timeoutEventId);
-        callback(res);
-    });
+    var req = require('../micronurse_api_request').get_request('/micronurse/iot/report', outdata,
+                      function(res){
+                          clearTimeout(timeoutEventId);
+                          callback(res);
+                      }, hub_shared.token, hub_shared.sessionid);
 
     req.on('error', function (e) {
         console.log('Request error: ' + e.message);
@@ -31,36 +32,14 @@ function requestWithTimeout(options, timeout, callback){
 if(hub_shared.token) {
     var outdata = {
         data: IN.json_data,
-        timestamp: Date.parse(new Date())
     };
 
-    var md5 = require('crypto').createHash('md5');
-    md5.update(outdata.data);
-    md5.update(outdata.timestamp.toString());
-    md5.update(hub_shared.token);
-    outdata.sign = md5.digest('hex');
-
-    console.log('JSON:' + JSON.stringify(outdata));
-    outdata = require('querystring').stringify(outdata);
-
-    var opt = {
-        method: 'POST',
-        host: 'micronurse-webserver',
-        port: 13000,
-        path: '/micronurse/iot/report',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Cookie': 'sessionid=' + hub_shared.sessionid,
-            'Content-Length': outdata.length
-        }
-    };
-
-    var req = requestWithTimeout(opt, CONFIG.timeout, function (res) {
+    var req = requestWithTimeout(outdata, CONFIG.timeout, function (res) {
         if (res.statusCode == 200) {
             console.log('Return Header:' + JSON.stringify(res.headers));
         }
     });
 
-    req.write(outdata);
+    req.write(require('querystring').stringify(outdata));
     req.end();
 }
