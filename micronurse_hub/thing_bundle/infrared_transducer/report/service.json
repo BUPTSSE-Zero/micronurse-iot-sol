@@ -16,16 +16,16 @@
         "default": "infrared_transducer"
       },
       {
-        "name":"interval",
-        "type":"int",
-        "default": 100
+        "name": "interval",
+        "type": "int",
+        "default": 3000
       }
     ],
     "out": {
       "ports": [
         {
           "name": "value",
-          "type": "Boolean"
+          "type": "string"
         },
         {
           "name": "name",
