@@ -17,20 +17,20 @@
       "spec": "hope/ui/button",
       "x": 0,
       "y": 0,
-      "width": 5,
+      "width": 3,
       "height": 6,
       "id": "WIDGET_e61036f0-1ca6-11e6-9696-b5de9897aecc",
       "name": "button1"
     },
     {
       "config": {
-        "align": "left",
+        "align": "center",
         "font_weight": "bold",
         "defval": "家庭安全监测",
         "font_size": 35
       },
       "spec": "micronurse_single_line_text",
-      "x": 5,
+      "x": 3,
       "y": 0,
       "width": 12,
       "height": 6,
@@ -41,7 +41,8 @@
       "config": {
         "align": "left",
         "font_weight": "normal",
-        "font_size": 25
+        "font_size": 25,
+        "defval": "卧室湿度"
       },
       "spec": "micronurse_single_line_text",
       "x": 7,
@@ -86,7 +87,8 @@
       "config": {
         "align": "left",
         "font_weight": "normal",
-        "font_size": 25
+        "font_size": 25,
+        "defval": "卧室温度"
       },
       "spec": "micronurse_single_line_text",
       "x": 0,
@@ -125,7 +127,7 @@
       "spec": "hope/ui/gauge",
       "x": 0,
       "y": 19,
-      "width": 6,
+      "width": 7,
       "height": 14,
       "id": "WIDGET_09d5aac0-1cf2-11e6-ae65-61a5e1ad9fd6",
       "name": "thermometer_gauge1"

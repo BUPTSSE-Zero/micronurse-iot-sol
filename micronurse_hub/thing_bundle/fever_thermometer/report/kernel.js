@@ -1,19 +1,33 @@
-console.log("Micro nurse hub - feverThermometer +" + CONFIG.name + " kernel")
+console.log("Micro nurse hub - feverThermometer +" + CONFIG.name + " kernel");
 shared.feverThermometer.start(function(){
-    var value = Math.random() * 6 + 35;
-    console.log("[Micro nurse hub - feverThermometer " + CONFIG.name + "]:", value);
+    var increment = Math.random() * ((Math.random() < 0.5) ? 1 : -1);
+    var message_temp;
+    shared.feverThermometer.base_value += increment;
+    if(shared.feverThermometer.base_value >= 42.0)
+        shared.feverThermometer.base_value = 42.0;
+    else if(shared.feverThermometer.base_value <= 35.0)
+        shared.feverThermometer.base_value = 35.0;
+        
+    if(shared.feverThermometer.base_value >= 36.0 && shared.feverThermometer.base_value <= 37.3)
+        message_temp = "Safe";
+    else
+        message_temp = "Warning";
+    console.log("[Micro nurse hub - feverThermometer " + CONFIG.name + "]:",shared.feverThermometer.base_value);
+    
     
     var outdata = {
-        value:value,
+        value:shared.feverThermometer.base_value.toFixed(1),
         sensor_type:"feverThermometer",
         name:CONFIG.name,
-        timestamp:Date.parse(new Date())
-    }
+        timestamp:Date.parse(new Date()),
+        message:message_temp
+    };
     
     sendOUT({
         value:outdata.value,
         name:outdata.name,
         timestamp:outdata.timestamp,
+        message:outdata.message,
         json_data:JSON.stringify(outdata)
     });
 },CONFIG.interval);

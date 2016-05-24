@@ -2,7 +2,8 @@ console.log("Micro nurse hub - feverThermometer init");
 
 shared.feverThermometer = {
   timer: null,
-  interval: 2000,
+  interval: 5000,
+  base_vaule: 35 + Math.random() * 2,
   callback: function() {},
   pause: function() {
     if (this.timer) {

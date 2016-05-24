@@ -1,0 +1,229 @@
+{
+  "id": "UI_2b410a00-2103-11e6-a9bf-6539c8999576",
+  "name": "Health Condition UI",
+  "description": "",
+  "app": "HOPE_APP_f0338ec0_1b16_11e6_888e_1fb72398316c",
+  "widgets": [
+    {
+      "config": {
+        "caption": "Back",
+        "align": "left",
+        "style": "primary",
+        "action": "ui",
+        "fontsize": 40,
+        "padding_horizontal": 30,
+        "target_ui": "UI_f039d050-1b16-11e6-b6d6-db4f64c5a32a"
+      },
+      "spec": "hope/ui/button",
+      "x": 0,
+      "y": 1,
+      "width": 3,
+      "height": 8,
+      "id": "WIDGET_fc3efc20-2108-11e6-8cbe-637d8f328001",
+      "name": "btn_back"
+    },
+    {
+      "config": {
+        "align": "center",
+        "font_weight": "bold",
+        "defval": "健康状况检测",
+        "font_size": 60
+      },
+      "spec": "micronurse_single_line_text",
+      "x": 3,
+      "y": 1,
+      "width": 9,
+      "height": 8,
+      "id": "WIDGET_5fa1a470-2109-11e6-8cbe-637d8f328001",
+      "name": "health_text"
+    },
+    {
+      "config": {
+        "align": "left",
+        "font_weight": "normal",
+        "defval": "Safe",
+        "font_size": 30
+      },
+      "spec": "micronurse_single_line_text",
+      "x": 2,
+      "y": 28,
+      "width": 4,
+      "height": 10,
+      "id": "WIDGET_bf4f3400-2109-11e6-8cbe-637d8f328001",
+      "name": "temp_condition"
+    },
+    {
+      "config": {
+        "align": "left",
+        "font_weight": "normal",
+        "defval": "Safe",
+        "font_size": 30
+      },
+      "spec": "micronurse_single_line_text",
+      "x": 8,
+      "y": 28,
+      "width": 4,
+      "height": 10,
+      "id": "WIDGET_fb1357f0-2109-11e6-8cbe-637d8f328001",
+      "name": "pulse_condition"
+    },
+    {
+      "config": {
+        "align": "left",
+        "orientation": "vertical",
+        "date_font_weight": "normal",
+        "time_font_weight": "normal",
+        "icon": true,
+        "icon_size": 64,
+        "date_font_size": 18,
+        "time_font_size": 30
+      },
+      "spec": "micronurse_ui_digiclock",
+      "x": 0,
+      "y": 19,
+      "width": 6,
+      "height": 9,
+      "id": "WIDGET_5540abb0-210a-11e6-8cbe-637d8f328001",
+      "name": "temp_time"
+    },
+    {
+      "config": {
+        "align": "left",
+        "orientation": "vertical",
+        "date_font_weight": "normal",
+        "time_font_weight": "normal",
+        "icon": true,
+        "icon_size": 64,
+        "date_font_size": 18,
+        "time_font_size": 30
+      },
+      "spec": "micronurse_ui_digiclock",
+      "x": 6,
+      "y": 19,
+      "width": 6,
+      "height": 9,
+      "id": "WIDGET_68c1f4f0-210a-11e6-8cbe-637d8f328001",
+      "name": "pulse_time"
+    },
+    {
+      "config": {
+        "align": "center",
+        "font_weight": "normal",
+        "defval": "88",
+        "font_size": 40
+      },
+      "spec": "micronurse_single_line_text",
+      "x": 6,
+      "y": 38,
+      "width": 2,
+      "height": 10,
+      "id": "WIDGET_1b01abb0-210b-11e6-8cbe-637d8f328001",
+      "name": "pulse"
+    },
+    {
+      "config": {
+        "align": "left",
+        "font_weight": "normal",
+        "defval": "当前体温",
+        "font_size": 30
+      },
+      "spec": "micronurse_single_line_text",
+      "x": 0,
+      "y": 9,
+      "width": 6,
+      "height": 10,
+      "id": "WIDGET_11cd80e0-2111-11e6-868c-87e1bf988fd9",
+      "name": "temp_name"
+    },
+    {
+      "config": {
+        "align": "left",
+        "font_weight": "normal",
+        "defval": "当前脉搏",
+        "font_size": 30
+      },
+      "spec": "micronurse_single_line_text",
+      "x": 6,
+      "y": 9,
+      "width": 6,
+      "height": 10,
+      "id": "WIDGET_1eb52f10-2111-11e6-868c-87e1bf988fd9",
+      "name": "pulse_name"
+    },
+    {
+      "config": {
+        "align": "left",
+        "font_weight": "normal",
+        "defval": "当前体温状态：",
+        "font_size": 30
+      },
+      "spec": "micronurse_single_line_text",
+      "x": 0,
+      "y": 28,
+      "width": 2,
+      "height": 10,
+      "id": "WIDGET_ce656be0-2112-11e6-868c-87e1bf988fd9",
+      "name": "singleLineText1"
+    },
+    {
+      "config": {
+        "align": "left",
+        "font_weight": "normal",
+        "defval": "℃",
+        "font_size": 35
+      },
+      "spec": "micronurse_single_line_text",
+      "x": 2,
+      "y": 38,
+      "width": 4,
+      "height": 10,
+      "id": "WIDGET_4cfd1b10-2113-11e6-868c-87e1bf988fd9",
+      "name": "singleLineText2"
+    },
+    {
+      "config": {
+        "align": "left",
+        "font_weight": "normal",
+        "defval": "当前脉搏状态：",
+        "font_size": 30
+      },
+      "spec": "micronurse_single_line_text",
+      "x": 6,
+      "y": 28,
+      "width": 2,
+      "height": 10,
+      "id": "WIDGET_c25f75b0-2113-11e6-868c-87e1bf988fd9",
+      "name": "singleLineText3"
+    },
+    {
+      "config": {
+        "align": "left",
+        "font_weight": "normal",
+        "defval": "bpm",
+        "font_size": 35
+      },
+      "spec": "micronurse_single_line_text",
+      "x": 8,
+      "y": 38,
+      "width": 4,
+      "height": 10,
+      "id": "WIDGET_7c5b9ca0-2114-11e6-868c-87e1bf988fd9",
+      "name": "singleLineText4"
+    },
+    {
+      "config": {
+        "align": "center",
+        "font_weight": "normal",
+        "defval": "36.5",
+        "font_size": 40
+      },
+      "spec": "micronurse_single_line_text",
+      "x": 0,
+      "y": 38,
+      "width": 2,
+      "height": 10,
+      "id": "WIDGET_e1f37370-211f-11e6-9d7a-2bc5447cc943",
+      "name": "temperature"
+    }
+  ]
+}

@@ -12,12 +12,13 @@
         "action": "ui",
         "target_ui": "UI_2337b530-1b17-11e6-b6d6-db4f64c5a32a",
         "fontsize": 30,
-        "padding_horizontal": 100
+        "padding_horizontal": 100,
+        "padding_vertical": 7
       },
       "spec": "hope/ui/button",
       "x": 0,
-      "y": 21,
-      "width": 30,
+      "y": 30,
+      "width": 45,
       "height": 8,
       "id": "WIDGET_79097700-1b17-11e6-b6d6-db4f64c5a32a",
       "name": "btn_goingout_ui"
@@ -31,9 +32,9 @@
       },
       "spec": "micronurse_single_line_text",
       "x": 0,
-      "y": 0,
-      "width": 30,
-      "height": 6,
+      "y": 5,
+      "width": 45,
+      "height": 9,
       "id": "WIDGET_d2a7a420-1b59-11e6-9424-139e8de59701",
       "name": "singleLineText1"
     },
@@ -49,9 +50,9 @@
       },
       "spec": "hope/ui/button",
       "x": 0,
-      "y": 12,
-      "width": 30,
-      "height": 9,
+      "y": 20,
+      "width": 45,
+      "height": 8,
       "id": "WIDGET_21323200-1ca8-11e6-9696-b5de9897aecc",
       "name": "button1"
     },
@@ -62,11 +63,30 @@
       },
       "spec": "micronurse_ui_account",
       "x": 0,
-      "y": 6,
-      "width": 30,
+      "y": 14,
+      "width": 45,
       "height": 6,
       "id": "WIDGET_a4d8f570-1e39-11e6-acfe-1d76a8258d9a",
       "name": "micronurse_account"
+    },
+    {
+      "config": {
+        "caption": "健康状况检测",
+        "align": "center",
+        "style": "info",
+        "action": "ui",
+        "fontsize": 30,
+        "target_ui": "UI_2b410a00-2103-11e6-a9bf-6539c8999576",
+        "padding_horizontal": 100,
+        "padding_vertical": 0
+      },
+      "spec": "hope/ui/button",
+      "x": 2,
+      "y": 38,
+      "width": 8,
+      "height": 9,
+      "id": "WIDGET_84d71f70-2106-11e6-8a31-b32e5c467d42",
+      "name": "btn_health"
     }
   ]
 }

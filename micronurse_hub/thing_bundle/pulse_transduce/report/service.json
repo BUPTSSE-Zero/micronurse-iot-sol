@@ -31,6 +31,10 @@
           "type": "long"
         },
         {
+          "name": "message",
+          "type": "string"
+        },
+        {
           "name": "json_data",
           "type": "string"
         }

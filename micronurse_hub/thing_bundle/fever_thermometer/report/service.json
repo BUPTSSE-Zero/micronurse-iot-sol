@@ -8,12 +8,12 @@
       {
         "name": "interval",
         "type": "int",
-        "default": 2000
+        "default": 5000
       },
       {
         "name": "name",
         "type": "string",
-        "default": "thermometer"
+        "default": "feverThermometer"
       }
     ],
     "out": {
@@ -29,6 +29,10 @@
         {
           "name": "timestamp",
           "type": "long"
+        },
+        {
+          "name": "message",
+          "type": "string"
         },
         {
           "name": "json_data",
