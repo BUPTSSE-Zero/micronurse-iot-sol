@@ -43,6 +43,22 @@
       "NODE_0588a250-1cf3-11e6-ae65-61a5e1ad9fd6": {
         "x": 332,
         "y": 152
+      },
+      "NODE_facdea50-1e73-11e6-9511-f9bb111b85ef": {
+        "x": 281.96195587372773,
+        "y": 1306.9049863900682
+      },
+      "NODE_125181f0-1e74-11e6-9511-f9bb111b85ef": {
+        "x": 277.4015881715982,
+        "y": 1205.6648234027905
+      },
+      "NODE_97df9230-1e74-11e6-9511-f9bb111b85ef": {
+        "x": 275.57744109074633,
+        "y": 1106.24880749636
+      },
+      "NODE_56af4190-1e72-11e6-9511-f9bb111b85ef": {
+        "x": -24.171892788765536,
+        "y": 1197.223218098837
       }
     },
     "edges": {}
@@ -107,6 +123,33 @@
       "hub": "micro_nurse_iot_sol_center__built_in_hub__",
       "service": "UI_SERVICE__WIDGET_ea910f10-1cf1-11e6-ae65-61a5e1ad9fd6",
       "widget": "WIDGET_ea910f10-1cf1-11e6-ae65-61a5e1ad9fd6"
+    },
+    "NODE_facdea50-1e73-11e6-9511-f9bb111b85ef": {
+      "type": "fixed",
+      "thing": "HOPE_UI_THING__micro_nurse_iot_sol_center__built_in_hub__HOPE_APP_f0338ec0_1b16_11e6_888e_1fb72398316c",
+      "hub": "micro_nurse_iot_sol_center__built_in_hub__",
+      "service": "UI_SERVICE__WIDGET_ca1820b0-1e73-11e6-9511-f9bb111b85ef",
+      "widget": "WIDGET_ca1820b0-1e73-11e6-9511-f9bb111b85ef"
+    },
+    "NODE_125181f0-1e74-11e6-9511-f9bb111b85ef": {
+      "type": "fixed",
+      "thing": "HOPE_UI_THING__micro_nurse_iot_sol_center__built_in_hub__HOPE_APP_f0338ec0_1b16_11e6_888e_1fb72398316c",
+      "hub": "micro_nurse_iot_sol_center__built_in_hub__",
+      "service": "UI_SERVICE__WIDGET_ca1820b0-1e73-11e6-9511-f9bb111b85ef",
+      "widget": "WIDGET_ca1820b0-1e73-11e6-9511-f9bb111b85ef"
+    },
+    "NODE_97df9230-1e74-11e6-9511-f9bb111b85ef": {
+      "type": "fixed",
+      "thing": "HOPE_UI_THING__micro_nurse_iot_sol_center__built_in_hub__HOPE_APP_f0338ec0_1b16_11e6_888e_1fb72398316c",
+      "hub": "micro_nurse_iot_sol_center__built_in_hub__",
+      "service": "UI_SERVICE__WIDGET_6fbac6d0-1e74-11e6-9511-f9bb111b85ef",
+      "widget": "WIDGET_6fbac6d0-1e74-11e6-9511-f9bb111b85ef"
+    },
+    "NODE_56af4190-1e72-11e6-9511-f9bb111b85ef": {
+      "type": "fixed",
+      "thing": "HOPE_THING_c4a30de0_18e0_11e6_ad78_45731ff73023",
+      "hub": "micro_nurse_hub",
+      "service": "HOPE_SERVICE_e8e03ed0_18e0_11e6_ad78_45731ff73023"
     }
   },
   "graph": {
@@ -171,6 +214,32 @@
         "name": "",
         "spec": "micronurse_ui_digiclock",
         "id": "NODE_0588a250-1cf3-11e6-ae65-61a5e1ad9fd6"
+      },
+      {
+        "name": "",
+        "spec": "micronurse_single_line_text",
+        "id": "NODE_facdea50-1e73-11e6-9511-f9bb111b85ef"
+      },
+      {
+        "name": "",
+        "spec": "micronurse_single_line_text",
+        "id": "NODE_125181f0-1e74-11e6-9511-f9bb111b85ef"
+      },
+      {
+        "name": "",
+        "spec": "micronurse_single_line_text",
+        "id": "NODE_97df9230-1e74-11e6-9511-f9bb111b85ef"
+      },
+      {
+        "name": "",
+        "description": "",
+        "spec": "infrared_transducer/report/service@SpecBundlemicro_nurse_hub",
+        "config": {
+          "value": 1,
+          "name": "infrared_transducer",
+          "interval": 100
+        },
+        "id": "NODE_56af4190-1e72-11e6-9511-f9bb111b85ef"
       }
     ],
     "edges": [
@@ -260,6 +329,39 @@
         "target": {
           "node": "NODE_0588a250-1cf3-11e6-ae65-61a5e1ad9fd6",
           "port": "time"
+        }
+      },
+      {
+        "id": "EDGE_16239890-1e74-11e6-9511-f9bb111b85ef",
+        "source": {
+          "node": "NODE_56af4190-1e72-11e6-9511-f9bb111b85ef",
+          "port": "value"
+        },
+        "target": {
+          "node": "NODE_125181f0-1e74-11e6-9511-f9bb111b85ef",
+          "port": "text"
+        }
+      },
+      {
+        "id": "EDGE_9c402d30-1e74-11e6-9511-f9bb111b85ef",
+        "source": {
+          "node": "NODE_56af4190-1e72-11e6-9511-f9bb111b85ef",
+          "port": "value"
+        },
+        "target": {
+          "node": "NODE_97df9230-1e74-11e6-9511-f9bb111b85ef",
+          "port": "text"
+        }
+      },
+      {
+        "id": "EDGE_fbf7c450-1e73-11e6-9511-f9bb111b85ef",
+        "source": {
+          "node": "NODE_56af4190-1e72-11e6-9511-f9bb111b85ef",
+          "port": "timestamp"
+        },
+        "target": {
+          "node": "NODE_facdea50-1e73-11e6-9511-f9bb111b85ef",
+          "port": "text"
         }
       }
     ],

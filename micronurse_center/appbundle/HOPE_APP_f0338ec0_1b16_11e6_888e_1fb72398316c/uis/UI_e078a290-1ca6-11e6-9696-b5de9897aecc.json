@@ -32,7 +32,7 @@
       "spec": "micronurse_single_line_text",
       "x": 3,
       "y": 0,
-      "width": 12,
+      "width": 16,
       "height": 6,
       "id": "WIDGET_028b2b50-1ca7-11e6-9696-b5de9897aecc",
       "name": "singleLineText1"
@@ -131,6 +131,54 @@
       "height": 14,
       "id": "WIDGET_09d5aac0-1cf2-11e6-ae65-61a5e1ad9fd6",
       "name": "thermometer_gauge1"
+    },
+    {
+      "config": {
+        "align": "left",
+        "orientation": "vertical",
+        "date_font_weight": "normal",
+        "time_font_weight": "bold",
+        "icon": true,
+        "date_font_size": 18,
+        "time_font_size": 25,
+        "icon_size": 63
+      },
+      "spec": "micronurse_ui_digiclock",
+      "x": 14,
+      "y": 11,
+      "width": 7,
+      "height": 8,
+      "id": "WIDGET_4488ff00-1e73-11e6-9511-f9bb111b85ef",
+      "name": "infrared_transducer_time_1"
+    },
+    {
+      "config": {
+        "align": "left",
+        "font_weight": "normal",
+        "font_size": 25
+      },
+      "spec": "micronurse_single_line_text",
+      "x": 14,
+      "y": 6,
+      "width": 7,
+      "height": 5,
+      "id": "WIDGET_ca1820b0-1e73-11e6-9511-f9bb111b85ef",
+      "name": "infrared_transducer_name_1"
+    },
+    {
+      "config": {
+        "align": "left",
+        "font_weight": "normal",
+        "font_size": 25,
+        "defval": "Safe"
+      },
+      "spec": "micronurse_single_line_text",
+      "x": 14,
+      "y": 19,
+      "width": 6,
+      "height": 14,
+      "id": "WIDGET_6fbac6d0-1e74-11e6-9511-f9bb111b85ef",
+      "name": "infrared_transducer_inform_1"
     }
   ]
 }
