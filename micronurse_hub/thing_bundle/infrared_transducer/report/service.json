@@ -6,11 +6,6 @@
     "name": "infrared_transducer report",
     "config": [
       {
-        "name": "value",
-        "type": "int",
-        "default": 1
-      },
-      {
         "name": "name",
         "type": "string",
         "default": "infrared_transducer"

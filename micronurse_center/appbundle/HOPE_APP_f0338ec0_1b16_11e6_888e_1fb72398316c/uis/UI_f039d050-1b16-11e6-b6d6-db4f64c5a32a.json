@@ -6,87 +6,86 @@
   "widgets": [
     {
       "config": {
-        "caption": "出行安全监测",
-        "align": "center",
-        "style": "info",
-        "action": "ui",
-        "target_ui": "UI_2337b530-1b17-11e6-b6d6-db4f64c5a32a",
-        "fontsize": 30,
-        "padding_horizontal": 100,
-        "padding_vertical": 7
-      },
-      "spec": "hope/ui/button",
-      "x": 0,
-      "y": 30,
-      "width": 45,
-      "height": 8,
-      "id": "WIDGET_79097700-1b17-11e6-b6d6-db4f64c5a32a",
-      "name": "btn_goingout_ui"
-    },
-    {
-      "config": {
         "align": "center",
         "font_weight": "bold",
-        "defval": "“微保姆”——空巢老人监护平台",
+        "defval": "“微保姆”——空巢老人监控平台",
         "font_size": 45
       },
       "spec": "micronurse_single_line_text",
       "x": 0,
-      "y": 5,
-      "width": 45,
-      "height": 9,
-      "id": "WIDGET_d2a7a420-1b59-11e6-9424-139e8de59701",
+      "y": 0,
+      "width": 30,
+      "height": 7,
+      "id": "WIDGET_97c3f360-2223-11e6-aae7-a39db6fb87a9",
       "name": "singleLineText1"
+    },
+    {
+      "config": {
+        "align": "center",
+        "font_size": 16
+      },
+      "spec": "micronurse_ui_account",
+      "x": 0,
+      "y": 7,
+      "width": 30,
+      "height": 6,
+      "id": "WIDGET_bb66b910-2223-11e6-aae7-a39db6fb87a9",
+      "name": "account1"
     },
     {
       "config": {
         "caption": "家庭安全监测",
         "align": "center",
-        "style": "success",
+        "style": "info",
         "action": "ui",
+        "target_ui": "UI_e078a290-1ca6-11e6-9696-b5de9897aecc",
         "fontsize": 30,
-        "padding_horizontal": 100,
-        "target_ui": "UI_e078a290-1ca6-11e6-9696-b5de9897aecc"
+        "padding_vertical": null,
+        "padding_horizontal": 120
       },
       "spec": "hope/ui/button",
       "x": 0,
-      "y": 20,
-      "width": 45,
+      "y": 13,
+      "width": 30,
       "height": 8,
-      "id": "WIDGET_21323200-1ca8-11e6-9696-b5de9897aecc",
+      "id": "WIDGET_3ae08ae0-2224-11e6-ae1e-b1066b0d7d13",
       "name": "button1"
     },
     {
       "config": {
+        "caption": "身体健康监测",
         "align": "center",
-        "font_size": 15
+        "style": "warning",
+        "action": "ui",
+        "fontsize": 30,
+        "padding_horizontal": 120,
+        "target_ui": "UI_2b410a00-2103-11e6-a9bf-6539c8999576"
       },
-      "spec": "micronurse_ui_account",
+      "spec": "hope/ui/button",
       "x": 0,
-      "y": 14,
-      "width": 45,
-      "height": 6,
-      "id": "WIDGET_a4d8f570-1e39-11e6-acfe-1d76a8258d9a",
-      "name": "micronurse_account"
+      "y": 30,
+      "width": 30,
+      "height": 9,
+      "id": "WIDGET_11c5f510-23a9-11e6-aa85-f9f59aa305f4",
+      "name": "button3"
     },
     {
       "config": {
-        "caption": "健康状况检测",
+        "caption": "出行安全监测",
         "align": "center",
-        "style": "info",
+        "style": "success",
         "action": "ui",
         "fontsize": 30,
-        "target_ui": "UI_2b410a00-2103-11e6-a9bf-6539c8999576",
-        "padding_horizontal": 100,
-        "padding_vertical": 0
+        "padding_horizontal": 120,
+        "target_ui": "UI_2337b530-1b17-11e6-b6d6-db4f64c5a32a"
       },
       "spec": "hope/ui/button",
-      "x": 2,
-      "y": 38,
-      "width": 8,
+      "x": 0,
+      "y": 21,
+      "width": 30,
       "height": 9,
-      "id": "WIDGET_84d71f70-2106-11e6-8a31-b32e5c467d42",
-      "name": "btn_health"
+      "id": "WIDGET_b4d8c570-2552-11e6-9fde-230f24a312f0",
+      "name": "button2"
     }
   ]
 }

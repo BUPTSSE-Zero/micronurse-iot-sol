@@ -6,7 +6,7 @@
   "widgets": [
     {
       "config": {
-        "caption": "< Back",
+        "caption": "Back",
         "align": "left",
         "style": "primary",
         "action": "ui",
@@ -17,20 +17,20 @@
       "spec": "hope/ui/button",
       "x": 0,
       "y": 0,
-      "width": 3,
+      "width": 4,
       "height": 6,
       "id": "WIDGET_e61036f0-1ca6-11e6-9696-b5de9897aecc",
       "name": "button1"
     },
     {
       "config": {
-        "align": "center",
+        "align": "left",
         "font_weight": "bold",
         "defval": "家庭安全监测",
         "font_size": 35
       },
       "spec": "micronurse_single_line_text",
-      "x": 3,
+      "x": 4,
       "y": 0,
       "width": 16,
       "height": 6,
@@ -139,9 +139,9 @@
         "date_font_weight": "normal",
         "time_font_weight": "bold",
         "icon": true,
+        "icon_size": 63,
         "date_font_size": 18,
-        "time_font_size": 25,
-        "icon_size": 63
+        "time_font_size": 25
       },
       "spec": "micronurse_ui_digiclock",
       "x": 14,
@@ -168,8 +168,8 @@
     {
       "config": {
         "align": "left",
-        "font_weight": "normal",
-        "font_size": 25,
+        "font_weight": "bold",
+        "font_size": 28,
         "defval": "Safe"
       },
       "spec": "micronurse_single_line_text",

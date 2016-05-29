@@ -17,7 +17,7 @@ export default class MapWidget extends Widget {
     render() {
         var w = this.props.widget;
         var data = this.get_data();
-        var pos = '116.381493,40.114757';
+        var pos = null;
         var ak = null;
         var zoom = 13;
 
@@ -50,7 +50,7 @@ export default class MapWidget extends Widget {
             );
         }
 
-        if(!checkPos(pos))
+        if(pos && !checkPos(pos))
             pos = null;
 
         if(pos == null){

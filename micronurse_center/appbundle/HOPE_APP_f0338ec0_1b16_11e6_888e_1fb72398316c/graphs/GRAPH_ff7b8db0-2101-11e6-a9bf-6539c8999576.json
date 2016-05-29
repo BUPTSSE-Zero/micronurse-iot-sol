@@ -139,7 +139,7 @@
         "spec": "fever_thermometer/report/service@SpecBundlemicro_nurse_hub",
         "config": {
           "interval": 2000,
-          "name": "thermometer"
+          "name": "体温"
         },
         "id": "NODE_5305c4f0-210c-11e6-af71-976d4b99a41f"
       },
@@ -148,8 +148,8 @@
         "description": "",
         "spec": "pulse_transduce/report/service@SpecBundlemicro_nurse_hub",
         "config": {
-          "interval": 5000,
-          "name": "pulseTransduce"
+          "interval": 2000,
+          "name": "脉搏"
         },
         "id": "NODE_5eec56d0-210c-11e6-af71-976d4b99a41f"
       },

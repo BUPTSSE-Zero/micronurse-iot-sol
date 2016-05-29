@@ -19,7 +19,7 @@
     },
     {
       "config": {
-        "caption": "< Back",
+        "caption": "Back",
         "align": "left",
         "style": "primary",
         "action": "ui",
@@ -30,7 +30,7 @@
       "spec": "hope/ui/button",
       "x": 0,
       "y": 0,
-      "width": 5,
+      "width": 4,
       "height": 6,
       "id": "WIDGET_8ef55270-1b29-11e6-9752-dd7b6fe0ca91",
       "name": "going_out_ui_btn_back"
@@ -40,10 +40,10 @@
         "align": "left",
         "font_weight": "bold",
         "defval": "出行安全监测",
-        "font_size": 30
+        "font_size": 35
       },
       "spec": "micronurse_single_line_text",
-      "x": 5,
+      "x": 4,
       "y": 0,
       "width": 21,
       "height": 6,
