@@ -3,8 +3,8 @@ console.log("Micro nurse hub - locate init");
 shared.gps = {
   timer: null,
   interval: 2000,
-  current_x: CONFIG.x,
-  current_y: CONFIG.y,
+  current_x: parseFloat(CONFIG.x),
+  current_y: parseFloat(CONFIG.y),
   callback: function() {},
   pause: function() {
     if (this.timer) {

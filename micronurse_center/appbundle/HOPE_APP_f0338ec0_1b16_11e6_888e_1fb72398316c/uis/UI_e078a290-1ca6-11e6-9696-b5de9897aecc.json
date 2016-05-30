@@ -71,7 +71,7 @@
         "date_font_weight": "normal",
         "time_font_weight": "bold",
         "icon": true,
-        "icon_size": 63,
+        "icon_size": 64,
         "date_font_size": 18,
         "time_font_size": 25
       },
@@ -139,17 +139,47 @@
         "date_font_weight": "normal",
         "time_font_weight": "bold",
         "icon": true,
-        "icon_size": 63,
+        "icon_size": 64,
         "date_font_size": 18,
         "time_font_size": 25
       },
       "spec": "micronurse_ui_digiclock",
-      "x": 14,
+      "x": 21,
       "y": 11,
       "width": 7,
       "height": 8,
       "id": "WIDGET_4488ff00-1e73-11e6-9511-f9bb111b85ef",
       "name": "infrared_transducer_time_1"
+    },
+    {
+      "config": {
+        "align": "left",
+        "font_weight": "normal",
+        "font_size": 25,
+        "defval": "红外防盗警报"
+      },
+      "spec": "micronurse_single_line_text",
+      "x": 21,
+      "y": 6,
+      "width": 7,
+      "height": 5,
+      "id": "WIDGET_ca1820b0-1e73-11e6-9511-f9bb111b85ef",
+      "name": "infrared_transducer_name_1"
+    },
+    {
+      "config": {
+        "align": "left",
+        "font_weight": "bold",
+        "font_size": 35,
+        "defval": "Safe"
+      },
+      "spec": "micronurse_single_line_text",
+      "x": 21,
+      "y": 19,
+      "width": 6,
+      "height": 14,
+      "id": "WIDGET_6fbac6d0-1e74-11e6-9511-f9bb111b85ef",
+      "name": "infrared_transducer_inform_1"
     },
     {
       "config": {
@@ -162,23 +192,41 @@
       "y": 6,
       "width": 7,
       "height": 5,
-      "id": "WIDGET_ca1820b0-1e73-11e6-9511-f9bb111b85ef",
-      "name": "infrared_transducer_name_1"
+      "id": "WIDGET_4560b430-2630-11e6-83d1-59562d4f7be2",
+      "name": "smoke_transducer_name1"
+    },
+    {
+      "config": {
+        "align": "left",
+        "orientation": "vertical",
+        "date_font_weight": "normal",
+        "time_font_weight": "bold",
+        "icon": true,
+        "icon_size": 64,
+        "date_font_size": 18,
+        "time_font_size": 25
+      },
+      "spec": "micronurse_ui_digiclock",
+      "x": 14,
+      "y": 11,
+      "width": 7,
+      "height": 8,
+      "id": "WIDGET_534c64e0-2630-11e6-83d1-59562d4f7be2",
+      "name": "smoke_transducer_time1"
     },
     {
       "config": {
         "align": "left",
         "font_weight": "bold",
-        "font_size": 28,
-        "defval": "Safe"
+        "font_size": 35
       },
       "spec": "micronurse_single_line_text",
       "x": 14,
       "y": 19,
-      "width": 6,
+      "width": 7,
       "height": 14,
-      "id": "WIDGET_6fbac6d0-1e74-11e6-9511-f9bb111b85ef",
-      "name": "infrared_transducer_inform_1"
+      "id": "WIDGET_c0ea8720-2630-11e6-83d1-59562d4f7be2",
+      "name": "smoke_transducer_value1"
     }
   ]
 }

@@ -52,8 +52,8 @@
         "description": "",
         "spec": "gps/locate/service@SpecBundlemicro_nurse_hub",
         "config": {
-          "x": 116.381493,
-          "y": 40.114757,
+          "x": "109.625",
+          "y": "23.06",
           "name": "GPS",
           "interval": 5000
         },

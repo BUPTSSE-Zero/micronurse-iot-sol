@@ -10,55 +10,71 @@
     "nodes": {
       "NODE_d4912650-1ca6-11e6-9696-b5de9897aecc": {
         "x": 22,
-        "y": 802
+        "y": 562
       },
       "NODE_d4eda8c0-1ca7-11e6-9696-b5de9897aecc": {
-        "x": 452,
-        "y": 852
+        "x": 492,
+        "y": 432
       },
       "NODE_e8c48c10-1ca7-11e6-9696-b5de9897aecc": {
-        "x": 452,
-        "y": 1132
+        "x": 492,
+        "y": 292
       },
       "NODE_054bb570-1ca8-11e6-9696-b5de9897aecc": {
-        "x": 452,
-        "y": 992
+        "x": 492,
+        "y": 12
       },
       "NODE_0a507fb0-1ca8-11e6-9696-b5de9897aecc": {
-        "x": 452,
-        "y": 1272
+        "x": 492,
+        "y": 152
       },
       "NODE_a9d3b9a0-1cf1-11e6-ae65-61a5e1ad9fd6": {
         "x": 22,
-        "y": 622
+        "y": 742
       },
       "NODE_9f93b660-1cf2-11e6-ae65-61a5e1ad9fd6": {
-        "x": 452,
-        "y": 572
+        "x": 492,
+        "y": 852
       },
       "NODE_a5272c10-1cf2-11e6-ae65-61a5e1ad9fd6": {
-        "x": 452,
-        "y": 432
-      },
-      "NODE_0588a250-1cf3-11e6-ae65-61a5e1ad9fd6": {
-        "x": 452,
+        "x": 492,
         "y": 712
       },
+      "NODE_0588a250-1cf3-11e6-ae65-61a5e1ad9fd6": {
+        "x": 492,
+        "y": 572
+      },
       "NODE_125181f0-1e74-11e6-9511-f9bb111b85ef": {
-        "x": 452,
-        "y": 152
+        "x": 492,
+        "y": 1272
       },
       "NODE_97df9230-1e74-11e6-9511-f9bb111b85ef": {
-        "x": 452,
-        "y": 12
+        "x": 492,
+        "y": 992
       },
       "NODE_56af4190-1e72-11e6-9511-f9bb111b85ef": {
         "x": 22,
-        "y": 442
+        "y": 922
       },
       "NODE_3cb8e680-23a7-11e6-aa85-f9f59aa305f4": {
-        "x": 452.0483887176981,
-        "y": 285.11510736116486
+        "x": 492,
+        "y": 1132
+      },
+      "NODE_fd6db550-2630-11e6-83d1-59562d4f7be2": {
+        "x": 22,
+        "y": 1102
+      },
+      "NODE_04e79e40-2631-11e6-83d1-59562d4f7be2": {
+        "x": 492,
+        "y": 1552
+      },
+      "NODE_078bbc30-2631-11e6-83d1-59562d4f7be2": {
+        "x": 492,
+        "y": 1692
+      },
+      "NODE_0aa07640-2631-11e6-83d1-59562d4f7be2": {
+        "x": 492,
+        "y": 1412
       }
     },
     "edges": {}
@@ -150,6 +166,33 @@
       "hub": "micro_nurse_iot_sol_center__built_in_hub__",
       "service": "UI_SERVICE__WIDGET_4488ff00-1e73-11e6-9511-f9bb111b85ef",
       "widget": "WIDGET_4488ff00-1e73-11e6-9511-f9bb111b85ef"
+    },
+    "NODE_fd6db550-2630-11e6-83d1-59562d4f7be2": {
+      "type": "fixed",
+      "thing": "micro_nurse_hub_smoketransducer",
+      "hub": "micro_nurse_hub",
+      "service": "report@micro_nurse_hub_smoketransducer"
+    },
+    "NODE_04e79e40-2631-11e6-83d1-59562d4f7be2": {
+      "type": "fixed",
+      "thing": "HOPE_UI_THING__micro_nurse_iot_sol_center__built_in_hub__HOPE_APP_f0338ec0_1b16_11e6_888e_1fb72398316c",
+      "hub": "micro_nurse_iot_sol_center__built_in_hub__",
+      "service": "UI_SERVICE__WIDGET_4560b430-2630-11e6-83d1-59562d4f7be2",
+      "widget": "WIDGET_4560b430-2630-11e6-83d1-59562d4f7be2"
+    },
+    "NODE_078bbc30-2631-11e6-83d1-59562d4f7be2": {
+      "type": "fixed",
+      "thing": "HOPE_UI_THING__micro_nurse_iot_sol_center__built_in_hub__HOPE_APP_f0338ec0_1b16_11e6_888e_1fb72398316c",
+      "hub": "micro_nurse_iot_sol_center__built_in_hub__",
+      "service": "UI_SERVICE__WIDGET_c0ea8720-2630-11e6-83d1-59562d4f7be2",
+      "widget": "WIDGET_c0ea8720-2630-11e6-83d1-59562d4f7be2"
+    },
+    "NODE_0aa07640-2631-11e6-83d1-59562d4f7be2": {
+      "type": "fixed",
+      "thing": "HOPE_UI_THING__micro_nurse_iot_sol_center__built_in_hub__HOPE_APP_f0338ec0_1b16_11e6_888e_1fb72398316c",
+      "hub": "micro_nurse_iot_sol_center__built_in_hub__",
+      "service": "UI_SERVICE__WIDGET_534c64e0-2630-11e6-83d1-59562d4f7be2",
+      "widget": "WIDGET_534c64e0-2630-11e6-83d1-59562d4f7be2"
     }
   },
   "graph": {
@@ -240,6 +283,31 @@
         "name": "",
         "spec": "micronurse_ui_digiclock",
         "id": "NODE_3cb8e680-23a7-11e6-aa85-f9f59aa305f4"
+      },
+      {
+        "name": "",
+        "description": "",
+        "spec": "smoketransducer_report",
+        "id": "NODE_fd6db550-2630-11e6-83d1-59562d4f7be2",
+        "config": {
+          "interval": 5000,
+          "name": "客厅烟雾量"
+        }
+      },
+      {
+        "name": "",
+        "spec": "micronurse_single_line_text",
+        "id": "NODE_04e79e40-2631-11e6-83d1-59562d4f7be2"
+      },
+      {
+        "name": "",
+        "spec": "micronurse_single_line_text",
+        "id": "NODE_078bbc30-2631-11e6-83d1-59562d4f7be2"
+      },
+      {
+        "name": "",
+        "spec": "micronurse_ui_digiclock",
+        "id": "NODE_0aa07640-2631-11e6-83d1-59562d4f7be2"
       }
     ],
     "edges": [
@@ -361,6 +429,39 @@
         },
         "target": {
           "node": "NODE_3cb8e680-23a7-11e6-aa85-f9f59aa305f4",
+          "port": "time"
+        }
+      },
+      {
+        "id": "EDGE_11fb6580-2631-11e6-83d1-59562d4f7be2",
+        "source": {
+          "node": "NODE_fd6db550-2630-11e6-83d1-59562d4f7be2",
+          "port": "value"
+        },
+        "target": {
+          "node": "NODE_078bbc30-2631-11e6-83d1-59562d4f7be2",
+          "port": "text"
+        }
+      },
+      {
+        "id": "EDGE_151799a0-2631-11e6-83d1-59562d4f7be2",
+        "source": {
+          "node": "NODE_fd6db550-2630-11e6-83d1-59562d4f7be2",
+          "port": "name"
+        },
+        "target": {
+          "node": "NODE_04e79e40-2631-11e6-83d1-59562d4f7be2",
+          "port": "text"
+        }
+      },
+      {
+        "id": "EDGE_18f68180-2631-11e6-83d1-59562d4f7be2",
+        "source": {
+          "node": "NODE_fd6db550-2630-11e6-83d1-59562d4f7be2",
+          "port": "timestamp"
+        },
+        "target": {
+          "node": "NODE_0aa07640-2631-11e6-83d1-59562d4f7be2",
           "port": "time"
         }
       }
