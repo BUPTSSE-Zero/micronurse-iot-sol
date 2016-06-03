@@ -1,33 +1,43 @@
 {
-  "description":"report the bloodpressure at intervals",
+  "description": "report the bloodpressure at intervals",
   "spec": {
-    "id":"turgoscope_report",
     "name": "turgoscope report",
-
-    "config": [{
-      "name": "interval",
-      "type": "int",
-      "default": 2000
-    },{
-      "name": "name",
-      "type": "string",
-      "default": "turgoscope"
-    }],
-
-    "out": {
-      "ports": [{
-        "name": "value",
-        "type": "string"
-      },{
+    "config": [
+      {
+        "name": "interval",
+        "type": "int",
+        "default": 2000
+      },
+      {
         "name": "name",
-        "type": "string"
-      },{
-        "name": "timestamp",
-        "type": "long"
-      },{
-        "name": "json_data",
-        "type": "string"
-      }]
+        "type": "string",
+        "default": "turgoscope"
+      }
+    ],
+    "out": {
+      "ports": [
+        {
+          "name": "value",
+          "type": "string"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "message",
+          "type": "string"
+        },
+        {
+          "name": "timestamp",
+          "type": "long"
+        },
+        {
+          "name": "json_data",
+          "type": "string"
+        }
+      ]
     }
-  }
+  },
+  "id": "report@micro_nurse_hub_turgoscope"
 }

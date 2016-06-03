@@ -1,11 +1,29 @@
-console.log("Micro nurse hub - turgoscope +" + CONFIG.name + " kernel")
+console.log("Micro nurse hub - turgoscope +" + CONFIG.name + " kernel");
 shared.turgoscope.start(function() {
-  var value1 = Math.random() * 150 + 50;
-  var value2 = Math.random() * 60 + 40;
-  console.log("[Micro nurse hub - turgoscope " + CONFIG.name + "]:", value1 + "/" + value2);
+  var plus1 = Math.random()*8;
+  var plus2 = Math.random()*10;
+  var message_temp;
+  shared.turgoscope.initial_value1 += plus1*((Math.random()<0.5)?1:-1);
+  shared.turgoscope.initial_value2 += plus2*((Math.random()<0.5)?1:-1);
+  if(shared.turgoscope.initial_value1 > 110)
+      shared.turgoscope.initial_value1 = 110;
+  else if(shared.turgoscope.initial_value1 < 50)
+      shared.turgoscope.initial_value1 = 50;
+     
+  if(shared.turgoscope.initial_value2 > 180)
+      shared.turgoscope.initial_value2 = 180;
+  else if(shared.turgoscope.initial_value2 < 70)
+      shared.turgoscope.initial_value2 = 70;
+     
+  if(shared.turgoscope.initial_value1 <= 90 && shared.turgoscope.initial_value1 >= 50 &&shared.turgoscope.initial_value2 >= 70 && shared.turgoscope.initial_value2 <= 140)
+      message_temp = "Safe";
+  else
+      message_temp = "Warning";
+     
+  console.log("[Micro nurse hub - turgoscope " + CONFIG.name + "]:", shared.turgoscope.initial_value1 + "/" + shared.turgoscope.initial_value2);
 
   var outdata = {
-    value: value1.toFixed(2) + '/' + value2.toFixed(2),
+    value: parseInt(shared.turgoscope.initial_value1) + "/" + parseInt(shared.turgoscope.initial_value2),
     sensor_type: "turgoscope",
     name: CONFIG.name,
     timestamp: Date.parse(new Date())
@@ -13,6 +31,7 @@ shared.turgoscope.start(function() {
 
   sendOUT({
     value: outdata.value,
+    message: message_temp,
     name: outdata.name,
     timestamp: outdata.timestamp,
     json_data: JSON.stringify(outdata)

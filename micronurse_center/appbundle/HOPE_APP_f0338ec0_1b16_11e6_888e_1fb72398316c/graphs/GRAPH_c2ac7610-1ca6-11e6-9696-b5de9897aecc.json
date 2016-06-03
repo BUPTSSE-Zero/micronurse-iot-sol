@@ -464,6 +464,28 @@
           "node": "NODE_0aa07640-2631-11e6-83d1-59562d4f7be2",
           "port": "time"
         }
+      },
+      {
+        "id": "EDGE_854bb6f0-28cc-11e6-afee-c9233b31c1c0",
+        "source": {
+          "node": "NODE_56af4190-1e72-11e6-9511-f9bb111b85ef",
+          "port": "json_data"
+        },
+        "target": {
+          "node": "NODE_d4eda8c0-1ca7-11e6-9696-b5de9897aecc",
+          "port": "json_data"
+        }
+      },
+      {
+        "id": "EDGE_8b75a040-28cc-11e6-afee-c9233b31c1c0",
+        "source": {
+          "node": "NODE_fd6db550-2630-11e6-83d1-59562d4f7be2",
+          "port": "json_data"
+        },
+        "target": {
+          "node": "NODE_d4eda8c0-1ca7-11e6-9696-b5de9897aecc",
+          "port": "json_data"
+        }
       }
     ],
     "tags": []

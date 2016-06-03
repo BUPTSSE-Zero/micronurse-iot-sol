@@ -3,6 +3,8 @@ console.log("Micro nurse hub - Bloodpressure init");
 shared.turgoscope = {
   timer: null,
   interval: 3000,
+  initial_value1: 70,
+  initial_value2: 100,
   callback: function() {},
   pause: function() {
     if (this.timer) {

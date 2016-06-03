@@ -13,7 +13,7 @@
       {
         "name": "interval",
         "type": "int",
-        "default": 3000
+        "default": 2000
       }
     ],
     "out": {
