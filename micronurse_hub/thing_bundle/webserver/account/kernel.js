@@ -4,16 +4,13 @@
 
 function logout() {
   var logout = require('../logout');
-  logout.logout(hub_shared.phone_number, hub_shared.token, hub_shared.sessionid,
+  logout.logout(hub_shared.token,
                 function () {
                   console.log('Logout success.');
                 }, function () {
                   console.log('Logout failed.');
                 });
   hub_shared.token = undefined;
-  hub_shared.sessionid = undefined;
-  hub_shared.nickname = undefined;
-  hub_shared.phone_number = undefined;
 
   sendOUT({
     json_result: JSON.stringify({action: 'logout'})
@@ -29,16 +26,14 @@ if(IN.action) {
       shared.account.stop();
       var login = require('../login');
       login.login(action_info.phone_number, action_info.password,
-        function (status_code, result_code, message, token, sessionid, nickname) {
-          hub_shared.phone_number = action_info.phone_number;
+        function (status_code, result_code, message, token, nickname) {
+          shared.account.nickname = nickname;
           hub_shared.token = token;
-          hub_shared.sessionid = sessionid;
-          hub_shared.nickname = nickname;
 
           var json_result = JSON.stringify({
             action: action_info.action,
             result_code: result_code,
-            nickname: hub_shared.nickname,
+            nickname: nickname,
             message: message
           });
           console.log('Login success.');
@@ -47,7 +42,7 @@ if(IN.action) {
           });
 
           shared.account.start(function () {
-              if(hub_shared.token && hub_shared.sessionid){
+              if(hub_shared.token){
                 sendOUT({
                   json_result: json_result
                 });
