@@ -3,7 +3,7 @@
  */
 
 exports.logout = function (token, success_cb, fail_cb) {
-  require('./micronurse_api_request').start_request('/v1/iot/logout', 'PUT', {},
+  require('./micronurse_api_request').start_request('/v1/iot/logout', 'DELETE', {},
     function (error, res, data) {
       if(error)
         fail_cb(-1, -1, 'Network error');
