@@ -17,7 +17,7 @@ shared.feverThermometer.start(function(){
     
     var outdata = {
         value:shared.feverThermometer.base_value.toFixed(1),
-        sensor_type:"feverThermometer",
+        sensor_type:"fever_thermometer",
         name:CONFIG.name,
         timestamp:Date.parse(new Date()),
         message:message_temp

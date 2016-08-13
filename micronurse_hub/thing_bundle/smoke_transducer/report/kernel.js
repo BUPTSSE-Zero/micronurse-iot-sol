@@ -5,7 +5,7 @@ shared.smoketransducer.start(function() {
 
   var outdata = {
     value: value.toFixed(0),
-    sensor_type: "smoketransducer",
+    sensor_type: "smoke_transducer",
     name: CONFIG.name,
     timestamp: Date.parse(new Date())
   }

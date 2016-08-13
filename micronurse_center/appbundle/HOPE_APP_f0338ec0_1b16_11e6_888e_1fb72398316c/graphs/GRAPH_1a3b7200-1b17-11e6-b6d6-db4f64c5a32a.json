@@ -19,6 +19,10 @@
       "NODE_e9f93f60-2556-11e6-8b1e-59950ee65941": {
         "x": 252,
         "y": 12
+      },
+      "NODE_92367830-608c-11e6-8f06-7f4ec579bded": {
+        "x": 256,
+        "y": 278
       }
     },
     "edges": {}
@@ -43,6 +47,12 @@
       "hub": "micro_nurse_iot_sol_center__built_in_hub__",
       "service": "UI_SERVICE__WIDGET_5bee0770-1b18-11e6-b6d6-db4f64c5a32a",
       "widget": "WIDGET_5bee0770-1b18-11e6-b6d6-db4f64c5a32a"
+    },
+    "NODE_92367830-608c-11e6-8f06-7f4ec579bded": {
+      "type": "fixed",
+      "thing": "micro_nurse_hub_webserver",
+      "hub": "micro_nurse_hub",
+      "service": "send_sensor_data@micro_nurse_hub_webserver"
     }
   },
   "graph": {
@@ -68,6 +78,15 @@
         "name": "",
         "spec": "micronurse_ui_map",
         "id": "NODE_e9f93f60-2556-11e6-8b1e-59950ee65941"
+      },
+      {
+        "name": "",
+        "description": "",
+        "spec": "webserver_send_sensor_data",
+        "id": "NODE_92367830-608c-11e6-8f06-7f4ec579bded",
+        "config": {
+          "timeout": 5000
+        }
       }
     ],
     "edges": [
@@ -91,6 +110,17 @@
         "target": {
           "node": "NODE_e9f93f60-2556-11e6-8b1e-59950ee65941",
           "port": "position"
+        }
+      },
+      {
+        "id": "EDGE_958bbdb0-608c-11e6-8f06-7f4ec579bded",
+        "source": {
+          "node": "NODE_95d750e0-1b18-11e6-b6d6-db4f64c5a32a",
+          "port": "json_data"
+        },
+        "target": {
+          "node": "NODE_92367830-608c-11e6-8f06-7f4ec579bded",
+          "port": "json_data"
         }
       }
     ],

@@ -192,7 +192,7 @@
         "description": "",
         "spec": "fever_thermometer/report/service@SpecBundlemicro_nurse_hub",
         "config": {
-          "interval": 2000,
+          "interval": 5000,
           "name": "体温"
         },
         "id": "NODE_5305c4f0-210c-11e6-af71-976d4b99a41f"
@@ -202,7 +202,7 @@
         "description": "",
         "spec": "pulse_transduce/report/service@SpecBundlemicro_nurse_hub",
         "config": {
-          "interval": 2000,
+          "interval": 5000,
           "name": "脉搏"
         },
         "id": "NODE_5eec56d0-210c-11e6-af71-976d4b99a41f"
@@ -263,7 +263,7 @@
         "description": "",
         "spec": "turgoscope/report/service@SpecBundlemicro_nurse_hub",
         "config": {
-          "interval": 2000,
+          "interval": 5000,
           "name": "血压"
         },
         "id": "NODE_20bcaf70-2983-11e6-9162-ad3db72d7b09"
@@ -442,6 +442,17 @@
         "target": {
           "node": "NODE_b14d6f50-2985-11e6-8e26-693499937830",
           "port": "text"
+        }
+      },
+      {
+        "id": "EDGE_81047620-608c-11e6-8f06-7f4ec579bded",
+        "source": {
+          "node": "NODE_20bcaf70-2983-11e6-9162-ad3db72d7b09",
+          "port": "json_data"
+        },
+        "target": {
+          "node": "NODE_8fec6fe0-210c-11e6-af71-976d4b99a41f",
+          "port": "json_data"
         }
       }
     ],

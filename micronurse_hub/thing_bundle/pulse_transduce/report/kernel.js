@@ -12,11 +12,11 @@ shared.pulseTransduce.start(function(){
         message_temp = "Safe";
     else
         message_temp = "Warning";
-    console.log("Micro nurse hub - pulseTransduce " + CONFIG.name + "]:",shared.pulseTransduce.base_value);
+    console.log("Micro nurse hub - pulseTransducer " + CONFIG.name + "]:",shared.pulseTransduce.base_value);
     
     var outdata = {
         value:shared.pulseTransduce.base_value,
-        sensor_type:"pulseTransduce",
+        sensor_type:"pulse_transducer",
         name:CONFIG.name,
         message:message_temp,
         timestamp:Date.parse(new Date())

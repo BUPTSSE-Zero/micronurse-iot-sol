@@ -7,8 +7,6 @@ shared.gps.start(function() {
   var value = shared.gps.current_x + ',' + shared.gps.current_y;
   console.log("[Micro nurse hub - GPS " + CONFIG.name + "]:" + value);
   var mydate = new Date();
-  //var value = "$GPGGA,"+ mydate.getHours() + mydate.getMinutes() + mydate.getSeconds() + "." + mydate.getMilliseconds()
-  //   +",38" + x + ",N,115" + y +",E,"+ "1,08,1.0,20.6,M,,,,0000*35";
   var outdata = {
     value: value,
     sensor_type: "GPS",
