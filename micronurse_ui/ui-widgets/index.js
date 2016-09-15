@@ -1,5 +1,5 @@
 /******************************************************************************
-Copyright (c) 2015, Intel Corporation
+Copyright (c) 2016, Intel Corporation
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
@@ -47,10 +47,10 @@ var widgets = {
 
   // WebRTC
   "hope/ui/webrtc":    require("./generated/webrtc"),
-
+  
   // Micro Nurse
   "micronurse_single_line_text":    require("./generated/micronurse_single_line_text"),
-  "micronurse_ui_digiclock":	      require("./generated/micronurse_digiclock"),
+  "micronurse_ui_digiclock":	    require("./generated/micronurse_digiclock"),
   "micronurse_ui_map":              require("./generated/micronurse_map"),
   "micronurse_ui_account":          require("./generated/micronurse_account")
 };
@@ -61,5 +61,4 @@ require("./plugins").forEach(function(m) {
   }
 });
 
-exports.widgets = widgets;
-exports.spec_bundle = require("./specs");
+module.exports = widgets;

@@ -1,5 +1,5 @@
 /******************************************************************************
-Copyright (c) 2015, Intel Corporation
+Copyright (c) 2016, Intel Corporation
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
@@ -24,7 +24,7 @@ CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *****************************************************************************/
-import Dialog from "../ide/dialog.x";
+import Dialog from "../common/dialog.x";
 import FONT_AWESOME from "../../lib/font-awesome.js";
 
 export default class Node extends ReactComponent {
@@ -129,6 +129,7 @@ export default class Node extends ReactComponent {
   _on_change_defval(name, e) {
     var spec = this.props.spec;
     var port = _.find(spec.in.ports, ["name", name]);
+    var val;
 
     this.setState({
       [name]: e.target.value
@@ -136,20 +137,24 @@ export default class Node extends ReactComponent {
 
     switch(port.type) {
     case "boolean":
-      port.default = e.target.value.toLowerCase() === "true";
+      val = e.target.value.toLowerCase() === "true";
       break;
     case "float":
     case "double":
     case "number":
-      port.default = Number(e.target.value);
+      val = parseFloat(e.target.value);
+      val = isNaN(val) ? 0 : val;
       break;
     case "int":
-      port.default = parseInt(e.target.value);
+      val = parseInt(e.target.value);
+      val = isNaN(val) ? 0 : val;
       break;
     default:
-      port.default = e.target.value;
+      val = e.target.value;
       break;
     }
+    port.default = val;
+
     if (this.props.onChanged) {
       this.props.onChanged(spec);
     }
@@ -224,9 +229,11 @@ export default class Node extends ReactComponent {
         <g key={"I." + p.name} className="hope-graph-in-port">
           <text className={"hope-graph-port-text"}
               x={styles.x + 5} y={y + 2} fontSize="14px">{p.name}</text>
-          <text onClick={self._on_remove_port.bind(self, "in", p.name)}
+          {self.props.active &&
+            <text onClick={self._on_remove_port.bind(self, "in", p.name)}
               className={"hope-graph-icon-btn"}
               x={styles.x + 85} y={y + 4} fontSize="14px">{FONT_AWESOME["trash-o"]}</text>
+          }
           <line className={"hope-graph-in-line" + (p.no_trigger ? " hope-graph-dash" : "")}
               x1={21} y1={y} x2={45} y2={y} />
           <line onClick={self._on_click_line.bind(self, p.name)}
@@ -247,9 +254,11 @@ export default class Node extends ReactComponent {
       return (
         <g key={"O." + p.name} className="hope-graph-out-port">
           <text className={"hope-graph-port-text"} x={x - 8} y={y + 3}>{p.name}</text>
-          <text onClick={self._on_remove_port.bind(self, "out", p.name)}
+          {self.props.active &&
+            <text onClick={self._on_remove_port.bind(self, "out", p.name)}
               className={"hope-graph-icon-btn"}
               x={x - 8 - p.name.length * 8} y={y + 4} fontSize="14px">{FONT_AWESOME["trash-o"]}</text>
+          }
           <circle key="outer" className="hope-graph-port-circle" cx={x} cy={y} r={r} />
           <circle key="inner" className="hope-graph-inner-circle" cx={x} cy={y} r={r / 2} />
         </g>
@@ -278,7 +287,7 @@ export default class Node extends ReactComponent {
     });
 
     return (
-      <div className="hope-composer-node">
+      <div className={"hope-composer-node" + (this.props.active ? " active" : "")}>
         <div style={{
             position: "relative",
             height: "100%",
@@ -296,12 +305,16 @@ export default class Node extends ReactComponent {
             </text>
             { inports.map(render_in_port) }
             { outports.map(render_out_port) }
-            <text onClick={self._on_add_new.bind(this, "in")}
-              className={"hope-graph-icon-btn"}
-              x={styles.x + 5} y={h - 6}>{FONT_AWESOME["plus-circle"]}</text>
-            <text onClick={self._on_add_new.bind(this, "out")}
-              className={"hope-graph-icon-btn"}
-              x={styles.x + styles.width - 16} y={h - 6}>{FONT_AWESOME["plus-circle"]}</text>
+            {this.props.active &&
+              <text onClick={self._on_add_new.bind(this, "in")}
+                className={"hope-graph-icon-btn"}
+                x={styles.x + 5} y={h - 6}>{FONT_AWESOME["plus-circle"]}</text>
+            }
+            {this.props.active &&
+              <text onClick={self._on_add_new.bind(this, "out")}
+                className={"hope-graph-icon-btn"}
+                x={styles.x + styles.width - 16} y={h - 6}>{FONT_AWESOME["plus-circle"]}</text>
+            }
           </svg>
           { defval_inputs }
         </div>

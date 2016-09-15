@@ -1,5 +1,5 @@
 /******************************************************************************
-Copyright (c) 2015, Intel Corporation
+Copyright (c) 2016, Intel Corporation
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
@@ -26,7 +26,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *****************************************************************************/
 import UIBoard from "./ui_board.x";
 import {Row} from "react-bootstrap";
-import Halogen from "halogen";
+import DotLoader from "halogen/DotLoader";
 
 export default class UIIDE extends ReactComponent {
 
@@ -118,7 +118,7 @@ export default class UIIDE extends ReactComponent {
       var reason = ui_store.no_active_reason;
       var reason_content;
       if (reason === "loading") {
-        reason_content = <div><Halogen.DotLoader/><br/>{__("Loading") + " ..."}</div>;
+        reason_content = <div><DotLoader/><br/>{__("Loading") + " ..."}</div>;
       } else {
         reason_content = <div>{__("Failed to load due to ") + reason}</div>;
       }

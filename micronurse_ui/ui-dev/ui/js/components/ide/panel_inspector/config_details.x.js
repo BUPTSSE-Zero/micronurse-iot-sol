@@ -1,5 +1,5 @@
 /******************************************************************************
-Copyright (c) 2015, Intel Corporation
+Copyright (c) 2016, Intel Corporation
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
@@ -25,13 +25,26 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *****************************************************************************/
 import {Row, Col} from "react-bootstrap";
-import Dialog from "../dialog.x";
+import Dialog from "../../common/dialog.x";
+
+function is_missing(cfg, v) {
+  if (cfg.required) {
+    if (v === undefined) {
+      return true;
+    }
+    if (typeof v === "string" && v === "") {
+      return true;
+    }
+  }
+  return false;
+}
 
 export default class ConfigDetails extends ReactComponent {
 
   static propTypes = {
     id:         React.PropTypes.string.isRequired,
-    onChange:   React.PropTypes.func
+    onChange:   React.PropTypes.func,
+    onFocus:    React.PropTypes.func
   };
 
   constructor(props) {
@@ -53,7 +66,7 @@ export default class ConfigDetails extends ReactComponent {
     var spec = node.$get_spec();
     var items = spec.extra ? spec.config.concat(spec.extra) : spec.config;
     _.forOwn(items, i => {
-      if (i.name) {
+      if (i.name && !_.startsWith(i.name, "_")) {
         var v = i.name in node.config ? node.config[i.name] : i.default;
         states[i.name] = v === undefined || ((i.type === "int" || i.type === "number") && isNaN(v)) ? "" : v;
       }
@@ -75,7 +88,6 @@ export default class ConfigDetails extends ReactComponent {
     var view = $hope.app.stores.graph.active_view;
     var node = view.get("node", this.props.id);
     var val;
-
     e.stopPropagation();
     switch(cfg.type) {
       case "boolean":
@@ -83,9 +95,11 @@ export default class ConfigDetails extends ReactComponent {
         break;
       case "number":
         val = parseFloat(e.target.value);
+        val = isNaN(val) ? 0 : val;
         break;
       case "int":
         val = parseInt(e.target.value);
+        val = isNaN(val) ? 0 : val;
         break;
       default:
         val = e.target.value;
@@ -124,19 +138,15 @@ export default class ConfigDetails extends ReactComponent {
   }
 
   _on_change_color(cfg, e) {
-    e.stopPropagation();
-    Dialog.show_colorpicker_dialog(__("Change the color"), color => {
-      var view = $hope.app.stores.graph.active_view;
-      var node = view.get("node", this.props.id);
+    var view = $hope.app.stores.graph.active_view;
+    var node = view.get("node", this.props.id);
 
-      node.config[cfg.name] = color;
+    node.config[cfg.name] = e.target.value;
 
-      this.set_modified();
-      this.setState({
-        [cfg.name]: color
-      });
-    },
-    this.state[cfg.name] || "");
+    this.set_modified();
+    this.setState({
+      [cfg.name]: e.target.value
+    });
   }
 
   _on_show_extra(e) {
@@ -174,12 +184,33 @@ export default class ConfigDetails extends ReactComponent {
     this.set_modified();
     this.forceUpdate();
   }
-
+  
+  _on_focus(cfg, val, e) {
+  	var view = $hope.app.stores.graph.active_view;
+    var node = view.get("node", this.props.id);
+    e.stopPropagation();
+    if (!cfg.use_editor) {
+    	return;	
+    } else {  
+    	  Dialog.show_textarea_dialog(__("write function"), newval=>{
+	    		node.config[cfg.name] = newval;
+	    		this.set_modified();
+	    		this.setState({
+	    			[cfg.name]: newval
+	    		});
+     	  }, val);
+    }
+  }
+  
   render_cfg(cfg) {
     var view = $hope.app.stores.graph.active_view;
     var node = view.get("node", this.props.id);
     var v = this.state[cfg.name];
     var content;
+
+    if (_.startsWith(cfg.name, "_")) {
+      return;
+    }
 
     if (cfg.depend) {
       var fn = new Function("$$", "return " + cfg.depend);
@@ -274,16 +305,17 @@ export default class ConfigDetails extends ReactComponent {
     }
     else if (cfg.type === "color") {
       content =
-        <div className="text-center" onClick={this._on_change_color.bind(this, cfg)}>
-          <i className={"hope-hover-icon-btn fa fa-circle"} style={{color: v}} />
-        </div>;
+        <input type="color"
+              className="hope-tbl-row-val"
+              value={v || "#FFFFFF"}
+              onChange={this._on_change_color.bind(this, cfg)} />;
     }
     else if (cfg.type === "boolean") {
       content =
         <div className="onoffswitch">
           <input onChange={this._on_change_xxx.bind(this, cfg)}
               type="checkbox"
-              checked={v}
+              checked={!!v}
               className="onoffswitch-checkbox"
               id={cfg.name + "-onoff-" + view.id} />
           <label className="onoffswitch-label" htmlFor={cfg.name + "-onoff-" + view.id}>
@@ -298,14 +330,15 @@ export default class ConfigDetails extends ReactComponent {
     else {
       content =
         <input type="text"
-            className={"hope-inspector-detail-field" + ((!cfg.required || v) ? "" : " hope-input-highlighted")}
+            className={"hope-inspector-detail-field hope-input-text-warp" + (is_missing(cfg, v) ? " hope-input-highlighted" : "")}
             value={v}
-            onChange={this._on_change_xxx.bind(this, cfg)} />;
+            onChange={this._on_change_xxx.bind(this, cfg)} 
+            onFocus={this._on_focus.bind(this, cfg, v)} />;
     }
     return (
       <Row key={cfg.name} className="hope-panel-details-row text-center border-bottom">
         <Col xs={5}>
-          <div>{cfg.display || cfg.name}</div>
+          <div className="cfg-name">{cfg.display || cfg.name}</div>
         </Col>
         <Col xs={6}>
           { content }
@@ -327,7 +360,7 @@ export default class ConfigDetails extends ReactComponent {
         extras =
           <div className="hope-widget-details-extra"
             onClick={this._on_show_extra}>
-            <i className="fa fa-chevron-circle-down">{" " + __("More")}</i>
+            <i className="fa fa-chevron-circle-down" />{" " + __("More")}
           </div>;
       }
     }

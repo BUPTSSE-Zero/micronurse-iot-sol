@@ -1,5 +1,5 @@
 /******************************************************************************
-Copyright (c) 2015, Intel Corporation
+Copyright (c) 2016, Intel Corporation
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
@@ -29,15 +29,15 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // GraphView encapsulates the Graph (the model) to provding extra
 // information not in graph but temporary needed, like scale level,
 // selected nodes / edges, etc.
-// 
+//
 // GraphView and Graph is 1:1 mapping, and maybe considered as view-model.
 //
-// GraphView is managed by GraphStore 
-// 
+// GraphView is managed by GraphStore
+//
 // NOTE that we merge multipe kind of events into one, e.g. node/created,
 // node/removed etc. to node and put the type of evnet to event message
 // This helps maintainance the listen and unlisten of the events ...
-// 
+//
 // // ??? is the type, could be node, edge etc.
 // event could be created, removed, changed, moved, styles_changed, binding_changed
 // "???", {id: id_of_it, type: ???, event: ...}
@@ -46,7 +46,6 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 import {EventEmitter} from "events";
 import FONT_AWESOME from "./font-awesome.js";
-import Graph from "./graph";
 
 // MUST be #RRGGBB style like colors
 var TAG_COLORS = ["#7e004a", "#0a3981", "#ffa800", "#00ffff", "#ff00ff", "#008888", "#880088"];
@@ -91,12 +90,87 @@ export default class GraphView extends EventEmitter {
     // use this to handle undo
     this.undo_stack = [];
     // how many items (from the end of stack) have undo (thus able to redo)
-    this.undo_times = 0;   
+    this.undo_times = 0;
 
     this.replay_timer = null;
     this.mode = EDITING;
 
+    this.debug_listener = null;
+    this.debug_traces = [];
+
     this.modified = false;
+  }
+
+  unlisten_graph_debug() {
+    if (this.debug_listener) {
+      this.debug_listener.dispose();
+      this.debug_listener = null;
+    }
+    this.debug_traces = [];
+  }
+
+  listen_graph_debug() {
+    if (!this.debug_listener) {
+      this.debug_listener = $hope.listen_graph(this.id, "debug", data => {
+        var t = this.debug_traces.concat(data);
+        if (t.length > 200) {
+          t = t.slice(-100);
+        }
+        this.debug_traces = t;
+        this.emit("debug", {});
+      });
+    }
+  }
+
+  get_debug_traces() {
+    return this.debug_traces;
+  }
+
+  clear_debug_traces() {
+    this.debug_traces = [];
+    this.emit("debug", {});
+  }
+
+
+  need_rebinding() {
+    var hub_manager = $hope.app.stores.hub.manager;
+    var rebinding = false;
+    _.forEach(this.graph.nodes, node => {
+      var binding = node.$get_binding();
+      if (binding && binding.type === "fixed" && !binding.widget) {
+        var service = hub_manager.get_service(binding.hub, binding.thing, binding.service);
+        if (!service) {
+          rebinding = true;
+          return;
+        }
+      }
+    });
+    return rebinding;
+  }
+
+  fix_ui_bindings() {
+    var hub0 = $hope.app.stores.hub.manager.center_built_in;  // center builtin hub
+    var appid = this.get_app_id();
+    _.forEach(this.graph.nodes, node => {
+      var binding = node.$get_binding();
+      if (binding && binding.type === "fixed" && binding.widget) {
+        var service = "UI_SERVICE__" + binding.widget;
+        var thing = "HOPE_UI_THING__" + hub0.id + appid;
+        if (binding.hub !== hub0.id || binding.thing !== thing || binding.service !== service) {
+          node.$set_binding({
+            type: "fixed",
+            hub: hub0.id,
+            thing: thing,
+            service: service,
+            widget: binding.widget
+          });
+          this.modified = true;
+        }
+      }
+    });
+    if (this.modified) {
+      $hope.notify("warning", __("UI widgets have rebound, this workflow needs to depoly again"));
+    }
   }
 
 
@@ -112,7 +186,7 @@ export default class GraphView extends EventEmitter {
     var node = this.get('node', id);
     var ns = $hope.config.graph.node_size;
     var num = Math.max(node.in.ports.length, node.out.ports.length);
-    
+
     var ret = {
       width: ns.width,
       height: $hope.config.graph.node_title_height + num * 20
@@ -196,7 +270,7 @@ export default class GraphView extends EventEmitter {
     });
 
     // Sanity check graph size
-    $hope.check_warn(isFinite(minX) && isFinite(minY) && 
+    $hope.check_warn(isFinite(minX) && isFinite(minY) &&
       isFinite(maxX) && isFinite(maxY), "GraphView", "get_bound_box() see Inf");
 
 
@@ -339,7 +413,7 @@ export default class GraphView extends EventEmitter {
     };
   }
 
-  // Calculate the offset needed (under current scale) to move 
+  // Calculate the offset needed (under current scale) to move
   // a point with logic postion to a designated view position
   calculate_offset(logic_pos, view_pos) {
     return {
@@ -369,7 +443,7 @@ export default class GraphView extends EventEmitter {
       y: box.top
     }, {
       x: left,
-      y: (ide.graph_svg.height - new_h) / 2 
+      y: (ide.graph_svg.height - new_h) / 2
     });
     this.emit("graph", {id: this.id, type: "graph", event: "fitted"});
   }
@@ -387,6 +461,10 @@ export default class GraphView extends EventEmitter {
       edges: []
     };
     _.forOwn(this.graph.nodes, n => {
+      if (!n.$is_visible()) {
+        return;
+      }
+
       let size = this.get_node_size(n.id);
       graph.children.push({
         id: n.id,
@@ -403,7 +481,7 @@ export default class GraphView extends EventEmitter {
     });
     $klay.layout({      // eslint-disable-line
       graph: graph,
-      success: layouted => { 
+      success: layouted => {
         _.forOwn(layouted.children, n => {
           this.get("node", n.id).$set_position({
             x: n.x,
@@ -416,7 +494,7 @@ export default class GraphView extends EventEmitter {
         // the fit event only set transforms and doesn't re-render
         this.emit("graph", {id: this.id, type: "graph", event: "autolayouted"});
       },
-      error: err => { 
+      error: err => {
         $hope.log.warn("GraphView", "[Autolayout]", "Failed because", err);
       }
     });
@@ -461,6 +539,12 @@ export default class GraphView extends EventEmitter {
       this.emit(type, {id: o.id, type: type, event: "changed"});
     }
     return o;
+  }
+
+  set_debug_for_node(id, is_debug) {
+    $hope.app.server.graph.set_debug_for_node$(this.id, id, is_debug).then(()=> {
+      this.emit("node", {id: id, type: "node", event: "changed"});
+    });
   }
 
 
@@ -508,13 +592,13 @@ export default class GraphView extends EventEmitter {
   }
 
   is_selected(type, id) {
-    $hope.check(this.get(type, id), "GraphView", 
+    $hope.check(this.get(type, id), "GraphView",
       "Cannot find the entity for is_selected()", type, id);
     return this["selected_" + type + "s"][id];
   }
 
   is_animated(type, id) {
-    $hope.check(this.get(type, id), "GraphView", 
+    $hope.check(this.get(type, id), "GraphView",
       "Cannot find the entity for is_animated()", type, id);
     return this["animated_" + type + "s"][id];
   }
@@ -523,7 +607,7 @@ export default class GraphView extends EventEmitter {
     var o = this.get(type, id);
     if (!o) {
       return;
-    } 
+    }
     var items = this["selected_" + type + "s"];
     if (is_selected && !is_multiple_select) {
         this.unselect_all();
@@ -815,7 +899,7 @@ export default class GraphView extends EventEmitter {
       case "step":
         this.step_it();
         break;
-    
+
       case "back":
         if (logs && len > 0 && this.$logidx > 0) {
           this.$logidx--;
@@ -891,13 +975,13 @@ export default class GraphView extends EventEmitter {
               this.zoom_scale = undo_obj.start_scale;
               this.emit("graph", {id: this.id, type: "graph", event: "moved"});
             }
-          };       
+          };
           this.push_into_undo_stack(undo_obj);
           this.move(data.ddx, data.ddy);
         } else if (data.phase === "end") { // point to redo
           let undo_obj = $hope.check(_.last(this.undo_stack), "Graph",
               "graph/move didn't find the start undo_obj");
-          $hope.check(undo_obj.action === "graph/move", "Graph", 
+          $hope.check(undo_obj.action === "graph/move", "Graph",
               "graph/move is not matched with start");
           this.move(data.ddx, data.ddy);
           undo_obj.end_offset = _.clone(this.offset);
@@ -979,7 +1063,7 @@ export default class GraphView extends EventEmitter {
         let o = this.get("node", data.id);
         if (!o) {
           return;
-        } 
+        }
         if (data.phase === "start") { // point to restore
           let undo_obj = {
             action: "graph/move/node",
@@ -1013,7 +1097,7 @@ export default class GraphView extends EventEmitter {
 
       case "graph/merge_styles/node":
         this.merge_styles("node", data.id, data.styles);
-        break;  
+        break;
       case "graph/resize/node":
         this.resize_node(data.id, data.size);
         break;
@@ -1022,22 +1106,16 @@ export default class GraphView extends EventEmitter {
         this._create_edge(data.edge);
         break;
 
-      case "graph/remove/edge": {
-        let o = this.create("edge", data.id);
-        let undo_obj = {
-          do: () => this.remove(o),
-          undo: () => this.add("edge", o.id)
-        };
-        this.push_into_undo_stack(undo_obj);
-      }
-      break;
+      case "graph/remove/edge":
+        this._remove_items_action(null, [this.get("edge", data.id)]);
+        break;
 
       case "graph/change/edge":
         this.change("edge", data.id, data.edge);
         break;
       case "graph/merge_styles/edge":
         this.merge_styles("edge", data.id, data.styles);
-        break;  
+        break;
 
       case "graph/unselect/all":
         this.unselect_all();

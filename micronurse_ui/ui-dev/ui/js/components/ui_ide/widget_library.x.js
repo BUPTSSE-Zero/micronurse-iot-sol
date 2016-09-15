@@ -1,5 +1,5 @@
 /******************************************************************************
-Copyright (c) 2015, Intel Corporation
+Copyright (c) 2016, Intel Corporation
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
@@ -25,9 +25,8 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *****************************************************************************/
 import {Row} from "react-bootstrap";
-
-import SearchBox from "../ide/search_box.x";
-import Tree from "../ide/tree.x";
+import SearchBox from "../common/search_box.x";
+import Tree from "../common/tree.x";
 import Spec from "../ide/panel_library/spec.x";
 import Bundle from "../ide/panel_library/bundle.x";
 
@@ -53,13 +52,15 @@ export default class WidgetLibrary extends ReactComponent {
       }
     }
 
-    function _add_node(spec, x, y) {
+    function _add_node(spec) {
       $hope.trigger_action("ui/add_widget", {
         ui_id: ui_view.id,
         widget: {
           spec: spec.id,
           x: 0,
-          y: 0
+          y: 0,
+          width: 1,
+          height: 1
         }
       });
     }
@@ -75,7 +76,7 @@ export default class WidgetLibrary extends ReactComponent {
               spec={s.obj} 
               draggable={true}
               scalable={false}
-              onDoubleClick={_add_node.bind({}, s.obj, 0, 0)}/> 
+              onDoubleClick={_add_node.bind({}, s.obj)}/> 
             </Tree.Node>);
         });
         
@@ -87,12 +88,14 @@ export default class WidgetLibrary extends ReactComponent {
           {specs}
           </Tree.Node>);
       });
-      bundles.push(<Tree.Node key={b_id} 
-        onToggle={_update_expand_state.bind({}, b_id, undefined)}
-        defaultExpanded={b.styles.expanded}> 
-        <Bundle bundle={b.obj}/>
-        {catalogs}
-      </Tree.Node>);
+      if (!_.isEmpty(b.children)) {
+        bundles.push(<Tree.Node key={b_id} 
+          onToggle={_update_expand_state.bind({}, b_id, undefined)}
+          defaultExpanded={b.styles.expanded}> 
+          <Bundle bundle={b.obj}/>
+          {catalogs}
+        </Tree.Node>);
+      }
     });
 
     return (

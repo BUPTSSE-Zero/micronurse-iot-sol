@@ -1,5 +1,5 @@
 /******************************************************************************
-Copyright (c) 2015, Intel Corporation
+Copyright (c) 2016, Intel Corporation
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
@@ -139,31 +139,6 @@ class AppStore extends EventEmitter {
       this.manager.update_app(id, props);
       this.emit("app", {type: "app", event: "updated"});
     });
-  }
-
-  active_app_by(check) {
-    _.forOwn(this.get_all_apps(), a => {
-      if (check(a)) {
-        this.emit("app", {type: "app", app: a, event: "actived"});
-        return false;
-      }
-    });
-  }
-
-  active_app(check) {
-    if (!check) {
-      this.emit("app", {type: "app", app: null, event: "actived"});
-      return;
-    }
-    if (_.isEmpty(this.get_all_apps())) {
-      $hope.app.server.app.list$().done(data => {
-        this.manager.update_all_apps(data);
-        this.active_app_by(check);
-      });
-      return;
-    }
-
-    this.active_app_by(check);
   }
 
   clear_cache() {

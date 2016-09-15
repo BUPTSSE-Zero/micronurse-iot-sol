@@ -1,5 +1,5 @@
 /******************************************************************************
-Copyright (c) 2015, Intel Corporation
+Copyright (c) 2016, Intel Corporation
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
@@ -33,7 +33,9 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 import React from "react";
 import ReactDOM from "react-dom";
 
-global._ = require("lodash");
+// lodash already loaded by bower
+//global._ = require("lodash");
+
 global.React = React;
 global.ReactDOM = ReactDOM;
 
@@ -444,15 +446,19 @@ global.$hope = (function() {
       $hope.log("socket", url_path, event, "with data", _.toArray(arguments));      
       cb.apply({}, arguments);
     };
+    this.on_error = (e)=> {
+      console.log(url_path, event, "[ERROR]", e);
+    };
     var socket = all_sockets[url_path];
     if (!socket) {
       socket = all_sockets[url_path] = {
         e: io(window.location.origin + url_path),
-        count: {}
+        refs: 0
       };
+      socket.e.on("error", this.on_error);
     }
     socket.e.on(event, this.cb);
-    socket.count[event] = socket.count[event] || 1;
+    socket.refs++;
   }
 
   SocketListener.prototype.dispose = function() {
@@ -461,11 +467,9 @@ global.$hope = (function() {
       return;
     }
     socket.e.removeListener(this.event, this.cb);
-    socket.count[this.event] = socket.count[this.event] - 1;
-    if (socket.count[this.event] === 0) {
-      delete socket.count[this.event];
-    }
-    if (_.size(socket.count) === 0) {
+    socket.refs--;
+    if (socket.refs === 0) {
+      socket.e.destroy();
       delete all_sockets[this.url_path];
     }
   };
@@ -479,6 +483,20 @@ global.$hope = (function() {
     return new SocketListener("/__HOPE__APP__" + app_id, event, cb);
   }; 
 
+  ret.listen_graph = function(graph_id, event, cb) {
+    return new SocketListener("/__HOPE__GRAPH__" + graph_id, event, cb);
+  };
+
+  window.CryptoJS = require("browserify-cryptojs");
+  require("browserify-cryptojs/components/hmac");
+  require("browserify-cryptojs/components/md5");
+  require("browserify-cryptojs/components/enc-base64");
+
+  function md5(passwd, salt) {
+    return CryptoJS.enc.Base64.stringify(CryptoJS.HmacMD5(passwd, salt));
+  }
+
+  ret.md5 = md5;
   
   //////////////////////////////////////////////////////////////////
   // Done
@@ -550,16 +568,18 @@ $hope.app.server.get_config$().then(cfg => {
   $hope.ui_user_port = cfg.ui_user_port;
   $hope.ui_auth_required = cfg.ui_auth_required;
 
-  // Render with initial state
-  ReactDOM.render(require("./components/route.x"), document.getElementById("react-world"));
-});
+  // Initial Data loading
+  $Q.all([
+    $hope.app.stores.spec.init$(),
+  ]).then(function() {
+    $hope.listen_system("wfe/changed", ev => {
+      $hope.app.stores.ui.handle_changed_event(ev.started, ev.stoped);
+    });
 
+    let addons = require("./lib/addons");
+    addons.init$().then(()=> {
+      ReactDOM.render(require("./components/route.x"), document.getElementById("react-world"));
+    });
 
-// Initial Data loading
-$Q.all([
-  $hope.app.stores.spec.init$(),
-]).then(function() {
-  $hope.listen_system("wfe/changed", ev => {
-    $hope.app.stores.ui.handle_changed_event(ev.started, ev.stoped);
   });
 });

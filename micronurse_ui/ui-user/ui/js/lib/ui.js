@@ -1,5 +1,5 @@
 /******************************************************************************
-Copyright (c) 2015, Intel Corporation
+Copyright (c) 2016, Intel Corporation
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
@@ -33,7 +33,7 @@ function get_spec_config(id) {
   if (spec) {
     var items = spec.extra ? spec.config.concat(spec.extra) : spec.config;
     _.forOwn(items, item => {
-      if (item.name) {
+      if (item.name && ("default" in item)) {
         config[item.name] = item.default;
       }
     });

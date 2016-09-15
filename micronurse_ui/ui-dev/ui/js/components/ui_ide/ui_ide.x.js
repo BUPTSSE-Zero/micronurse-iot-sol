@@ -1,5 +1,5 @@
 /******************************************************************************
-Copyright (c) 2015, Intel Corporation
+Copyright (c) 2016, Intel Corporation
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
@@ -28,15 +28,15 @@ import LeftToolbar from "./left_toolbar.x";
 import WidgetLibrary from "./widget_library.x";
 import PanelInspector from "./panel_inspector.x";
 import UIBoard from "./ui_board.x";
-import Breadcrumb from "../breadcrumb.x";
+import Breadcrumb from "../common/breadcrumb.x";
 import {Row, Col} from "react-bootstrap";
-import {Lifecycle} from "react-router";
-
-import Halogen from "halogen";
+import DotLoader from "halogen/DotLoader";
 
 export default React.createClass({
 
-  mixins: [ Lifecycle ],
+  contextTypes: {
+    router: React.PropTypes.object.isRequired
+  },
 
   routerWillLeave(nextLocation) {
     var view = $hope.app.stores.ui.active_view;
@@ -101,7 +101,7 @@ export default React.createClass({
           let query = this.props.location.query;
           if (query && query.widget) {
             $hope.trigger_action("ui/select/widget", {
-              ui_id: view.id, 
+              ui_id: view.id,
               id: query.widget
             });
           }
@@ -141,11 +141,11 @@ export default React.createClass({
     // we might need to switch the IDE to the graph required
     var id = this.props.params.id;
     var store = $hope.app.stores.ui;
-    return id && (!store.active_view || 
-      store.active_view.id !== id); 
+    return id && (!store.active_view ||
+      store.active_view.id !== id);
   },
 
-  _on_key_up(e) {
+  _on_key_down(e) {
     var view = $hope.app.stores.ui.active_view;
     if(!view) {
       return;
@@ -184,7 +184,9 @@ export default React.createClass({
     $hope.app.stores.library.on("library", this._on_library_event);
 
     window.addEventListener("resize", this._on_resize);
-    document.addEventListener("keyup", this._on_key_up);
+    document.addEventListener("keydown", this._on_key_down);
+
+    this.context.router.setRouteLeaveHook(this.props.route, this.routerWillLeave);
   },
 
 
@@ -195,7 +197,7 @@ export default React.createClass({
     $hope.app.stores.library.removeListener("library", this._on_library_event);
 
     window.removeEventListener("resize", this._on_resize);
-    document.removeEventListener("keyup", this._on_key_up);
+    document.removeEventListener("keydown", this._on_key_down);
   },
 
   render() {
@@ -209,17 +211,17 @@ export default React.createClass({
     if (view && !this._need_switch_current_view()) {
       ui = <UIBoard ref="ui_board" key={view.id} view={view}
               width={ui_ide_store.ui_ide.width} />;
-    } else { 
+    } else {
       var reason = ui_store.no_active_reason;
       var reason_content;
       if (reason === "loading") {
-        reason_content = <div><Halogen.DotLoader/><br/>{__("Loading") + " ..."}</div>;
+        reason_content = <div><DotLoader/><br/>{__("Loading") + " ..."}</div>;
       } else if (app && app.uis.length === 0) {
         reason_content = <div>{__("No UI found")}</div>;
       } else {
         reason_content = <div>{__("Failed to load due to ") + reason}</div>;
       }
-      ui = <div 
+      ui = <div
         className="hope-ui-container">
         <div style={{
           position: "absolute",

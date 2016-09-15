@@ -39,7 +39,8 @@
           "type": "string"
         }
       ]
-    }
+    },
+    "id": "__HOPE_SPEC__31f617f0_7b3a_11e6_9bff_f19416505e87"
   },
   "id": "HOPE_SERVICE_5c48c270_16b6_11e6_8101_49597fbd4db9",
   "thing": "HOPE_THING_6609d5e0_16ae_11e6_8101_49597fbd4db9"

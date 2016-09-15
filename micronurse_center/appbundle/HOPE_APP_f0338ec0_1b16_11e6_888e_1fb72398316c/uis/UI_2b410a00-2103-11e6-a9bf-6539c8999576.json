@@ -124,7 +124,7 @@
       "config": {
         "align": "left",
         "font_weight": "normal",
-        "defval": "当前体温",
+        "defval": "体温",
         "font_size": 30
       },
       "spec": "micronurse_single_line_text",
@@ -139,7 +139,7 @@
       "config": {
         "align": "left",
         "font_weight": "normal",
-        "defval": "当前脉搏",
+        "defval": "脉搏",
         "font_size": 30
       },
       "spec": "micronurse_single_line_text",
@@ -199,7 +199,8 @@
       "config": {
         "align": "left",
         "font_weight": "normal",
-        "font_size": 30
+        "font_size": 30,
+        "defval": "血压"
       },
       "spec": "micronurse_single_line_text",
       "x": 12,

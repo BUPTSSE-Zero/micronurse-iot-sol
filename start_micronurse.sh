@@ -16,8 +16,8 @@ node ./node_modules/hope-http-broker/bin/start_broker 16666 > broker.log &
 sleep 2
 
 echo "start center ..."
-#./run_demo center > micronurse_center.log &
-./center ./micronurse_center/config.json ../node_modules/ui-dev/public ../node_modules/doc/html ../node_modules/ui-user/public > micronurse_center.log &
+# ./run_demo center > micronurse_center.log &
+./center ./micronurse_center/config.json ../ui-dev/public ../doc/html ../ui-user/public > micronurse_center.log &
 sleep 2
 
 echo "start micro nurse hub..."

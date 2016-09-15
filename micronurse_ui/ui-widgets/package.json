@@ -11,7 +11,7 @@
   "name": "hope-ui-widgets",
   "homepage": "",
   "description": "Widgets of IoT Services Orchestration Layer",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "repository": {
     "type": "git",
     "url": ""
@@ -26,6 +26,7 @@
   "license": "MIT",
   "scripts": {},
   "dependencies": {
+    "babel-core": "^5.8.33",
     "d3": "^3.5.8",
     "d3-gauge-x": "^0.2.1",
     "hope-widget-digital-clock": "^2.0.5",

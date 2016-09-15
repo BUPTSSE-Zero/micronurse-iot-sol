@@ -1,5 +1,5 @@
 /******************************************************************************
-Copyright (c) 2015, Intel Corporation
+Copyright (c) 2016, Intel Corporation
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
@@ -90,7 +90,7 @@ export default class GaugeWidget extends Widget {
     return super.render(
       <div style={{
         width: "100%",
-        textAlign: "left"
+        textAlign: "center"
       }}>
         <div ref="container" />
       </div>

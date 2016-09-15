@@ -1,5 +1,5 @@
 /******************************************************************************
-Copyright (c) 2015, Intel Corporation
+Copyright (c) 2016, Intel Corporation
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
@@ -48,7 +48,7 @@ class SpecStore extends EventEmitter {
 
   init$() {
     // ensure UI widgets are loaded
-    return this.load_bundles$(["hope/ui"]);
+    return this.load_bundles$(["hope/ui", "hope/ui/addons"]);
   }
 
   get_spec(id) {

@@ -1,5 +1,5 @@
 /******************************************************************************
-Copyright (c) 2015, Intel Corporation
+Copyright (c) 2016, Intel Corporation
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
@@ -26,7 +26,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *****************************************************************************/
 import {Row} from "react-bootstrap";
 import User from "./user.x";
-import Dialog from "../ide/dialog.x";
+import Dialog from "../common/dialog.x";
 import auth from "../../lib/auth";
 
 export default React.createClass({

@@ -1,5 +1,5 @@
 /******************************************************************************
-Copyright (c) 2015, Intel Corporation
+Copyright (c) 2016, Intel Corporation
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
@@ -27,8 +27,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 import class_names from "classnames";
 import color from "color";
 import {Popover} from "react-bootstrap";
-import Overlay from "../overlay.x";
-import LinterMessage from "../linter_msg.x";
+import Overlay from "../common/overlay.x";
+import LinterMessage from "../common/linter_msg.x";
 import In from "./in.x";
 import Out from "./out.x";
 import FONT_AWESOME from "../../lib/font-awesome.js";
@@ -59,20 +59,79 @@ export default class Node extends ReactComponent {
     });
   }
 
+  _on_debug(e) {
+    e.stopPropagation();
+
+    var view = this.props.view;
+    var id = this.props.id;
+    var node = view.get("node", id);
+    node.is_debug = !node.is_debug;
+    if (view.is_running()) {
+      view.set_debug_for_node(id, node.is_debug);
+      $hope.app.stores.ide.update_navigator();
+    }
+    else {
+      $hope.trigger_action("graph/change/node", {graph_id: view.id, id: id}, {});
+    }
+  }
+
+  _on_trash(e) {
+    e.stopPropagation();
+
+    var view = this.props.view;
+    $hope.trigger_action("graph/remove/node", {graph_id: view.id, id: this.props.id});
+  }
+
   _on_click(e) {
+    var ctrlKey = e.ctrlKey;
     e.stopPropagation();
     if (this.is_tracking) {
       return;
     }
     // Prevent screen blink
-    if (!e.ctrlKey && this._is_selected()) {
+    if (!ctrlKey && this._is_selected()) {
       return;
     }
     $hope.trigger_action("graph/select/node", {
-      graph_id: this.props.view.id, 
+      graph_id: this.props.view.id,
       id: this.props.id,
-      is_multiple_select: e.ctrlKey
+      is_multiple_select: ctrlKey
     });
+  }
+
+  _on_dbclick(e) {
+    e.stopPropagation();
+    if (this.is_tracking) {
+      return;
+    }
+
+    var view = this.props.view;
+    var node = view.get("node", this.props.id);
+    var spec = node.$get_spec();
+    if (spec.nr) {
+      var nr_dlg = require("./nodered_dlg.x");
+      nr_dlg.show_config_dlg(node);
+    }
+    if (spec.$config_ui) {
+      var nc_dlg = require("./nodecfg_dlg.x");
+      nc_dlg.show(node);
+    }
+  }
+
+  _on_click_nodered_btn() {
+    var view = this.props.view;
+    var node = view.get("node", this.props.id);
+    var spec = node.$get_spec();
+    var definition = node.nr && RED.nodes.getType(spec.name);
+    var toggle = definition.button.toggle;
+    var fake = RED.$make_node(node);
+
+    if (toggle) {
+      node.config[toggle] = !node.config[toggle];
+      $hope.trigger_action("graph/change/node", {graph_id: view.id, id: this.props.id}, {});
+    }
+
+    definition.button.onclick.call(fake);
   }
 
   _on_track_start(e) {
@@ -274,17 +333,17 @@ export default class Node extends ReactComponent {
     if (binding) {
       binding_dropdown = [];
       binding_dropdown.push(
-        <circle className={$hope.color(bindcolor, "stroke", "hover")} 
+        <circle className={$hope.color(bindcolor, "stroke", "hover")}
                 key="circle"
-                strokeWidth="2px" 
-                cx={styles.x + styles.width / 2} 
-                cy={styles.y + styles.height - 3} 
+                strokeWidth="2px"
+                cx={styles.x + styles.width / 2}
+                cy={styles.y + styles.height - 3}
                 r={7} />
       );
       binding_dropdown.push(
         <text onClick={this._on_expand}
               key="text"
-              className={class_names("hope-graph-icon directional-icon", 
+              className={class_names("hope-graph-icon directional-icon",
                           $hope.color(bindcolor, "fill", "hover"))}
               x={styles.x + styles.width / 2}
               y={styles.y + styles.height + 2}>
@@ -294,30 +353,65 @@ export default class Node extends ReactComponent {
     }
 
     if (exp && binding) {
-      binding_items = [];
-      binding_items.push(
-        <line className={$hope.color(bindcolor, "stroke", "hover")} 
+      binding_items = [
+        <line className={$hope.color(bindcolor, "stroke", "hover")}
               key="line"
-              strokeWidth="0.5px" 
-              x1={styles.x} 
-              y1={styles.y + styles.height} 
-              x2={styles.x + styles.width} 
-              y2={styles.y + styles.height} />);
-      binding_items.push(
-        <text className={"hope-binding-text" + $hope.color(bindcolor, "fill")} 
+              strokeWidth="0.5px"
+              x1={styles.x}
+              y1={styles.y + styles.height}
+              x2={styles.x + styles.width}
+              y2={styles.y + styles.height} />,
+        <text className={"hope-binding-text" + $hope.color(bindcolor, "fill")}
               key="text"
-              x={styles.x + styles.width / 2} 
+              x={styles.x + styles.width / 2}
               y={styles.y + styles.height + 18}>
           {widget !== null ? widget : (thing ? thing.$name() : "---")}
-        </text>
-        );
+        </text>];
     }
 
-    var _name = node.name || (service ? service.$name() : "") || spec.name || __("__unknown__");
+    var nodered_btn;
+    var definition = node.nr && RED.nodes.getType(spec.name);
+    if (definition && definition.button && _.isFunction(definition.button.onclick)) {
+      var toggle = definition.button.toggle, left, opacity = {};
+      if (definition.align === "right") {
+        left = styles.x + styles.width + 26;
+        if (toggle && !node.config[toggle]) {
+          opacity.opacity = 0.2;
+          left -= 8;
+        }
+      }
+      else {
+        left = styles.x;
+        if (toggle && !node.config[toggle]) {
+          opacity.opacity = 0.2;
+          left += 8;
+        }
+      }
+      nodered_btn = [
+        <rect key="O"
+            x={left - 24}
+            y={styles.y + nth}
+            rx={5}
+            ry={5}
+            width={24}
+            height={26}
+            fill="#eee" />,
+        <rect key="I"
+            className="hope-graph-nodered-btn"
+            onClick={this._on_click_nodered_btn}
+            x={left - 20}
+            y={styles.y + nth + 4}
+            rx={4}
+            ry={4}
+            width={16}
+            height={18} {...opacity} />];
+    }
+
     var errors = !_.isEmpty(node.$lint_result);
     var body =
       <g className={class_names("hope-graph-node",
           {"hope-graph-selected": !view.edge_previewing && this._is_selected()})} >
+        {nodered_btn}
         {errors &&
           <rect x={styles.x}
                 y={styles.y}
@@ -326,8 +420,8 @@ export default class Node extends ReactComponent {
                 strokeWidth="8"
                 stroke={this._is_selected() ? "#f00" : "#a00"} />
         }
-        <g ref="box" onClick={this._on_click}>
-          <path className={"hope-graph-node-title-bar " + $hope.color(styles.color, "fill")} 
+        <g ref="box" onClick={this._on_click} onDoubleClick={this._on_dbclick}>
+          <path className={"hope-graph-node-title-bar " + $hope.color(styles.color, "fill")}
                 d={hdr_path} />
           <path className={(this._is_animated() ? "hope-graph-node-shadow" :
                   $hope.color(_.isEmpty(spec) ? 1 : null, "fill"))}
@@ -341,14 +435,44 @@ export default class Node extends ReactComponent {
             {icon}
           </text>
           <text className="no-events" x={styles.x + 20} y={styles.y + nth - 5}>
-            {_name}
+            {node.$get_name()}
           </text>
           {binding_dropdown}
         </g>
         <In view={this.props.view} id={id} />
         <Out view={this.props.view} id={id} />
+
+        {this._is_selected() &&
+          <g>
+            {view.is_editing() &&
+              <text className="hope-graph-icon node-ctrl"
+                  onClick={this._on_trash}
+                  x={styles.x + 50}
+                  y={styles.y - 6}>
+                {FONT_AWESOME["trash"]}
+              </text>
+            }
+
+            <Overlay overlay={node.is_debug ? __("remove debug") : __("debug this node")}>
+              <text className="hope-graph-icon node-ctrl"
+                  onClick={this._on_debug}
+                  x={styles.x + 80}
+                  y={styles.y - 6}>
+                {FONT_AWESOME[node.is_debug ? "eye-slash" : "eye"]}
+              </text>
+            </Overlay>
+          </g>
+        }
+
+        {node.is_debug &&
+          <text className="no-events hope-graph-icon dbg"
+              x={styles.x + styles.width - 16}
+              y={styles.y + 20}>
+            {FONT_AWESOME["eye"]}
+          </text>
+        }
       </g>;
-  
+
     return errors ?
       <Overlay overlay={
         <Popover id="PO-linter" title={__("Errors")}>

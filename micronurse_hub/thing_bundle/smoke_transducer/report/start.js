@@ -1,6 +1,7 @@
 console.log("Micro nurse hub - Smoke init");
 
 shared.smoketransducer = {
+  base_value: 0,
   timer: null,
   interval: 2000,
   callback: function() {},

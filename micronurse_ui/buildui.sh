@@ -56,13 +56,13 @@ echo ">>> ui widgets"
 cd ./ui-widgets
 gulp build
 cd ../
-mkdir -p ../node_modules/ui-widgets
-cp ./ui-widgets/{specs.js,plugins-specs.json} ../node_modules/ui-widgets
+mkdir -p ../ui-widgets
+cp ./ui-widgets/{specs.js,plugins-specs.json} ../ui-widgets
 
 echo ">>> ui dev"
-mkdir -p ../node_modules/ui-dev
+mkdir -p ../ui-dev
 cd ./ui-dev
-cp -r ../ui-widgets/public ../../node_modules/ui-dev/.
+cp -r ../ui-widgets/public ../../ui-dev
 if [ $quick_build -eq 0 ]; then
     rm -rf ./public
     cd ./ui/bower_components/gridstack
@@ -74,17 +74,17 @@ if [ $quick_build -eq 0 ]; then
     cd ../../../
     NODE_ENV=production gulp build
     cd ../
-    cp -r ./ui-dev/public ../node_modules/ui-dev/.
+    cp -r ./ui-dev/public ../ui-dev
 else
     NODE_ENV=production gulp hope_js
     cd ../
-    cp ./ui-dev/public/js/hope.js ../node_modules/ui-dev/public/js
+    cp ./ui-dev/public/js/hope.js ../ui-dev/public/js
 fi
 
 echo ">>> ui user"
-mkdir -p ../node_modules/ui-user
+mkdir -p ../ui-user
 cd ./ui-user
-cp -r ../ui-widgets/public ../../node_modules/ui-user/.
+cp -r ../ui-widgets/public ../../ui-user
 if [ $quick_build -eq 0 ]; then
     rm -rf ./public
     cd ./ui/bower_components/gridstack
@@ -96,14 +96,10 @@ if [ $quick_build -eq 0 ]; then
     cd ../../../
     NODE_ENV=production gulp build
     cd ../
-    cp -r ./ui-user/public ../node_modules/ui-user/.
+    cp -r ./ui-user/public ../ui-user/.
 else
     NODE_ENV=production gulp hope_js
     cd ../
-    cp ./ui-user/public/js/hope.js ../node_modules/ui-user/public/js
+    cp ./ui-user/public/js/hope.js ../ui-user/public/js
 fi
-
-#chmod -R 777 ../node_modules/ui-dev
-#chmod -R 777 ../node_modules/ui-user
-#chmod -R 777 ../node_modules/ui-widgets
 

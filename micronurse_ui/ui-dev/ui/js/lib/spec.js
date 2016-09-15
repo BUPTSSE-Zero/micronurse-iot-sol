@@ -1,5 +1,5 @@
 /******************************************************************************
-Copyright (c) 2015, Intel Corporation
+Copyright (c) 2016, Intel Corporation
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
@@ -55,7 +55,7 @@ class Spec {
 
   $get_impl() {
     if (this.is_ui) {
-      let _widget_impls = require("hope-ui-widgets").widgets;
+      let _widget_impls = require("hope-ui-widgets");
       let impl = _widget_impls[this.id];
       $hope.check(impl, 
         "Widget", "No widget implements UI spec:", this);

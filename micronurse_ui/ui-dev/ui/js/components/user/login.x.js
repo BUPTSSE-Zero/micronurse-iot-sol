@@ -1,5 +1,5 @@
 /******************************************************************************
-Copyright (c) 2015, Intel Corporation
+Copyright (c) 2016, Intel Corporation
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
@@ -24,12 +24,13 @@ CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *****************************************************************************/
-import {History} from "react-router";
 import {Input} from "react-bootstrap";
 import auth from "../../lib/auth";
 
 export default React.createClass({
-  mixins: [ History ],
+  contextTypes: {
+    router: React.PropTypes.object.isRequired
+  },
 
   _on_submit(e) {
     e.stopPropagation();
@@ -42,7 +43,7 @@ export default React.createClass({
       if (!ok) {
         return $hope.alert(__("Error"), __("User does not exists, or incorrect password"), "error");
       }
-      this.history.replaceState(null, $hope.ui_redirect || "/app");
+      this.context.router.replace($hope.ui_redirect || "/app");
     });
   },
 

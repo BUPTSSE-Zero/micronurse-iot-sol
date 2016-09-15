@@ -1,5 +1,5 @@
 /******************************************************************************
-Copyright (c) 2015, Intel Corporation
+Copyright (c) 2016, Intel Corporation
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
@@ -25,8 +25,8 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *****************************************************************************/
 import {Row, Col} from "react-bootstrap";
-import {Tabs, Tab} from "../ide/tabs.x";
-import Dialog from "../ide/dialog.x";
+import {Tabs, Tab} from "../common/tabs.x";
+import Dialog from "../common/dialog.x";
 import FONT_AWESOME from "../../lib/font-awesome.js";
 
 var NAME_CFG = {
@@ -89,9 +89,11 @@ export default class WidgetDetails extends ReactComponent {
         break;
       case "number":
         val = parseFloat(e.target.value);
+        val = isNaN(val) ? 0 : val;
         break;
       case "int":
         val = parseInt(e.target.value);
+        val = isNaN(val) ? 0 : val;
         break;
       default:
         val = e.target.value;
@@ -142,23 +144,19 @@ export default class WidgetDetails extends ReactComponent {
   }
 
   _on_change_color(cfg, e) {
-    e.stopPropagation();
-    Dialog.show_colorpicker_dialog(__("Change the color"), color => {
-      var w = this.props.widget;
-      var view = $hope.app.stores.ui.active_view;
+    var w = this.props.widget;
+    var view = $hope.app.stores.ui.active_view;
 
-      w.config[cfg.name] = color;
+    w.config[cfg.name] = e.target.value;
 
-      $hope.trigger_action("ui/change_widgets", {
-        ui_id: view.id,
-        widgets: [w]
-      });
+    $hope.trigger_action("ui/change_widgets", {
+      ui_id: view.id,
+      widgets: [w]
+    });
 
-      this.setState({
-        [cfg.name]: color
-      });
-    },
-    this.state[cfg.name] || "");
+    this.setState({
+      [cfg.name]: e.target.value
+    });
   }
 
   _on_show_extra(e) {
@@ -309,16 +307,17 @@ export default class WidgetDetails extends ReactComponent {
     }
     else if (cfg.type === "color") {
       content =
-        <div className="text-center" onClick={this._on_change_color.bind(this, cfg)}>
-          <i className={"hope-hover-icon-btn fa fa-circle"} style={{color: v}} />
-        </div>;
+        <input type="color"
+              className="hope-tbl-row-val"
+              value={v || "#FFFFFF"}
+              onChange={this._on_change_color.bind(this, cfg)} />;
     }
     else if (cfg.type === "boolean") {
       content =
         <div className="onoffswitch">
           <input onChange={this._on_change_xxx.bind(this, cfg)}
               type="checkbox"
-              checked={v}
+              checked={!!v}
               className="onoffswitch-checkbox"
               id={cfg.name + "-onoff-" + view.id} />
           <label className="onoffswitch-label" htmlFor={cfg.name + "-onoff-" + view.id}>
@@ -361,7 +360,7 @@ export default class WidgetDetails extends ReactComponent {
         extras =
           <div className="hope-widget-details-extra"
             onClick={this._on_show_extra}>
-            <i className="fa fa-chevron-circle-down">{" " + __("More")}</i>
+            <i className="fa fa-chevron-circle-down" />{" " + __("More")}
           </div>;
       }
     }
@@ -369,17 +368,19 @@ export default class WidgetDetails extends ReactComponent {
     return (
       <div>
         <div className="hope-inspector-header" >
-          <div className="hope-inspector-icon">
-            { FONT_AWESOME[(spec && spec.is_ui && spec.icon) || "cog"] }
-          </div>
-          <div className="hope-inspector-detail">
+          <Col xs={3}>
+            <div className="hope-inspector-icon">
+              { FONT_AWESOME[(spec && spec.is_ui && spec.icon) || "cog"] }
+            </div>
+          </Col>
+          <Col xs={9}>
             <div className="hope-inspector-detail-name">
               { (spec && spec.is_ui && spec.name) || __("Unknown")}
             </div>
             <div className="hope-inspector-detail-desc">
               { (spec && spec.is_ui && spec.description) || __("Unknown") }
             </div>
-          </div>
+          </Col>
         </div>
         <Tabs current={this.$tab} onActive={(i)=> this.$tab = i}>
           <Tab title={__("Basic")}>
