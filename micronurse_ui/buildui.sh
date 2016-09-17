@@ -23,20 +23,16 @@ if [ $# -gt 0 ]; then
         bower --allow-root install
         cd ./ui/bower_components/gridstack
         npm install
-        sed -e '1i\@import "properties";' ./src/gridstack.scss > ./src/gridstack.txt
-        mv ./src/gridstack.txt ./src/gridstack.scss
-        sed -e '1i\@import "properties";' ./src/gridstack-extra.scss > ./src/gridstack.txt
-        mv ./src/gridstack.txt ./src/gridstack-extra.scss
+        sed -i -e '1i\@import "properties";' ./src/gridstack.scss
+        sed -i -e '1i\@import "properties";' ./src/gridstack-extra.scss
         echo "\$gridstack-columns: 12;" > ./src/_properties.scss
         cd ../../../../ui-user
         npm install
         bower --allow-root install
         cd ./ui/bower_components/gridstack
         npm install
-        sed -e '1i\@import "properties";' ./src/gridstack.scss > ./src/gridstack.txt
-        mv ./src/gridstack.txt ./src/gridstack.scss
-        sed -e '1i\@import "properties";' ./src/gridstack-extra.scss > ./src/gridstack.txt
-        mv ./src/gridstack.txt ./src/gridstack-extra.scss
+        sed -i -e '1i\@import "properties";' ./src/gridstack.scss
+        sed -i -e '1i\@import "properties";' ./src/gridstack-extra.scss
         echo "\$gridstack-columns: 12;" > ./src/_properties.scss
         exit 0
     elif [ $1 == "link" ]; then
@@ -72,6 +68,9 @@ if [ $quick_build -eq 0 ]; then
     grunt sass
     grunt cssmin
     cd ../../../
+	if [ $grid_col -gt 0 ]; then
+        sed -i "s/widget_cols:.*,/widget_cols: ${grid_col},/1" ui/js/config.js
+    fi
     NODE_ENV=production gulp build
     cd ../
     cp -r ./ui-dev/public ../ui-dev
@@ -94,6 +93,9 @@ if [ $quick_build -eq 0 ]; then
     grunt sass
     grunt cssmin
     cd ../../../
+	if [ $grid_col -gt 0 ]; then
+        sed -i "s/widget_cols:.*,/widget_cols: ${grid_col},/1" ui/js/config.js
+    fi
     NODE_ENV=production gulp build
     cd ../
     cp -r ./ui-user/public ../ui-user/.
