@@ -1,0 +1,17 @@
+{
+  "type": "hope_service",
+  "name": "broker_connection",
+  "description": "Connect to or disconnect from MQTT broker.",
+  "spec": {
+    "id":"mqtt_broker_report",
+    "name": "mqtt_broker report",
+    "in": {
+      "ports": [
+        {
+          "name": "connect",
+          "type": "boolean"
+        }
+      ]
+    }
+  }
+}

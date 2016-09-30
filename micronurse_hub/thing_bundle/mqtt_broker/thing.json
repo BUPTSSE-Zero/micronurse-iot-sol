@@ -1,0 +1,5 @@
+{
+  "name": "mqtt_broker",
+  "description": "Communicate with micro nurse MQTT broker.",
+  "id": "micro_nurse_hub_mqtt_broker"
+}

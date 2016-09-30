@@ -12,10 +12,6 @@
         "x": 22,
         "y": 922
       },
-      "NODE_d4eda8c0-1ca7-11e6-9696-b5de9897aecc": {
-        "x": 492,
-        "y": 852
-      },
       "NODE_e8c48c10-1ca7-11e6-9696-b5de9897aecc": {
         "x": 492,
         "y": 1132
@@ -75,6 +71,10 @@
       "NODE_94bbefc0-7b55-11e6-aef3-6bdce37da0e8": {
         "x": 22,
         "y": 1102
+      },
+      "NODE_801acba0-85ea-11e6-804d-d16f8a0833f6": {
+        "x": 499.89349918508486,
+        "y": 858.2105877939786
       }
     },
     "edges": {}
@@ -85,12 +85,6 @@
       "thing": "micro_nurse_hub_humidometer",
       "hub": "micro_nurse_hub",
       "service": "report@micro_nurse_hub_humidometer"
-    },
-    "NODE_d4eda8c0-1ca7-11e6-9696-b5de9897aecc": {
-      "type": "fixed",
-      "thing": "micro_nurse_hub_webserver",
-      "hub": "micro_nurse_hub",
-      "service": "send_sensor_data@micro_nurse_hub_webserver"
     },
     "NODE_e8c48c10-1ca7-11e6-9696-b5de9897aecc": {
       "type": "fixed",
@@ -193,6 +187,12 @@
       "thing": "HOPE_THING_c4a30de0_18e0_11e6_ad78_45731ff73023",
       "hub": "micro_nurse_hub",
       "service": "HOPE_SERVICE_e8e03ed0_18e0_11e6_ad78_45731ff73023"
+    },
+    "NODE_801acba0-85ea-11e6-804d-d16f8a0833f6": {
+      "type": "fixed",
+      "thing": "micro_nurse_hub_mqtt_broker",
+      "hub": "micro_nurse_hub",
+      "service": "report_sensor_data@micro_nurse_hub_mqtt_broker"
     }
   },
   "graph": {
@@ -203,15 +203,6 @@
         "config": {
           "interval": 5000,
           "name": "卧室湿度"
-        }
-      },
-      {
-        "spec": "webserver_send_sensor_data",
-        "id": "NODE_d4eda8c0-1ca7-11e6-9696-b5de9897aecc",
-        "config": {
-          "timeout": 5000,
-          "user_phone_num": "123456",
-          "password": "123456"
         }
       },
       {
@@ -285,20 +276,14 @@
           "interval": 100
         },
         "id": "NODE_94bbefc0-7b55-11e6-aef3-6bdce37da0e8"
+      },
+      {
+        "spec": "mqtt_broker_report_sensor_data",
+        "id": "NODE_801acba0-85ea-11e6-804d-d16f8a0833f6",
+        "config": {}
       }
     ],
     "edges": [
-      {
-        "id": "EDGE_d6bd1190-1ca7-11e6-9696-b5de9897aecc",
-        "source": {
-          "node": "NODE_d4912650-1ca6-11e6-9696-b5de9897aecc",
-          "port": "json_data"
-        },
-        "target": {
-          "node": "NODE_d4eda8c0-1ca7-11e6-9696-b5de9897aecc",
-          "port": "json_data"
-        }
-      },
       {
         "id": "EDGE_eb164440-1ca7-11e6-9696-b5de9897aecc",
         "source": {
@@ -355,17 +340,6 @@
         }
       },
       {
-        "id": "EDGE_c047c090-1cf2-11e6-ae65-61a5e1ad9fd6",
-        "source": {
-          "node": "NODE_a9d3b9a0-1cf1-11e6-ae65-61a5e1ad9fd6",
-          "port": "json_data"
-        },
-        "target": {
-          "node": "NODE_d4eda8c0-1ca7-11e6-9696-b5de9897aecc",
-          "port": "json_data"
-        }
-      },
-      {
         "id": "EDGE_086b28d0-1cf3-11e6-ae65-61a5e1ad9fd6",
         "source": {
           "node": "NODE_a9d3b9a0-1cf1-11e6-ae65-61a5e1ad9fd6",
@@ -410,17 +384,6 @@
         }
       },
       {
-        "id": "EDGE_8b75a040-28cc-11e6-afee-c9233b31c1c0",
-        "source": {
-          "node": "NODE_fd6db550-2630-11e6-83d1-59562d4f7be2",
-          "port": "json_data"
-        },
-        "target": {
-          "node": "NODE_d4eda8c0-1ca7-11e6-9696-b5de9897aecc",
-          "port": "json_data"
-        }
-      },
-      {
         "id": "EDGE_a6268e00-7b55-11e6-aef3-6bdce37da0e8",
         "source": {
           "node": "NODE_94bbefc0-7b55-11e6-aef3-6bdce37da0e8",
@@ -454,13 +417,46 @@
         }
       },
       {
-        "id": "EDGE_af4b19b0-7b55-11e6-aef3-6bdce37da0e8",
+        "id": "EDGE_8309fc50-85ea-11e6-804d-d16f8a0833f6",
+        "source": {
+          "node": "NODE_fd6db550-2630-11e6-83d1-59562d4f7be2",
+          "port": "json_data"
+        },
+        "target": {
+          "node": "NODE_801acba0-85ea-11e6-804d-d16f8a0833f6",
+          "port": "json_data"
+        }
+      },
+      {
+        "id": "EDGE_86b466b0-85ea-11e6-804d-d16f8a0833f6",
+        "source": {
+          "node": "NODE_d4912650-1ca6-11e6-9696-b5de9897aecc",
+          "port": "json_data"
+        },
+        "target": {
+          "node": "NODE_801acba0-85ea-11e6-804d-d16f8a0833f6",
+          "port": "json_data"
+        }
+      },
+      {
+        "id": "EDGE_8afa74d0-85ea-11e6-804d-d16f8a0833f6",
         "source": {
           "node": "NODE_94bbefc0-7b55-11e6-aef3-6bdce37da0e8",
           "port": "json_data"
         },
         "target": {
-          "node": "NODE_d4eda8c0-1ca7-11e6-9696-b5de9897aecc",
+          "node": "NODE_801acba0-85ea-11e6-804d-d16f8a0833f6",
+          "port": "json_data"
+        }
+      },
+      {
+        "id": "EDGE_8e2527e0-85ea-11e6-804d-d16f8a0833f6",
+        "source": {
+          "node": "NODE_a9d3b9a0-1cf1-11e6-ae65-61a5e1ad9fd6",
+          "port": "json_data"
+        },
+        "target": {
+          "node": "NODE_801acba0-85ea-11e6-804d-d16f8a0833f6",
           "port": "json_data"
         }
       }

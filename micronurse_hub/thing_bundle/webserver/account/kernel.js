@@ -10,10 +10,13 @@ function logout() {
                 }, function () {
                   console.log('Logout failed.');
                 });
+
   hub_shared.token = undefined;
+  hub_shared.phone_number = undefined;
 
   sendOUT({
-    json_result: JSON.stringify({action: 'logout'})
+    json_result: JSON.stringify({action: 'logout'}),
+    broker_connect: false
   });
 }
 
@@ -27,7 +30,7 @@ if(IN.action) {
       var login = require('../login');
       login.login(action_info.phone_number, action_info.password,
         function (status_code, result_code, message, token, nickname) {
-          shared.account.nickname = nickname;
+          hub_shared.phone_number = action_info.phone_number;
           hub_shared.token = token;
 
           var json_result = JSON.stringify({
@@ -38,7 +41,8 @@ if(IN.action) {
           });
           console.log('Login success.');
           sendOUT({
-            json_result: json_result
+            json_result: json_result,
+            broker_connect: true
           });
 
           shared.account.start(function () {

@@ -1,0 +1,15 @@
+{
+  "description":"Publish the sensor data to MQTT broker.",
+  "spec": {
+    "id":"mqtt_broker_report_sensor_data",
+    "name": "report sensor data",
+    "data_cache_size": 5,
+
+    "in": {
+      "ports": [{
+        "name": "json_data",
+        "type": "string"
+      }]
+    }
+  }
+}

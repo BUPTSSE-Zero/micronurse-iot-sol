@@ -17,5 +17,12 @@ exports.start_request = function(url, method, json_data, callback, token, timeou
     opt.headers['Auth-Token'] = token;
   if(timeout)
     opt.timeout = timeout;
-  req(opt, callback);
-}
+  req(opt, function (error, res, data) {
+    if(!error){
+      if(res.statusCode == 401 && data.result_code == 401){
+        hub_shared.token = undefined;
+      }
+    }
+    callback(error, res, data);
+  });
+};

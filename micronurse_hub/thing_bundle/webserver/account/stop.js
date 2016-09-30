@@ -7,6 +7,8 @@ if(hub_shared.token) {
     }, function () {
       console.log('Logout failed.');
     });
+
   hub_shared.token = undefined;
+  hub_shared.phone_number = undefined;
 }
 done();

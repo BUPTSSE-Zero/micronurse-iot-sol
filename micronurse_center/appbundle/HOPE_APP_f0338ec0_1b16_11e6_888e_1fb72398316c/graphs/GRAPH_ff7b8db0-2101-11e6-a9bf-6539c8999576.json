@@ -8,17 +8,13 @@
   "specs": [],
   "styles": {
     "nodes": {
-      "NODE_8fec6fe0-210c-11e6-af71-976d4b99a41f": {
-        "x": 492,
-        "y": 572
-      },
       "NODE_366ceb80-2110-11e6-9feb-f3b9517823d3": {
         "x": 492,
-        "y": 1132
+        "y": 1272
       },
       "NODE_4374cbe0-2110-11e6-9feb-f3b9517823d3": {
         "x": 492,
-        "y": 1272
+        "y": 1132
       },
       "NODE_27fdef20-2112-11e6-8e2a-d3c0e7d8bdaf": {
         "x": 492,
@@ -38,7 +34,7 @@
       },
       "NODE_af0d6a60-2985-11e6-8e26-693499937830": {
         "x": 492,
-        "y": 432
+        "y": 572
       },
       "NODE_b14d6f50-2985-11e6-8e26-693499937830": {
         "x": 492,
@@ -59,17 +55,15 @@
       "NODE_798768a0-7b56-11e6-aef3-6bdce37da0e8": {
         "x": 22,
         "y": 612
+      },
+      "NODE_a9c6ac30-85ea-11e6-804d-d16f8a0833f6": {
+        "x": 492,
+        "y": 432
       }
     },
     "edges": {}
   },
   "bindings": {
-    "NODE_8fec6fe0-210c-11e6-af71-976d4b99a41f": {
-      "type": "fixed",
-      "thing": "micro_nurse_hub_webserver",
-      "hub": "micro_nurse_hub",
-      "service": "send_sensor_data@micro_nurse_hub_webserver"
-    },
     "NODE_366ceb80-2110-11e6-9feb-f3b9517823d3": {
       "type": "fixed",
       "thing": "HOPE_UI_THING__micro_nurse_iot_sol_center__built_in_hub__HOPE_APP_f0338ec0_1b16_11e6_888e_1fb72398316c",
@@ -150,19 +144,16 @@
       "thing": "micro_nurse_hub_turgoscope",
       "hub": "micro_nurse_hub",
       "service": "report@micro_nurse_hub_turgoscope"
+    },
+    "NODE_a9c6ac30-85ea-11e6-804d-d16f8a0833f6": {
+      "type": "fixed",
+      "thing": "micro_nurse_hub_mqtt_broker",
+      "hub": "micro_nurse_hub",
+      "service": "report_sensor_data@micro_nurse_hub_mqtt_broker"
     }
   },
   "graph": {
     "nodes": [
-      {
-        "spec": "webserver_send_sensor_data",
-        "id": "NODE_8fec6fe0-210c-11e6-af71-976d4b99a41f",
-        "config": {
-          "timeout": 5000,
-          "user_phone_num": "123456",
-          "password": "123456"
-        }
-      },
       {
         "spec": "micronurse_ui_digiclock",
         "id": "NODE_366ceb80-2110-11e6-9feb-f3b9517823d3"
@@ -222,6 +213,11 @@
           "name": "血压"
         },
         "id": "NODE_798768a0-7b56-11e6-aef3-6bdce37da0e8"
+      },
+      {
+        "spec": "mqtt_broker_report_sensor_data",
+        "id": "NODE_a9c6ac30-85ea-11e6-804d-d16f8a0833f6",
+        "config": {}
       }
     ],
     "edges": [
@@ -256,39 +252,6 @@
         "target": {
           "node": "NODE_366ceb80-2110-11e6-9feb-f3b9517823d3",
           "port": "time"
-        }
-      },
-      {
-        "id": "EDGE_d5cbb580-7b56-11e6-aef3-6bdce37da0e8",
-        "source": {
-          "node": "NODE_774d5720-7b56-11e6-aef3-6bdce37da0e8",
-          "port": "json_data"
-        },
-        "target": {
-          "node": "NODE_8fec6fe0-210c-11e6-af71-976d4b99a41f",
-          "port": "json_data"
-        }
-      },
-      {
-        "id": "EDGE_e09ae3f0-7b56-11e6-aef3-6bdce37da0e8",
-        "source": {
-          "node": "NODE_6cbf0240-7b56-11e6-aef3-6bdce37da0e8",
-          "port": "json_data"
-        },
-        "target": {
-          "node": "NODE_8fec6fe0-210c-11e6-af71-976d4b99a41f",
-          "port": "json_data"
-        }
-      },
-      {
-        "id": "EDGE_e27967f0-7b56-11e6-aef3-6bdce37da0e8",
-        "source": {
-          "node": "NODE_798768a0-7b56-11e6-aef3-6bdce37da0e8",
-          "port": "json_data"
-        },
-        "target": {
-          "node": "NODE_8fec6fe0-210c-11e6-af71-976d4b99a41f",
-          "port": "json_data"
         }
       },
       {
@@ -355,6 +318,39 @@
         "target": {
           "node": "NODE_ba90cda0-2985-11e6-8e26-693499937830",
           "port": "time"
+        }
+      },
+      {
+        "id": "EDGE_ac15f360-85ea-11e6-804d-d16f8a0833f6",
+        "source": {
+          "node": "NODE_6cbf0240-7b56-11e6-aef3-6bdce37da0e8",
+          "port": "json_data"
+        },
+        "target": {
+          "node": "NODE_a9c6ac30-85ea-11e6-804d-d16f8a0833f6",
+          "port": "json_data"
+        }
+      },
+      {
+        "id": "EDGE_adc57820-85ea-11e6-804d-d16f8a0833f6",
+        "source": {
+          "node": "NODE_798768a0-7b56-11e6-aef3-6bdce37da0e8",
+          "port": "json_data"
+        },
+        "target": {
+          "node": "NODE_a9c6ac30-85ea-11e6-804d-d16f8a0833f6",
+          "port": "json_data"
+        }
+      },
+      {
+        "id": "EDGE_af3ab300-85ea-11e6-804d-d16f8a0833f6",
+        "source": {
+          "node": "NODE_774d5720-7b56-11e6-aef3-6bdce37da0e8",
+          "port": "json_data"
+        },
+        "target": {
+          "node": "NODE_a9c6ac30-85ea-11e6-804d-d16f8a0833f6",
+          "port": "json_data"
         }
       }
     ],

@@ -22,6 +22,9 @@
       "ports": [{
         "name": "json_result",
         "type": "string"
+      },{
+        "name": "broker_connect",
+        "type": "boolean"
       }]
     }
   }

@@ -16,13 +16,13 @@
         "x": 252,
         "y": 12
       },
-      "NODE_92367830-608c-11e6-8f06-7f4ec579bded": {
-        "x": 252,
-        "y": 292
-      },
       "NODE_fa6f8cf0-7b55-11e6-aef3-6bdce37da0e8": {
         "x": 22,
         "y": 132
+      },
+      "NODE_9a2471e0-85ea-11e6-804d-d16f8a0833f6": {
+        "x": 252,
+        "y": 292
       }
     },
     "edges": {}
@@ -42,17 +42,17 @@
       "service": "UI_SERVICE__WIDGET_5bee0770-1b18-11e6-b6d6-db4f64c5a32a",
       "widget": "WIDGET_5bee0770-1b18-11e6-b6d6-db4f64c5a32a"
     },
-    "NODE_92367830-608c-11e6-8f06-7f4ec579bded": {
-      "type": "fixed",
-      "thing": "micro_nurse_hub_webserver",
-      "hub": "micro_nurse_hub",
-      "service": "send_sensor_data@micro_nurse_hub_webserver"
-    },
     "NODE_fa6f8cf0-7b55-11e6-aef3-6bdce37da0e8": {
       "type": "fixed",
       "thing": "HOPE_THING_a0052a20_1842_11e6_84fc_93bf6a12bc6a",
       "hub": "micro_nurse_hub",
       "service": "HOPE_SERVICE_5d6b5710_1843_11e6_84fc_93bf6a12bc6a"
+    },
+    "NODE_9a2471e0-85ea-11e6-804d-d16f8a0833f6": {
+      "type": "fixed",
+      "thing": "micro_nurse_hub_mqtt_broker",
+      "hub": "micro_nurse_hub",
+      "service": "report_sensor_data@micro_nurse_hub_mqtt_broker"
     }
   },
   "graph": {
@@ -66,13 +66,6 @@
         "id": "NODE_e9f93f60-2556-11e6-8b1e-59950ee65941"
       },
       {
-        "spec": "webserver_send_sensor_data",
-        "id": "NODE_92367830-608c-11e6-8f06-7f4ec579bded",
-        "config": {
-          "timeout": 5000
-        }
-      },
-      {
         "spec": "__HOPE_SPEC__31efd660_7b3a_11e6_9bff_f19416505e87",
         "config": {
           "x": "109.625",
@@ -81,6 +74,11 @@
           "interval": 5000
         },
         "id": "NODE_fa6f8cf0-7b55-11e6-aef3-6bdce37da0e8"
+      },
+      {
+        "spec": "mqtt_broker_report_sensor_data",
+        "id": "NODE_9a2471e0-85ea-11e6-804d-d16f8a0833f6",
+        "config": {}
       }
     ],
     "edges": [
@@ -107,13 +105,13 @@
         }
       },
       {
-        "id": "EDGE_15263c10-7b56-11e6-aef3-6bdce37da0e8",
+        "id": "EDGE_9d528050-85ea-11e6-804d-d16f8a0833f6",
         "source": {
           "node": "NODE_fa6f8cf0-7b55-11e6-aef3-6bdce37da0e8",
           "port": "json_data"
         },
         "target": {
-          "node": "NODE_92367830-608c-11e6-8f06-7f4ec579bded",
+          "node": "NODE_9a2471e0-85ea-11e6-804d-d16f8a0833f6",
           "port": "json_data"
         }
       }
