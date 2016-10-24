@@ -1,24 +1,30 @@
-console.log("Micro nurse hub - humidometer +" + CONFIG.name + " after resume")
+console.log("Micro nurse hub - humidometer +" + CONFIG.name + " after resume");
+var dht11sensor = require('dht11sensor');
+
 shared.humidiometer.start(function() {
-  var delta = Math.random() * 2 * ((Math.random() < 0.5) ? 1 : -1);
-  shared.humidiometer.base_value += delta;
-  if(shared.humidiometer.base_value < 0)
-      shared.humidiometer.base_value = 0;
-  else if(shared.humidiometer.base_value > 100)
-      shared.humidiometer.base_value = 100;
-  console.log("[Micro nurse hub - humidometer " + CONFIG.name + "]:", shared.humidiometer.base_value);
+  dht11sensor.read_temperature_humidity(CONFIG.dht11_sensor_pin, function (result, tempurature, humidity) {
+    if(result == 0){
+      console.log("[Micro nurse hub - humidometer " + CONFIG.name + "]:", humidity);
 
-  var outdata = {
-    value: shared.humidiometer.base_value.toFixed(2),
-    sensor_type: "humidometer",
-    name: CONFIG.name,
-    timestamp: Date.parse(new Date())
-  }
+      var outdata = {
+        value: humidity.toFixed(2),
+        sensor_type: "humidometer",
+        name: CONFIG.name,
+        timestamp: Date.parse(new Date())
+      };
 
-  sendOUT({
-    value: outdata.value,
-    name: outdata.name,
-    timestamp: outdata.timestamp,
-    json_data: JSON.stringify(outdata)
+      sendOUT({
+        value: outdata.value,
+        name: outdata.name,
+        timestamp: outdata.timestamp,
+        json_data: JSON.stringify(outdata)
+      });
+    }else if(result == 1){
+      console.log('Humidometer ACK timeout.')
+    }else if(result == 2){
+      console.log('Humidometer Read data timeout.')
+    }else if(result == 3){
+      console.log('Humidometer checksum error.')
+    }
   });
 }, CONFIG.interval);

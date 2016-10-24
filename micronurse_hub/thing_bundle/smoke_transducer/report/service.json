@@ -12,6 +12,10 @@
       "name": "name",
       "type": "string",
       "default": "smoketransducer"
+    },{
+      "name": "mq2_sensor_pin",
+      "type": "int",
+      "default": 0
     }],
 
     "out": {

@@ -3,19 +3,30 @@
 quick_build=0
 grid_col=0
 
+function show_help(){
+    echo "Usage: buildui.sh [options]"
+    echo "Options:"
+    echo "--install-build-tools         Install all the needed NodeJS build tools(may need root permission on Linux)"
+    echo "--install-dependencies        Install all the needed NodeJS module dependencies"
+    echo "--link-widgets                Link ui-widgets to ui-dev and ui-user(may need root permission on Linux)"
+    echo "--quick                       Quick building, only build widgets into hope.js of ui-dev and ui-user"
+    echo "--grid-columns <col-num>      Specify number of columns of grid layout of UI-IDE and UI"
+}
+
 if [ $# -gt 0 ]; then
-	if [ $1 == "global-install" ]; then
-		npm install -g mocha
+    if [ $1 == "--help" ]; then
+        show_help
+        exit 0
+	elif [ $1 == "--install-build-tools" ]; then
 		npm install -g bower
 		npm install -g gulp
 		npm install -g grunt-cli
 		npm install -g stylus
 		npm install -g browserify
 		npm install -g reactify
-		npm install -g babel@5.8.x
-		npm install -g http-server
+		npm install -g babel
 		exit 0
-    elif [ $1 == "install" ]; then
+    elif [ $1 == "--install-dependencies" ]; then
         cd ./ui-widgets
         npm install
         cd ../ui-dev
@@ -35,16 +46,21 @@ if [ $# -gt 0 ]; then
         sed -i -e '1i\@import "properties";' ./src/gridstack-extra.scss
         echo "\$gridstack-columns: 12;" > ./src/_properties.scss
         exit 0
-    elif [ $1 == "link" ]; then
+    elif [ $1 == "--link-widgets" ]; then
         cd ./ui-dev/
         npm link ../ui-widgets
         cd ../ui-user
         npm link ../ui-widgets
         exit 0
-    elif [ $1 == "quick" ]; then
+    elif [ $1 == "--quick" ]; then
         quick_build=1
-    elif [ $1 -gt 0 ]; then
-        grid_col=$1
+    elif [ $1 == "--grid-columns" ]; then
+        if [ $2 -gt 0 ]; then
+            grid_col=$2
+        fi
+    else
+        show_help
+        exit 1
     fi
 fi
 

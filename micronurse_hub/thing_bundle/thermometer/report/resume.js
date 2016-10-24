@@ -1,3 +1,3 @@
 console.log("Micro nurse hub - Temperature resume")
-shared.sensor.resume();
+shared.thermometer.resume();
 done();

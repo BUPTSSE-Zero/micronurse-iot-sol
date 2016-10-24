@@ -1,0 +1,15 @@
+{
+  "name": "mq2sensor",
+  "version": "0.0.1",
+  "description": "Read the smoke value from MQ2 sensor.",
+  "main": "./build/Release/mq2sensor",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "MQ2",
+    "Sensor"
+  ],
+  "author": "Zhou Shengyun",
+  "license": "GPL-3.0"
+}

@@ -1,3 +1,3 @@
 console.log("Micro nurse hub - Temperature stop")
-shared.sensor.stop();
+shared.thermometer.stop();
 done();

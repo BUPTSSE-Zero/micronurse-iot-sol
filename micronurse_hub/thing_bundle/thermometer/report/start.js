@@ -1,8 +1,9 @@
 console.log("Micro nurse hub - Temperature init");
 
-shared.sensor = {
+shared.thermometer = {
   timer: null,
   interval: 3000,
+
   callback: function() {},
   pause: function() {
     if (this.timer) {

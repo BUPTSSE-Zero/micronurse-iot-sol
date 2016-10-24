@@ -202,7 +202,8 @@
         "id": "NODE_d4912650-1ca6-11e6-9696-b5de9897aecc",
         "config": {
           "interval": 5000,
-          "name": "卧室湿度"
+          "name": "卧室湿度",
+          "dht11_sensor_pin": 0
         }
       },
       {
@@ -222,7 +223,8 @@
         "id": "NODE_a9d3b9a0-1cf1-11e6-ae65-61a5e1ad9fd6",
         "config": {
           "interval": 5000,
-          "name": "卧室温度"
+          "name": "卧室温度",
+          "dht11_sensor_pin": 0
         }
       },
       {
@@ -254,7 +256,9 @@
         "id": "NODE_fd6db550-2630-11e6-83d1-59562d4f7be2",
         "config": {
           "interval": 5000,
-          "name": "客厅烟雾量"
+          "name": "客厅烟雾量",
+          "mq2_sensor_pin": 0,
+          "sensor_pin": 0
         }
       },
       {
@@ -272,7 +276,7 @@
       {
         "spec": "__HOPE_SPEC__31f37fe0_7b3a_11e6_9bff_f19416505e87",
         "config": {
-          "name": "infrared_transducer",
+          "name": "红外防盗",
           "interval": 100
         },
         "id": "NODE_94bbefc0-7b55-11e6-aef3-6bdce37da0e8"
