@@ -1,0 +1,15 @@
+{
+  "name": "pir-sensor",
+  "version": "0.0.1",
+  "description": "Detect if there exists someone via PIR sensor.",
+  "main": "./build/Release/pir-sensor",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "PIR",
+    "Sensor"
+  ],
+  "author": "Zhou Shengyun",
+  "license": "GPL-3.0"
+}

@@ -2,7 +2,7 @@
 // Created by zhou-shengyun on 16-10-24.
 //
 
-#include "dht11sensor.h"
+#include "dht11_sensor.h"
 #include <stdio.h>
 #include <unistd.h>
 

@@ -2,8 +2,8 @@
 // Created by zhou-shengyun on 16-10-23.
 //
 
-#ifndef DHT11SENSOR_DHT11SENSOR_H
-#define DHT11SENSOR_DHT11SENSOR_H
+#ifndef DHT11_SENSOR_DHT11_SENSOR_H
+#define DHT11_SENSOR_DHT11_SENSOR_H
 
 #define HIGH 0x1
 #define LOW  0x0
@@ -15,4 +15,4 @@
 
 int dht11_read(int pin, int& temperature, int& humidity, bool debug = false);
 
-#endif //DHT11SENSOR_DHT11SENSOR_H
+#endif //DHT11_SENSOR_DHT11_SENSOR_H

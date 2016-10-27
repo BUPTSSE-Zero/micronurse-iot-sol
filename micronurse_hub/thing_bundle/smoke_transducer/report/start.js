@@ -32,5 +32,12 @@ shared.smoketransducer = {
   }
 };
 
-
-done();
+var mq2sensor = require('mq2-sensor');
+mq2sensor.calibrate(CONFIG.mq2_sensor_pin, function (result, r0) {
+  if(result == 0){
+    shared.smoketransducer.r0 = r0;
+    done();
+  }else{
+    fail();
+  }
+});

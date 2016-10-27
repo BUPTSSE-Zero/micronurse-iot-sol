@@ -1,5 +1,5 @@
 console.log("Micro nurse hub - Temperature after resume");
-var dht11sensor = require('dht11sensor');
+var dht11sensor = require('dht11-sensor');
 
 shared.thermometer.start(function() {
   dht11sensor.read_temperature_humidity(CONFIG.dht11_sensor_pin, function (result, tempurature, humidity) {

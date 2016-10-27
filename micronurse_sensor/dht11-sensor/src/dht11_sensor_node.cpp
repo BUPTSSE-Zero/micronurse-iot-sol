@@ -3,7 +3,7 @@
 //
 
 #include <node.h>
-#include "dht11sensor.h"
+#include "dht11_sensor.h"
 
 using namespace v8;
 
@@ -27,4 +27,4 @@ void init_module(Handle<Object> exports) {
     NODE_SET_METHOD(exports, "read_temperature_humidity", read_temperature_humidity);
 }
 
-NODE_MODULE(dht11sensor, init_module);
+NODE_MODULE(dht11_sensor, init_module);

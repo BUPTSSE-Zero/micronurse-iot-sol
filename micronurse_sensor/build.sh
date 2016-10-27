@@ -19,7 +19,9 @@ if [ $# -gt 0 ]; then
 	fi
 fi
 
-cd ./dht11sensor
-cmake-js compile && cp -r ../dht11sensor ../../node_modules
-cd ../mq2sensor
-cmake-js compile && cp -r ../mq2sensor ../../node_modules
+cd ./dht11-sensor
+cmake-js compile && cp -r ../dht11-sensor ../../node_modules
+cd ../mq2-sensor
+cmake-js compile && cp -r ../mq2-sensor ../../node_modules
+cd ../pir-sensor
+cmake-js compile && cp -r ../pir-sensor ../../node_modules

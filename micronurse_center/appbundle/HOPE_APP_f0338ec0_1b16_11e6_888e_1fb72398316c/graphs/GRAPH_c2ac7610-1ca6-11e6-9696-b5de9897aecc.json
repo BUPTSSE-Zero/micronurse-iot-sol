@@ -277,7 +277,8 @@
         "spec": "__HOPE_SPEC__31f37fe0_7b3a_11e6_9bff_f19416505e87",
         "config": {
           "name": "红外防盗",
-          "interval": 100
+          "interval": 100,
+          "pir_sensor_pin": 2
         },
         "id": "NODE_94bbefc0-7b55-11e6-aef3-6bdce37da0e8"
       },

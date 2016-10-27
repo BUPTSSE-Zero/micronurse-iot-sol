@@ -2,7 +2,9 @@ console.log("Micro nurse hub - infrared_transducer init");
 
 shared.infrared_transducer= {
   timer: null,
-  interval: 2000,
+  interval: 100,
+  warning: false,
+
   callback: function() {},
   pause: function() {
     if (this.timer) {
@@ -24,8 +26,8 @@ shared.infrared_transducer= {
       this.stop();
       this.callback = cb;
       this.interval = interval;
-      if (this.interval <= 500) {
-        this.interval = 500;
+      if (this.interval <= 100) {
+        this.interval = 100;
       }
     }
     this.resume();

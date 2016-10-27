@@ -1,8 +1,8 @@
 {
-  "name": "dht11sensor",
+  "name": "dht11-sensor",
   "version": "0.0.1",
   "description": "Read temperature and humidity value from DHT11 sensor.",
-  "main": "./build/Release/dht11sensor",
+  "main": "./build/Release/dht11-sensor",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "install": "cmake-js compile"

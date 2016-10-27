@@ -1,8 +1,8 @@
 {
-  "name": "mq2sensor",
+  "name": "mq2-sensor",
   "version": "0.0.1",
-  "description": "Read the smoke value from MQ2 sensor.",
-  "main": "./build/Release/mq2sensor",
+  "description": "Get LPG, CO and smoke concentration from MQ2 sensor.",
+  "main": "./build/Release/mq2-sensor",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

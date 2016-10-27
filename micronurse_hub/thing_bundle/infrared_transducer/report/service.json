@@ -4,16 +4,18 @@
   "description": "",
   "spec": {
     "name": "infrared_transducer report",
-    "config": [
-      {
+    "config": [{
         "name": "name",
         "type": "string",
         "default": "infrared_transducer"
-      },
-      {
+      }, {
         "name": "interval",
         "type": "int",
         "default": 100
+      }, {
+        "name": "pir_sensor_pin",
+        "type": "int",
+        "default": 0
       }
     ],
     "out": {

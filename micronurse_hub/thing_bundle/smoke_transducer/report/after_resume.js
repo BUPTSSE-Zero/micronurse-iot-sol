@@ -1,8 +1,8 @@
 console.log("Micro nurse hub - Smoke Transducer " + CONFIG.name + " after resume");
-var mq2sensor = require('mq2sensor');
+var mq2sensor = require('mq2-sensor');
 
 shared.smoketransducer.start(function() {
-  mq2sensor.read_smoke(CONFIG.mq2_sensor_pin, function (result, smoke) {
+  mq2sensor.read_smoke(CONFIG.mq2_sensor_pin, shared.smoketransducer.r0, function (result, smoke) {
     if(result == 0){
       var value = smoke;
       console.log("[Micro nurse hub - Smoke Transducer " + CONFIG.name + "]:", value);
