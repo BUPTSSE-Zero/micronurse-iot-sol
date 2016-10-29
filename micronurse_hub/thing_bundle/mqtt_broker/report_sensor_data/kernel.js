@@ -1,6 +1,16 @@
 console.log('Micro nurse hub - report sensor data kernel');
 
-if(hub_shared.phone_number && hub_shared.mqtt_client) {
-    hub_shared.mqtt_client.publish('sensor_data_report/' + hub_shared.phone_number,
-      IN.json_data, {qos: 0, retain: false});
+if(hub_shared.phone_number) {
+  sendOUT({
+    mqtt_publish: JSON.stringify({
+      action: 'publish',
+      publish_info:{
+        topic: 'sensor_data_report',
+        topic_user: hub_shared.phone_number,
+        qos: 0,
+        retain: false,
+        message: IN.json_data
+      }
+    })
+  });
 }

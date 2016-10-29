@@ -1,19 +1,24 @@
 {
-  "type": "hope_service",
-  "name": "report",
-  "description": "",
+  "name": "Report",
+  "description": "Detect if there exists somebody at intervals.",
+  "id": "infrared_report",
   "spec": {
-    "name": "infrared_transducer report",
-    "config": [{
+    "config": [
+      {
         "name": "name",
+        "display": "Instance Name",
         "type": "string",
         "default": "infrared_transducer"
-      }, {
+      },
+      {
         "name": "interval",
+        "display": "Report Interval(ms)",
         "type": "int",
         "default": 100
-      }, {
+      },
+      {
         "name": "pir_sensor_pin",
+        "display": "PIR Sensor PIN",
         "type": "int",
         "default": 0
       }
@@ -38,8 +43,6 @@
         }
       ]
     },
-    "id": "__HOPE_SPEC__31f37fe0_7b3a_11e6_9bff_f19416505e87"
-  },
-  "id": "HOPE_SERVICE_e8e03ed0_18e0_11e6_ad78_45731ff73023",
-  "thing": "HOPE_THING_c4a30de0_18e0_11e6_ad78_45731ff73023"
+    "id": "__HOPE_SPEC__9eeb1640_9cd6_11e6_a459_319df607ebfc"
+  }
 }

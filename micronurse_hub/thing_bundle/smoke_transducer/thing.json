@@ -1,5 +1,5 @@
 {
-  "name": "smoke_transducer",
-  "description": "Mock smoketransducer",
-  "id": "micro_nurse_hub_smoketransducer"
+  "name": "Smoke Transducer",
+  "description": "Mock smoke transducer",
+  "id": "micronurse_hub_smoke_transducer"
 }

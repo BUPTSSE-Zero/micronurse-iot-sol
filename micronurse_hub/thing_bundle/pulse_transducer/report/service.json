@@ -1,7 +1,7 @@
 {
-  "id": "turgoscope_report",
+  "id": "pulse_transducer_report",
   "name": "Report",
-  "description": "Report the blood pressure at intervals.",
+  "description": "Report the pulse at intervals.",
   "spec": {
     "config": [
       {
@@ -14,15 +14,15 @@
       "ports": [
         {
           "name": "value",
-          "type": "string"
-        },
-        {
-          "name": "message",
-          "type": "string"
+          "type": "int"
         },
         {
           "name": "timestamp",
           "type": "long"
+        },
+        {
+          "name": "message",
+          "type": "string"
         },
         {
           "name": "json_data",
@@ -30,6 +30,6 @@
         }
       ]
     },
-    "id": "__HOPE_SPEC__eba31740_9cd5_11e6_800a_1d5cb60d697c"
+    "id": "__HOPE_SPEC__eba190a0_9cd5_11e6_800a_1d5cb60d697c"
   }
 }

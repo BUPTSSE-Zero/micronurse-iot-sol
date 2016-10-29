@@ -1,0 +1,28 @@
+{
+  "id": "mqtt_broker_broker_manager",
+  "name": "Broker Manager",
+  "description": "Manage MQTT action, including connection, publish, subscription and so on.",
+  "spec": {
+    "in": {
+      "ports": [
+        {
+          "name": "mqtt_action",
+          "type": "string"
+        }
+      ]
+    },
+    "out": {
+      "ports": [
+        {
+          "name": "message_json",
+          "type": "string"
+        },
+        {
+          "name": "connected",
+          "type": "boolean"
+        }
+      ]
+    },
+    "id": "__HOPE_SPEC__415b3130_9cc3_11e6_93f5_2759676a557a"
+  }
+}

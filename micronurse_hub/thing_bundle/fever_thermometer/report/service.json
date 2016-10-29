@@ -1,19 +1,13 @@
 {
-  "type": "hope_service",
-  "name": "report",
-  "description": "report the body heat at intervals",
+  "id": "fever_thermometer_report",
+  "name": "Report",
+  "description": "Report the body temperature at intervals.",
   "spec": {
-    "name": "feverThermometer report",
     "config": [
       {
         "name": "interval",
         "type": "int",
         "default": 5000
-      },
-      {
-        "name": "name",
-        "type": "string",
-        "default": "feverThermometer"
       }
     ],
     "out": {
@@ -21,10 +15,6 @@
         {
           "name": "value",
           "type": "double"
-        },
-        {
-          "name": "name",
-          "type": "string"
         },
         {
           "name": "timestamp",
@@ -40,8 +30,6 @@
         }
       ]
     },
-    "id": "__HOPE_SPEC__31ec05d0_7b3a_11e6_9bff_f19416505e87"
-  },
-  "id": "HOPE_SERVICE_27570ef0_16d9_11e6_8101_49597fbd4db9",
-  "thing": "HOPE_THING_d516b140_16d8_11e6_8101_49597fbd4db9"
+    "id": "__HOPE_SPEC__eb9e0e30_9cd5_11e6_800a_1d5cb60d697c"
+  }
 }

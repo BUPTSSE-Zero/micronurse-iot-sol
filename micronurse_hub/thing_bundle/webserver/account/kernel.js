@@ -16,7 +16,9 @@ function logout() {
 
   sendOUT({
     json_result: JSON.stringify({action: 'logout'}),
-    broker_connect: false
+    mqtt_connect: JSON.stringify({
+      action: 'disconnect'
+    })
   });
 }
 
@@ -42,7 +44,9 @@ if(IN.action) {
           console.log('Login success.');
           sendOUT({
             json_result: json_result,
-            broker_connect: true
+            mqtt_connect: JSON.stringify({
+              action: 'connect'
+            })
           });
 
           shared.account.start(function () {

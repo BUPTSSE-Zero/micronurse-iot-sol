@@ -1,31 +1,35 @@
 {
-  "description":"Login or logout.",
+  "id": "webserver_account",
+  "name": "Account",
+  "description": "Login or logout.",
   "spec": {
-    "id":"webserver_account",
-    "name": "account",
-    "data_cache_size": 1,
-
-    "config": [{
-      "name": "interval",
-      "type": "int",
-      "default": 1000
-    }],
-
+    "config": [
+      {
+        "name": "interval",
+        "type": "int",
+        "default": 1000
+      }
+    ],
     "in": {
-      "ports": [{
-        "name": "action",
-        "type": "string"
-      }]
+      "ports": [
+        {
+          "name": "action",
+          "type": "string"
+        }
+      ]
     },
-
     "out": {
-      "ports": [{
-        "name": "json_result",
-        "type": "string"
-      },{
-        "name": "broker_connect",
-        "type": "boolean"
-      }]
-    }
+      "ports": [
+        {
+          "name": "json_result",
+          "type": "string"
+        },
+        {
+          "name": "mqtt_connect",
+          "type": "string"
+        }
+      ]
+    },
+    "id": "__HOPE_SPEC__51343fb0_9cd3_11e6_b1dd_5d230976588b"
   }
 }

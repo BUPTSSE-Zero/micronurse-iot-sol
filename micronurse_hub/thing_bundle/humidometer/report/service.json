@@ -1,38 +1,48 @@
 {
-  "description":"report the humidity at intervals",
+  "description": "Report the humidity at intervals.",
+  "id": "humidometer_report",
+  "name": "Report",
   "spec": {
-    "id":"humidometer_report",
-    "name": "humidometer report",
-    "config": [{
-      "name": "interval",
-      "type": "int",
-      "default": 2000
-    }, {
-      "name": "name",
-      "type": "string",
-      "default": "humidometer"
-    }, {
-      "name": "dht11_sensor_pin",
-      "type": "int",
-      "default": 0
-    }],
-
-
-
-    "out": {
-      "ports": [{
-        "name": "value",
-        "type": "int"
-      },{
+    "config": [
+      {
+        "name": "interval",
+        "display": "Report Interval(ms)",
+        "type": "int",
+        "default": 5000
+      },
+      {
         "name": "name",
-        "type": "string"
-      },{
-        "name": "timestamp",
-        "type": "long"
-      },{
-        "name": "json_data",
-        "type": "string"
-      }]
-    }
+        "display": "Instance Name",
+        "type": "string",
+        "default": "humidometer"
+      },
+      {
+        "name": "dht11_sensor_pin",
+        "display": "DHT11 Sensor PIN",
+        "type": "int",
+        "default": 0
+      }
+    ],
+    "out": {
+      "ports": [
+        {
+          "name": "value",
+          "type": "int"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "timestamp",
+          "type": "long"
+        },
+        {
+          "name": "json_data",
+          "type": "string"
+        }
+      ]
+    },
+    "id": "__HOPE_SPEC__9ee9ddc0_9cd6_11e6_a459_319df607ebfc"
   }
 }

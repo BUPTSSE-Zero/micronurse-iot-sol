@@ -1,37 +1,47 @@
 {
-  "description":"report the smoke at intervals",
+  "id": "smoke_transducer_report",
+  "name": "Report",
+  "description": "Report the smoke concentration at intervals.",
   "spec": {
-    "id":"smoketransducer_report",
-    "name": "smoketransducer report",
-
-    "config": [{
-      "name": "interval",
-      "type": "int",
-      "default": 2000
-    },{
-      "name": "name",
-      "type": "string",
-      "default": "smoketransducer"
-    },{
-      "name": "mq2_sensor_pin",
-      "type": "int",
-      "default": 0
-    }],
-
-    "out": {
-      "ports": [{
-        "name": "value",
-        "type": "int"
-      },{
+    "config": [
+      {
+        "name": "interval",
+        "display": "Report Interval(ms)",
+        "type": "int",
+        "default": 5000
+      },
+      {
         "name": "name",
+        "display": "Instance Name",
         "type": "string"
-      },{
-        "name": "timestamp",
-        "type": "long"
-      },{
-        "name": "json_data",
-        "type": "string"
-      }]
-    }
+      },
+      {
+        "name": "mq2_sensor_pin",
+        "display": "MQ2 Sensor PIN",
+        "type": "int",
+        "default": 0
+      }
+    ],
+    "out": {
+      "ports": [
+        {
+          "name": "value",
+          "type": "int"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "timestamp",
+          "type": "long"
+        },
+        {
+          "name": "json_data",
+          "type": "string"
+        }
+      ]
+    },
+    "id": "__HOPE_SPEC__9eed3920_9cd6_11e6_a459_319df607ebfc"
   }
 }

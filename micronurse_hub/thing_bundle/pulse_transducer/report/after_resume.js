@@ -17,15 +17,12 @@ shared.pulseTransduce.start(function(){
     var outdata = {
         value:shared.pulseTransduce.base_value,
         sensor_type:"pulse_transducer",
-        name:CONFIG.name,
-        message:message_temp,
         timestamp:Date.parse(new Date())
     }
     
     sendOUT({
         value:outdata.value,
-        name:outdata.name,
-        message:outdata.message,
+        message:message_temp,
         timestamp:outdata.timestamp,
         json_data:JSON.stringify(outdata)
     });

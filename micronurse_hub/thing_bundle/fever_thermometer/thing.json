@@ -1,7 +1,5 @@
 {
-  "type": "hope_thing",
-  "name": "fever_thermometer",
+  "name": "Fever Thermometer",
   "description": "Mock the fever thermometer",
-  "id": "HOPE_THING_d516b140_16d8_11e6_8101_49597fbd4db9",
-  "hub": "micro_nurse_hub"
+  "id": "micronurse_hub_fever_thermometer"
 }

@@ -25,14 +25,12 @@ shared.turgoscope.start(function() {
   var outdata = {
     value: parseInt(shared.turgoscope.initial_value1) + "/" + parseInt(shared.turgoscope.initial_value2),
     sensor_type: "turgoscope",
-    name: CONFIG.name,
     timestamp: Date.parse(new Date())
-  }
+  };
 
   sendOUT({
     value: outdata.value,
     message: message_temp,
-    name: outdata.name,
     timestamp: outdata.timestamp,
     json_data: JSON.stringify(outdata)
   });
