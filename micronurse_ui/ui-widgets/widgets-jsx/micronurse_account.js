@@ -51,30 +51,6 @@ export default class AccountWidget extends Widget {
     });
   }
 
-  /*_remove_key_listener(){
-    this.refs.input_phone_number.removeEventListener("keydown",
-      this._on_key_down);
-    this.refs.input_password.removeEventListener("keydown",
-      this._on_key_down);
-  }
-
-  componentDidMount() {
-    super.componentDidMount();
-    if(!this.$is_login) {
-      this.refs.input_phone_number.addEventListener("keydown",
-        this._on_login_key_down);
-      this.refs.input_password.addEventListener("keydown",
-        this._on_login_key_down);
-    }
-  }
-
-  componentWillUnmount() {
-    if(!this.$is_login) {
-      this._remove_key_listener();
-    }
-    super.componentWillUnmount();
-  }*/
-
   render() {
     var w = this.props.widget;
     var data = this.get_data();

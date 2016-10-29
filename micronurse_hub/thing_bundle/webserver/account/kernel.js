@@ -34,6 +34,7 @@ if(IN.action) {
         function (status_code, result_code, message, token, nickname) {
           hub_shared.phone_number = action_info.phone_number;
           hub_shared.token = token;
+          login.cache_token(action_info.phone_number, token);
 
           var json_result = JSON.stringify({
             action: action_info.action,
