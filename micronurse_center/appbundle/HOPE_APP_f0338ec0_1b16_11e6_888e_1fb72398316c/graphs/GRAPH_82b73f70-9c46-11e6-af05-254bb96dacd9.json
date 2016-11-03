@@ -501,7 +501,8 @@
       {
         "spec": "__HOPE_SPEC__eba190a0_9cd5_11e6_800a_1d5cb60d697c",
         "config": {
-          "interval": 5000
+          "interval": 5000,
+          "heartrate_sensor_pin": 4
         },
         "id": "NODE_2ec3b110-9cd6-11e6-9f3e-7772ab9ba902"
       },

@@ -9,7 +9,7 @@
 #define LOW  0x0
 
 #define PIR_SUCCESS 0
-#define PIR_ERROR 1
+#define PIR_ERROR -1
 
 int pir_read(int pin);
 

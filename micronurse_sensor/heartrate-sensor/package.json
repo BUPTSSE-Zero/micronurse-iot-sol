@@ -1,15 +1,16 @@
 {
-  "name": "pir-sensor",
+  "name": "heartrate-sensor",
   "version": "0.0.1",
-  "description": "Detect if there exists someone via PIR sensor.",
-  "main": "./build/Release/pir-sensor",
+  "description": "Read heartrate value from DFRobot heartrate sensor.",
+  "main": "./build/Release/heartrate-sensor",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "install": "cmake-js compile"
   },
   "keywords": [
-    "PIR",
-    "Sensor"
+    "DFRobot",
+    "heartrate",
+    "sensor"
   ],
   "author": "Zhou Shengyun",
   "license": "GPL-3.0"

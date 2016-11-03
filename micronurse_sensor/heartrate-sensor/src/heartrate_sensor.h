@@ -1,0 +1,14 @@
+//
+// Created by zhou-shengyun on 16-11-1.
+//
+
+#ifndef HEARTRATE_SENSOR_TEST_HEARTRATE_SENSOR_H
+#define HEARTRATE_SENSOR_TEST_HEARTRATE_SENSOR_H
+
+#define HEARTRATE_INIT_ERROR -1
+#define HEARTRATE_TIMEOUT -2
+#define HEARTRATE_INVALID_DATA -3
+
+int heartrate_read_heartrate(int pin);
+
+#endif //HEARTRATE_SENSOR_TEST_HEARTRATE_SENSOR_H

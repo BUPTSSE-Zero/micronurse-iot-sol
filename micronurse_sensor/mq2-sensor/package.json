@@ -4,7 +4,8 @@
   "description": "Get LPG, CO and smoke concentration from MQ2 sensor.",
   "main": "./build/Release/mq2-sensor",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install": "cmake-js compile"
   },
   "keywords": [
     "MQ2",

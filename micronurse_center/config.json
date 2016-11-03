@@ -86,5 +86,10 @@
     "check_interval": 30000,    // milliseconds to check whether a hub is dropped or not
     "drop_threshold": 120000    // set a hub as disconnected if it hasn't send
                                 // heartbeat to this server for this amount of milliseconds
-  }
+  },
+
+  "static_ui_dev_path": "../ui-dev",
+  "static_ui_user_path": "../ui-user",
+  "static_doc_path": "../doc",
+  "static_ui_widgets_path": "../ui-widgets"
 }

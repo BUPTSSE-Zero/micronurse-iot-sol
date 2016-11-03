@@ -6,8 +6,15 @@
     "config": [
       {
         "name": "interval",
+        "display": "Report Interval(ms)",
         "type": "int",
         "default": 5000
+      },
+      {
+        "name": "heartrate_sensor_pin",
+        "display": "Heart rate sensor PIN",
+        "type": "int",
+        "default": 0
       }
     ],
     "out": {

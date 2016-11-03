@@ -3,7 +3,6 @@ console.log("Micro nurse hub - pulseTransduce init");
 shared.pulseTransduce = {
   timer: null,
   interval: 5000,
-  base_value: 75,
   callback: function() {},
   pause: function() {
     if (this.timer) {

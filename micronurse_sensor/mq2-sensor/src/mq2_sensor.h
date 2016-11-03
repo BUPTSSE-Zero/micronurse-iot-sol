@@ -6,7 +6,7 @@
 #define MQ2_SENSOR_MQ2_SENSOR_H
 
 #define MQ2_SUCCESS 0
-#define MQ2_ERROR 1
+#define MQ2_ERROR -1
 
 #define GAS_LPG 0
 #define GAS_CO 1

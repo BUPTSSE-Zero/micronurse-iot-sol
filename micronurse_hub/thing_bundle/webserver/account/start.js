@@ -5,6 +5,7 @@
 shared.account = {
   timer: null,
   interval: 2000,
+  auto_login_timer: null,
   callback: function() {},
   pause: function() {
     if (this.timer) {
