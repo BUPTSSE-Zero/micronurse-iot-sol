@@ -1,0 +1,15 @@
+[Unit]
+Description=Micro Nurse IoT-SOL
+
+[Service]
+Type=forking
+
+# Please specify the path to the home of micronurse-iot-sol
+Environment="MICRONURSE_IOT_SOL_HOME=/home/root/micronurse-iot-sol"
+
+ExecStart=/bin/sh -c "node ${MICRONURSE_IOT_SOL_HOME}/node_modules/hope-http-broker/bin/start_broker 16666 & \
+                      node ${MICRONURSE_IOT_SOL_HOME}/node_modules/hope-center/center ${MICRONURSE_IOT_SOL_HOME}/micronurse_center/config.json & \
+                      node ${MICRONURSE_IOT_SOL_HOME}/node_modules/hope-hub/hub ${MICRONURSE_IOT_SOL_HOME}/micronurse_hub/config.json &"
+
+[Install]
+WantedBy=multi-user.target
