@@ -20,11 +20,11 @@ shared.thermometer.start(function() {
         timestamp: outdata.timestamp,
         json_data: JSON.stringify(outdata)
       });
-    }else if(result == 1){
+    }else if(result == -1){
       console.log('Thermometer ACK timeout.')
-    }else if(result == 2){
+    }else if(result == -2){
       console.log('Thermometer Read data timeout.')
-    }else if(result == 3){
+    }else if(result == -3){
       console.log('Thermometer checksum error.')
     }
   });

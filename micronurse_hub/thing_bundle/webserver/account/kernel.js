@@ -2,6 +2,8 @@
  * Created by shengyun-zhou on 5/19/16.
  */
 
+var token_cache = require('./token_cache');
+
 function logout() {
   var logout = require('../logout');
   logout.logout(hub_shared.token,
@@ -13,6 +15,7 @@ function logout() {
 
   hub_shared.token = undefined;
   hub_shared.phone_number = undefined;
+  token_cache.cache_token();
 
   sendOUT({
     json_result: JSON.stringify({action: 'logout'}),
@@ -37,7 +40,7 @@ switch (action_info.action) {
       function (status_code, result_code, message, token, nickname) {
         hub_shared.phone_number = action_info.phone_number;
         hub_shared.token = token;
-        login.cache_token(action_info.phone_number, token);
+        token_cache.cache_token(action_info.phone_number, token);
 
         var json_result = JSON.stringify({
           action: action_info.action,

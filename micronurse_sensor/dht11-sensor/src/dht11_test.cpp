@@ -24,7 +24,6 @@ int main(){
             case DHT11_SUCCESS:
                 printf("Temperature:%d, Humidity:%d\n", temperature, humidity);
         }
-        usleep(2 * 1000 * 1000);
     }
     return 0;
 }

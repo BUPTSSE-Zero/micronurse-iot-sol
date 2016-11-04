@@ -6,10 +6,11 @@ Type=forking
 
 # Please specify the path to the home of micronurse-iot-sol
 Environment="MICRONURSE_IOT_SOL_HOME=/home/root/micronurse-iot-sol"
+Environment="NODE_PATH=/usr/bin/node"
 
-ExecStart=/bin/sh -c "node ${MICRONURSE_IOT_SOL_HOME}/node_modules/hope-http-broker/bin/start_broker 16666 & \
-                      node ${MICRONURSE_IOT_SOL_HOME}/node_modules/hope-center/center ${MICRONURSE_IOT_SOL_HOME}/micronurse_center/config.json & \
-                      node ${MICRONURSE_IOT_SOL_HOME}/node_modules/hope-hub/hub ${MICRONURSE_IOT_SOL_HOME}/micronurse_hub/config.json &"
+ExecStart=/bin/sh -c "${NODE_PATH} ${MICRONURSE_IOT_SOL_HOME}/node_modules/hope-http-broker/bin/start_broker 16666 > ${MICRONURSE_IOT_SOL_HOME}/broker.log & \
+                      ${NODE_PATH} ${MICRONURSE_IOT_SOL_HOME}/node_modules/hope-center/center ${MICRONURSE_IOT_SOL_HOME}/micronurse_center/config.json > ${MICRONURSE_IOT_SOL_HOME}/micronurse_center.log & \
+                      ${NODE_PATH} ${MICRONURSE_IOT_SOL_HOME}/node_modules/hope-hub/hub ${MICRONURSE_IOT_SOL_HOME}/micronurse_hub/config.json > ${MICRONURSE_IOT_SOL_HOME}/micronurse_hub.log &"
 
 [Install]
 WantedBy=multi-user.target

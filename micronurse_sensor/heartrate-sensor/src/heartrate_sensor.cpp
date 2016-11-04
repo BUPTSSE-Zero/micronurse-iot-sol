@@ -8,8 +8,8 @@
 #include <sys/time.h>
 
 #define TIME_INTERVAL_INVALID 120
-#define DATA_INVALID 250
-#define MAX_LOOP 50000
+#define DATA_INVALID 220
+#define MAX_LOOP 10000
 #define LOW 20
 #define HIGH 1000
 #define SAMPLE_NUM 5

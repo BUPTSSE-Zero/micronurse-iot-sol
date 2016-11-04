@@ -109,7 +109,7 @@
       "config": {
         "align": "center",
         "font_weight": "bold",
-        "defval": "88",
+        "defval": "-",
         "font_size": 40
       },
       "spec": "micronurse_single_line_text",
@@ -184,7 +184,7 @@
       "config": {
         "align": "center",
         "font_weight": "bold",
-        "defval": "36.5",
+        "defval": "-",
         "font_size": 40
       },
       "spec": "micronurse_single_line_text",
@@ -194,83 +194,6 @@
       "height": 8,
       "id": "WIDGET_e1f37370-211f-11e6-9d7a-2bc5447cc943",
       "name": "temperature"
-    },
-    {
-      "config": {
-        "align": "left",
-        "font_weight": "normal",
-        "font_size": 30,
-        "defval": "血压"
-      },
-      "spec": "micronurse_single_line_text",
-      "x": 12,
-      "y": 8,
-      "width": 6,
-      "height": 6,
-      "id": "WIDGET_3f134c30-2984-11e6-9162-ad3db72d7b09",
-      "name": "turgoscope_name"
-    },
-    {
-      "config": {
-        "align": "left",
-        "orientation": "vertical",
-        "date_font_weight": "normal",
-        "time_font_weight": "normal",
-        "icon": true,
-        "icon_size": 64,
-        "date_font_size": 18,
-        "time_font_size": 30
-      },
-      "spec": "micronurse_ui_digiclock",
-      "x": 12,
-      "y": 14,
-      "width": 6,
-      "height": 9,
-      "id": "WIDGET_88adc410-2984-11e6-9162-ad3db72d7b09",
-      "name": "turgoscope_time"
-    },
-    {
-      "config": {
-        "align": "center",
-        "font_weight": "bold",
-        "font_size": 40
-      },
-      "spec": "micronurse_single_line_text",
-      "x": 12,
-      "y": 23,
-      "width": 4,
-      "height": 8,
-      "id": "WIDGET_c8489280-2984-11e6-9162-ad3db72d7b09",
-      "name": "turgoscope_value"
-    },
-    {
-      "config": {
-        "align": "left",
-        "font_weight": "normal",
-        "font_size": 30,
-        "defval": "Pa"
-      },
-      "spec": "micronurse_single_line_text",
-      "x": 16,
-      "y": 23,
-      "width": 2,
-      "height": 8,
-      "id": "WIDGET_522e6420-2985-11e6-8e26-693499937830",
-      "name": "singleLineText1"
-    },
-    {
-      "config": {
-        "align": "left",
-        "font_weight": "bold",
-        "font_size": 30
-      },
-      "spec": "micronurse_single_line_text",
-      "x": 12,
-      "y": 31,
-      "width": 6,
-      "height": 8,
-      "id": "WIDGET_77bf3e30-2985-11e6-8e26-693499937830",
-      "name": "turgoscope_message"
     }
   ]
 }

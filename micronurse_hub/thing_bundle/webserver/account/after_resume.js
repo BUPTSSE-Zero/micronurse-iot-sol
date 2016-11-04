@@ -1,3 +1,5 @@
+var token_cache = require('./token_cache');
+
 function logout() {
   var logout = require('../logout');
   logout.logout(hub_shared.token,
@@ -9,6 +11,7 @@ function logout() {
 
   hub_shared.token = undefined;
   hub_shared.phone_number = undefined;
+  token_cache.cache_token();
 
   sendOUT({
     json_result: JSON.stringify({action: 'logout'}),
@@ -69,7 +72,7 @@ function quick_login(user_id, token) {
   });
 }
 
-login.read_cache_token(function (user_id, token) {
+token_cache.read_cache_token(function (user_id, token) {
   if(user_id && token){
     quick_login(user_id, token);
   }
