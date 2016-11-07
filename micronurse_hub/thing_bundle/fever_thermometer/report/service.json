@@ -6,8 +6,15 @@
     "config": [
       {
         "name": "interval",
+        "display": "Report Interval(ms)",
         "type": "int",
         "default": 5000
+      },
+      {
+        "name": "sensor_pin",
+        "display": "Sensor PIN",
+        "type": "int",
+        "default": 0
       }
     ],
     "out": {

@@ -1,10 +1,10 @@
 console.log("Micro nurse hub - feverThermometer +" + CONFIG.name + " after resume");
 shared.feverThermometer.start(function(){
-    var increment = Math.random() * ((Math.random() < 0.5) ? 1 : -1);
+    var increment = Math.random() * ((Math.random() < 0.5) ? 1 : -1) * 0.01;
     var message_temp;
     shared.feverThermometer.base_value += increment;
-    if(shared.feverThermometer.base_value >= 40.0)
-        shared.feverThermometer.base_value = 40.0;
+    if(shared.feverThermometer.base_value >= 38.5)
+        shared.feverThermometer.base_value = 38.5;
     else if(shared.feverThermometer.base_value <= 35.0)
         shared.feverThermometer.base_value = 35.0;
         

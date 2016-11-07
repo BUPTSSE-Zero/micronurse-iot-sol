@@ -6,6 +6,7 @@
     "config": [
       {
         "name": "interval",
+        "display": "Report Interval(ms)",
         "type": "int",
         "default": 5000
       }
