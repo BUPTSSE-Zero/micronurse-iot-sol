@@ -5,7 +5,14 @@
   "spec": {
     "config": [
       {
+        "name": "webserver_host",
+        "display": "Web Server Host",
+        "type": "string",
+        "default": "micronurse-webserver"
+      },
+      {
         "name": "interval",
+        "display": "Interval of Checking Login Status",
         "type": "int",
         "default": 1000
       }

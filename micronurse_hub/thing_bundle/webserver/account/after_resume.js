@@ -2,7 +2,7 @@ var token_cache = require('./token_cache');
 
 function logout() {
   var logout = require('../logout');
-  logout.logout(hub_shared.token,
+  logout.logout(CONFIG.webserver_host, hub_shared.token,
     function () {
       console.log('Logout success.');
     }, function () {
@@ -24,7 +24,7 @@ function logout() {
 var login = require('../login');
 
 function quick_login(user_id, token) {
-    login.quick_login(user_id, token, function (status_code, result_code, message, nickname) {
+    login.quick_login(CONFIG.webserver_host, user_id, token, function (status_code, result_code, message, nickname) {
     hub_shared.phone_number = user_id;
     hub_shared.token = token;
     shared.account.auto_login_timer = null;

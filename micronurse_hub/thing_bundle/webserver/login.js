@@ -4,18 +4,18 @@
 
 var api_request = require('./micronurse_api_request');
 
-function get_account_info(token, cb){
-  api_request.start_request('/v1/iot/account_info', 'GET', null, cb, token);
+function get_account_info(host, token, cb){
+  api_request.start_request(host, '/v1/iot/account_info', 'GET', null, cb, token);
 }
 
-exports.quick_login = function (phone_number, token, success_cb, fail_cb) {
-  api_request.start_request('/v1/iot/check_login/' + phone_number, 'GET', null,
+exports.quick_login = function (host, phone_number, token, success_cb, fail_cb) {
+  api_request.start_request(host, '/v1/iot/check_login/' + phone_number, 'GET', null,
     function (error, res, data) {
       if(error)
         fail_cb(-1, -1, 'Network error');
       else{
         if(data.result_code == 0){
-          get_account_info(token, function (error, res, data) {
+          get_account_info(host, token, function (error, res, data) {
             if(error)
               fail_cb(-1, -1, 'Network error');
             else{
@@ -31,13 +31,13 @@ exports.quick_login = function (phone_number, token, success_cb, fail_cb) {
     }, token);
 };
 
-exports.login = function (phone_number, password, success_cb, fail_cb){
+exports.login = function (host, phone_number, password, success_cb, fail_cb){
   var outdata={
     phone_number: phone_number,
     password: password
   };
 
-  api_request.start_request('/v1/iot/login', 'PUT', outdata,
+  api_request.start_request(host, '/v1/iot/login', 'PUT', outdata,
     function (error, res, data) {
       if(error)
         fail_cb(-1, -1, 'Network error');
@@ -46,7 +46,7 @@ exports.login = function (phone_number, password, success_cb, fail_cb){
           console.log("Return token:" + data.token);
           var token = data.token;
           var message = data.message;
-          get_account_info(token, function (error, res, data) {
+          get_account_info(host, token, function (error, res, data) {
             if(error)
               fail_cb(-1, -1, 'Network error');
             else{

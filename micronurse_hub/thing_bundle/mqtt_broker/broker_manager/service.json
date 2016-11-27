@@ -3,6 +3,14 @@
   "name": "Broker Manager",
   "description": "Manage MQTT action, including connection, publish, subscription and so on.",
   "spec": {
+    "config": [
+      {
+        "name": "broker_host",
+        "display": "Broker Host",
+        "type": "string",
+        "default": "micronurse-mqttbroker"
+      }
+    ],
     "in": {
       "ports": [
         {

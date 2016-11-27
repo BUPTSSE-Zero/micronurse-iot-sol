@@ -5,7 +5,7 @@ switch(mqtt_action.action) {
   case 'connect':
     if(!shared.broker_manager.mqtt_client){
       var mqtt = require('mqtt');
-      var client = mqtt.connect('mqtt://micronurse-webserver:13883', {
+      var client = mqtt.connect('mqtt://' + CONFIG.broker_host +':13883', {
         clientId: 'micronurse_iot_user:' + hub_shared.phone_number,
         connectTimeout: 15 * 1000,
         username: 'micronurse_iot_user:' + hub_shared.phone_number,

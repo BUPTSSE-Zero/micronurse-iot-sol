@@ -2,12 +2,12 @@
  * Created by shengyun-zhou on 5/20/16.
  */
 
-exports.start_request = function(url, method, json_data, callback, token, timeout){
+exports.start_request = function(host, url, method, json_data, callback, token, timeout){
   var req = require('request');
 
   var opt = {
     method: method,
-    url: 'http://micronurse-webserver:13000/micronurse' + url,
+    url: 'http://'+ host + ':13000/micronurse' + url,
     headers: {},
     json: true
   };

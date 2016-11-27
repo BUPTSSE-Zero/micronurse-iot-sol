@@ -6,7 +6,7 @@ var token_cache = require('./token_cache');
 
 function logout() {
   var logout = require('../logout');
-  logout.logout(hub_shared.token,
+  logout.logout(CONFIG.webserver_host, hub_shared.token,
                 function () {
                   console.log('Logout success.');
                 }, function () {
@@ -36,7 +36,7 @@ switch (action_info.action) {
   case 'login':
     shared.account.stop();
     var login = require('../login');
-    login.login(action_info.phone_number, action_info.password,
+    login.login(CONFIG.webserver_host, action_info.phone_number, action_info.password,
       function (status_code, result_code, message, token, nickname) {
         hub_shared.phone_number = action_info.phone_number;
         hub_shared.token = token;

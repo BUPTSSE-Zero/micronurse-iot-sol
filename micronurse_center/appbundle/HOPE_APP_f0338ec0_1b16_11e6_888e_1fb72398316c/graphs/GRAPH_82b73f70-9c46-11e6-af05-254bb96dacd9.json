@@ -447,7 +447,8 @@
       {
         "spec": "__HOPE_SPEC__eb9e0e30_9cd5_11e6_800a_1d5cb60d697c",
         "config": {
-          "interval": 5000
+          "interval": 5000,
+          "sensor_pin": 0
         },
         "id": "NODE_44935720-9cd6-11e6-9f3e-7772ab9ba902"
       },
@@ -465,7 +466,7 @@
         "config": {
           "interval": 5000,
           "name": "卧室温度",
-          "dht11_sensor_pin": 0
+          "dht11_sensor_pin": 5
         },
         "id": "NODE_c58c4ee0-9cd6-11e6-8c59-11cbb098aa4c"
       },
@@ -474,7 +475,7 @@
         "config": {
           "name": "红外防盗",
           "interval": 100,
-          "pir_sensor_pin": 2
+          "pir_sensor_pin": 7
         },
         "id": "NODE_da042d20-9cd6-11e6-8c59-11cbb098aa4c"
       },
@@ -483,21 +484,24 @@
         "config": {
           "interval": 5000,
           "name": "卧室湿度",
-          "dht11_sensor_pin": 4
+          "dht11_sensor_pin": 3
         },
         "id": "NODE_dbc463d0-9d0f-11e6-b6fe-2fd61e2bef7e"
       },
       {
         "spec": "__HOPE_SPEC__51343fb0_9cd3_11e6_b1dd_5d230976588b",
         "config": {
+          "webserver_host": "micronurse-webserver",
           "interval": 1000
         },
         "id": "NODE_f61ffaa0-9d0f-11e6-b6fe-2fd61e2bef7e"
       },
       {
         "spec": "__HOPE_SPEC__415b3130_9cc3_11e6_93f5_2759676a557a",
-        "id": "NODE_f8fa91e0-9d0f-11e6-b6fe-2fd61e2bef7e",
-        "config": {}
+        "config": {
+          "broker_host": "micronurse-mqttbroker"
+        },
+        "id": "NODE_f8fa91e0-9d0f-11e6-b6fe-2fd61e2bef7e"
       },
       {
         "spec": "__HOPE_SPEC__415ba660_9cc3_11e6_93f5_2759676a557a",

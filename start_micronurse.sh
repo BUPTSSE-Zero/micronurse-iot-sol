@@ -21,4 +21,7 @@ node ./node_modules/hope-center/center ./micronurse_center/config.json > micronu
 echo "start micro nurse hub..."
 node ./node_modules/hope-hub/hub ./micronurse_hub/config.json > micronurse_hub.log &
 
+echo "start startkit hub..."
+node ./node_modules/hope-hub/hub ./node_modules/hope-demo/startkit/config.json > startkit.log &
+
 echo "visit http://localhost:8080 for develop, http://localhost:3000 for ui view"
