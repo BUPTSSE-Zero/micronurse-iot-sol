@@ -6,8 +6,8 @@ grid_col=0
 function show_help(){
     echo "Usage: buildui.sh [options]"
     echo "Options:"
-    echo "--install-build-tools         Install all the needed NodeJS build tools(may need root permission on Linux)"
-    echo "--install-dependencies        Install all the needed NodeJS module dependencies"
+    echo "--install-build-tools         Install all the needed Node.js build tools(may need root permission on Linux)"
+    echo "--install-dependencies        Install all the needed Node.js module dependencies"
     echo "--link-widgets                Link ui-widgets to ui-dev and ui-user(may need root permission on Linux)"
     echo "--quick                       Quick building, only build widgets into hope.js of ui-dev and ui-user"
     echo "--grid-columns <col-num>      Specify number of columns of grid layout of UI-IDE and UI"

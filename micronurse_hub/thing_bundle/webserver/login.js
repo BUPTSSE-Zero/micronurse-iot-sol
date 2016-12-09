@@ -8,8 +8,8 @@ function get_account_info(host, token, cb){
   api_request.start_request(host, '/v1/iot/account_info', 'GET', null, cb, token);
 }
 
-exports.quick_login = function (host, phone_number, token, success_cb, fail_cb) {
-  api_request.start_request(host, '/v1/iot/check_login/' + phone_number, 'GET', null,
+exports.quick_login = function (host, user_id, token, success_cb, fail_cb) {
+  api_request.start_request(host, '/v1/iot/check_login/' + user_id, 'GET', null,
     function (error, res, data) {
       if(error)
         fail_cb(-1, -1, 'Network error');
@@ -20,7 +20,7 @@ exports.quick_login = function (host, phone_number, token, success_cb, fail_cb) 
               fail_cb(-1, -1, 'Network error');
             else{
               if(data.result_code == 0)
-                success_cb(res.statusCode, data.result_code, data.message, data.nickname);
+                success_cb(res.statusCode, data.result_code, data.message, data.user.nickname);
               else
                 fail_cb(res.statusCode, data.result_code, data.message);
             }
@@ -51,7 +51,7 @@ exports.login = function (host, phone_number, password, success_cb, fail_cb){
               fail_cb(-1, -1, 'Network error');
             else{
               if(data.result_code == 0)
-                success_cb(res.statusCode, data.result_code, message, token, data.nickname);
+                success_cb(res.statusCode, data.result_code, message, token, data.user.user_id, data.user.nickname);
               else
                 fail_cb(res.statusCode, data.result_code, data.message);
             }

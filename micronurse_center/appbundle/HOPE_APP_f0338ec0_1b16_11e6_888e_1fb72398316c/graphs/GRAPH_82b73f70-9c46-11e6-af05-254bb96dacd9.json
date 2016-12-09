@@ -491,7 +491,7 @@
       {
         "spec": "__HOPE_SPEC__51343fb0_9cd3_11e6_b1dd_5d230976588b",
         "config": {
-          "webserver_host": "micronurse-webserver",
+          "webserver_host": "101.200.144.204",
           "interval": 1000
         },
         "id": "NODE_f61ffaa0-9d0f-11e6-b6fe-2fd61e2bef7e"
@@ -499,7 +499,7 @@
       {
         "spec": "__HOPE_SPEC__415b3130_9cc3_11e6_93f5_2759676a557a",
         "config": {
-          "broker_host": "micronurse-mqttbroker"
+          "broker_host": "101.200.144.204"
         },
         "id": "NODE_f8fa91e0-9d0f-11e6-b6fe-2fd61e2bef7e"
       },

@@ -1,4 +1,4 @@
 shared.account.stop();
 hub_shared.token = undefined;
-hub_shared.phone_number = undefined;
+hub_shared.user_id = undefined;
 done();

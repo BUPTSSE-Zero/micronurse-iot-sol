@@ -4,8 +4,8 @@ if(IN.switch) {
   var topic_user = undefined;
   switch(CONFIG.topic_user_spec){
     case 'login_user':
-      if(hub_shared.phone_number)
-        topic_user = hub_shared.phone_number;
+      if(hub_shared.user_id)
+        topic_user = hub_shared.user_id;
       break;
     case 'specific_user':
       topic_user = CONFIG.specific_topic_user;

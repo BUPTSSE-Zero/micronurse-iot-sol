@@ -5,13 +5,18 @@ Please visit [https://github.com/01org/intel-iot-services-orchestration-layer](h
 
 ## Prerequisite
 
-+ [NodeJS](https://nodejs.org)(with NPM) >= 4.4.3
-+ [libmraa](https://github.com/intel-iot-devkit/mraa)
++ [Node.js](https://Node.js.org)(with NPM) >= 4.4.3
+
+Linux:
+
++ [libmraa](https://github.com/intel-iot-devkit/mraa)(C/C++ lib and Node.js module)
 + [CMake](https://cmake.org)
+
+NOTE: if you run IoT-SOL on Windows, you will NOT be able build any sensor module, and relative sensor services in IoT-SOL will NOT work.
 
 ## Build
 
-### 1.Install all needed NodeJS modules.
+### 1.Install all needed Node.js modules.
 
 Execute following command in root directory of project:
 
@@ -25,9 +30,9 @@ Execute following commands in root directory of project:
 
 ```shell
 cd ./micronurse_ui
-# Install all  needed NodeJS build tools(may need root permission on Linux)
+# Install all  needed Node.js build tools(may need root permission on Linux)
 sh ./buildui.sh --install-build-tools
-# Install all  needed NodeJS module dependencies
+# Install all  needed Node.js module dependencies
 sh ./buildui.sh --install-dependencies
 # Link ui-widgets to ui-dev and ui-user(may need root permission on Linux)
 sh ./buildui.sh --link-widgets
@@ -35,7 +40,7 @@ sh ./buildui.sh --link-widgets
 sh ./buildui.sh --grid-columns 30
 ```
 
-### 3.Build sensor modules.
+### 3.Build sensor modules(for Linux only).
 
 Execute following commands in root directory of project:
 
@@ -53,11 +58,11 @@ Execute shell script `start_micronurse.sh` in root directory of project to start
 
 Default port of Web development UI is `8080`. Default port of Web end-user UI is `3000`.
 
-## Run on Intel Edison board 
+## Run on Intel Edison Board 
 
 ① Download project on both your host and Edison board.
 
-② Install all needed NodeJS modules on Edison board according to first step of building.
+② Install all needed Node.js modules on Edison board according to first step of building.
 
 ③ Build UI on your host according to second step of building. 
 
@@ -80,9 +85,13 @@ Set value of `MICRONURSE_IOT_SOL_HOME` to home directory of project, and set val
 
 ② Execute shell script `install_micronurse_service.sh` in root directory of project.
 
-NOTE: After executing successfully, a new Systemd service `micronurse` will be enabled, and IoT-SOL will be started automatically on next boot. And you can also use command  `systemctl`  to manage `micronurse` service.
+NOTE: After executing successfully, a new Systemd service `micronurse` will be enabled, and it will be started automatically on next boot. You can also use command  `systemctl`  to manage `micronurse` service. For example, start `micronurse` service:
 
-##  Sync code to remote host
+```shell
+systemctl start micronurse
+```
+
+##  Sync Code to Remote Host
 
 You can use `sync.sh` in root directory of project to sync your code to remote host. This script will sync your code via command  `rsync`.
 
@@ -94,6 +103,6 @@ sync.sh ${REMOTE_HOST}
 
 `$REMOTE_HOST` refer to address of remote host that you want to sync code to.
 
-By default, syncing path on remote host is `~/micronurse-iot-sol`.
+By default, remote user is `root`, and syncing path on remote host is `/home/root/micronurse-iot-sol`.
 
 NOTE: This script will NOT sync any file under directories `node_modules` and `bower_components`.

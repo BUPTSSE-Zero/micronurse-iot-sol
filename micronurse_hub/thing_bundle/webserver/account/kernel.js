@@ -14,7 +14,7 @@ function logout() {
                 });
 
   hub_shared.token = undefined;
-  hub_shared.phone_number = undefined;
+  hub_shared.user_id = undefined;
   token_cache.cache_token();
 
   sendOUT({
@@ -37,10 +37,10 @@ switch (action_info.action) {
     shared.account.stop();
     var login = require('../login');
     login.login(CONFIG.webserver_host, action_info.phone_number, action_info.password,
-      function (status_code, result_code, message, token, nickname) {
-        hub_shared.phone_number = action_info.phone_number;
+      function (status_code, result_code, message, token, user_id, nickname) {
+        hub_shared.user_id = user_id;
         hub_shared.token = token;
-        token_cache.cache_token(action_info.phone_number, token);
+        token_cache.cache_token(user_id, token);
 
         var json_result = JSON.stringify({
           action: action_info.action,
