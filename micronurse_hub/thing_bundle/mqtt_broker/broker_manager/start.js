@@ -1,2 +1,4 @@
-shared.broker_manager = {};
+shared.broker_manager = {
+  mqtt_client: null
+};
 done();

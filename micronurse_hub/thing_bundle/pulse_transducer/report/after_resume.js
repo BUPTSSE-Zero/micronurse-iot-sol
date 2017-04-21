@@ -1,29 +1,26 @@
-console.log("Micro nurse hub - pulseTransduce +" + CONFIG.name + " after resume");
 var heartrate_sensor = require('heartrate-sensor');
 
-shared.pulseTransduce.start(function(){
-    var message_temp;
+shared.pulse_transducer.start(function(){
+  heartrate_sensor.read_heart_rate(CONFIG.heartrate_sensor_pin, function (heartrate) {
+    if(heartrate > 0){
+      console.log("Heart rate: ", heartrate);
+      var now = Date.parse(new Date());
+      sendOUT({
+        heart_rate: heartrate,
+        timestamp: now,
+      });
 
-    heartrate_sensor.read_heart_rate(CONFIG.heartrate_sensor_pin, function (heartrate) {
-       if(heartrate > 0){
-           if(heartrate >= 50 && heartrate <= 120)
-               message_temp = "Safe";
-           else
-               message_temp = "Warning";
-           console.log("Micro nurse hub - pulseTransducer " + CONFIG.name + "]:", heartrate);
-
-           var outdata = {
-               value:heartrate,
-               sensor_type:"pulse_transducer",
-               timestamp:Date.parse(new Date())
-           };
-
-           sendOUT({
-               value:outdata.value,
-               message:message_temp,
-               timestamp:outdata.timestamp,
-               json_data:JSON.stringify(outdata)
-           });
-       }
-    });
-}, CONFIG.interval);
+      if(now - shared.pulse_transducer.send_timestamp >= shared.pulse_transducer.send_interval){
+        shared.pulse_transducer.send_timestamp = now;
+        var outdata = {
+          value: heartrate,
+          sensor_type: "pulse_transducer",
+          timestamp: now / 1000
+        };
+        sendOUT({
+          json_data: JSON.stringify(outdata)
+        });
+      }
+     }
+  });
+}, CONFIG.read_interval);

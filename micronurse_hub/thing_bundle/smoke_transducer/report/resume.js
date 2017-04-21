@@ -1,3 +1,2 @@
-console.log("Micro nurse hub - Smoke resume")
-shared.smoketransducer.resume();
+shared.smoke_transducer.resume();
 done();

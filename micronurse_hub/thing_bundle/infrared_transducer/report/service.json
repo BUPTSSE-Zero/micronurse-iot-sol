@@ -1,11 +1,11 @@
 {
   "name": "Report",
-  "description": "Detect if there exists somebody at intervals.",
+  "description": "Detect if there exists somebody at intervals, and send warning if somebody was detected",
   "id": "infrared_report",
   "spec": {
     "config": [
       {
-        "name": "name",
+        "name": "instance_name",
         "display": "Instance Name",
         "type": "string",
         "default": "infrared_transducer"
@@ -26,11 +26,7 @@
     "out": {
       "ports": [
         {
-          "name": "value",
-          "type": "string"
-        },
-        {
-          "name": "name",
+          "name": "warning",
           "type": "string"
         },
         {

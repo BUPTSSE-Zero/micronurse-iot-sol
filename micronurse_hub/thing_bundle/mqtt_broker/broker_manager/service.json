@@ -8,13 +8,13 @@
         "name": "broker_host",
         "display": "Broker Host",
         "type": "string",
-        "default": "micronurse-mqttbroker"
+        "default": "localhost"
       }
     ],
     "in": {
       "ports": [
         {
-          "name": "mqtt_action",
+          "name": "mqtt_action_json",
           "type": "string"
         }
       ]

@@ -5,8 +5,14 @@
   "spec": {
     "config": [
       {
-        "name": "interval",
+        "name": "read_interval",
         "display": "Report Interval(ms)",
+        "type": "int",
+        "default": 2000
+      },
+      {
+        "name": "send_interval",
+        "display": "Send Interval(ms)",
         "type": "int",
         "default": 5000
       },
@@ -20,16 +26,12 @@
     "out": {
       "ports": [
         {
-          "name": "value",
+          "name": "heart_rate",
           "type": "int"
         },
         {
           "name": "timestamp",
           "type": "long"
-        },
-        {
-          "name": "message",
-          "type": "string"
         },
         {
           "name": "json_data",

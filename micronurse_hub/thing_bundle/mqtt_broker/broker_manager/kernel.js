@@ -1,39 +1,52 @@
-console.log('Micro nurse hub - MQTT broker manager kernel');
-var mqtt_action = JSON.parse(IN.mqtt_action);
+var mqtt_action = JSON.parse(IN.mqtt_action_json);
 
-switch(mqtt_action.action) {
+switch(mqtt_action.action.toLowerCase()) {
   case 'connect':
-    if(!shared.broker_manager.mqtt_client){
-      var mqtt = require('mqtt');
-      var client = mqtt.connect('mqtt://' + CONFIG.broker_host +':13883', {
-        clientId: 'micronurse_iot_user:' + hub_shared.user_id,
-        connectTimeout: 15 * 1000,
-        username: 'micronurse_iot_user:' + hub_shared.user_id,
-        password: hub_shared.token,
-        queueQoSZero: false
-      });
-
-      client.on('connect', function () {
-        console.log('Connect to MQTT broker successfully.');
-        shared.broker_manager.mqtt_client = client;
-        sendOUT({
-          connected: true
-        });
-      });
-
-      client.on('message', function (topic, message) {
-        var message_info = parse_full_topic(topic);
-        message_info.message = message.toString();
-        sendOUT({
-          message_json: JSON.stringify(message_info)
-        });
-      });
+    var mqtt = require('mqtt');
+    if(shared.broker_manager.mqtt_client){
+      shared.broker_manager.mqtt_client.end();
+      shared.broker_manager.mqtt_client = null;
     }
+    var client = mqtt.connect('mqtt://' + CONFIG.broker_host, {
+      clientId: mqtt_action.connect_info.client_id,
+      connectTimeout: 15 * 1000,
+      username: mqtt_action.connect_info.username,
+      password: mqtt_action.connect_info.password,
+      reconnectPeriod: 3000,
+      clean: false,
+      queueQoSZero: false
+    });
+
+    client.on('connect', function () {
+      console.log('Connect to MQTT broker successfully.');
+      shared.broker_manager.mqtt_client = client;
+      sendOUT({
+        connected: true
+      });
+    });
+
+    /*client.on('error', function (error) {
+      console.error(error);
+      if(!client.connected){
+        shared.broker_manager.mqtt_client = null;
+        sendOUT({
+          connected: false
+        });
+      }
+    });*/
+
+    client.on('message', function (topic, message) {
+      var message_info = parse_full_topic(topic);
+      message_info.message = message.toString();
+      sendOUT({
+        message_json: JSON.stringify(message_info)
+      });
+    });
     break;
   case 'disconnect':
     if(shared.broker_manager.mqtt_client){
       shared.broker_manager.mqtt_client.end();
-      shared.broker_manager.mqtt_client = undefined;
+      shared.broker_manager.mqtt_client = null;
       console.log('Disconnected from MQTT broker.');
     }
     break;
@@ -55,34 +68,18 @@ switch(mqtt_action.action) {
 
 function get_full_topic(topic_info) {
   var topic = topic_info.topic;
-  if (topic_info.topic_receiver)
-    topic += '/' + topic_info.topic_receiver;
   if (topic_info.topic_user)
     topic += '/' + topic_info.topic_user;
   return topic;
 }
 
-function parse_full_topic(topic) {
-  var topic_user = undefined;
-  var topic_receiver = undefined;
-  var topic_split = topic.split('/');
-  if(topic_split.length > 1) {
-    topic_user = topic_split[topic_split.length - 1];
-    var end = topic_split.length - 1;
-    if(topic_split.length > 2){
-      topic_receiver = topic_split[topic_split.length - 2];
-      end = topic_split.length - 2;
-    }
-    topic = '';
-    for(i = 0; i < end; i++){
-      topic += topic_split[i];
-      if(i < end - 1)
-        topic += '/';
-    }
-  }
+function parse_full_topic(full_topic) {
+  var topic_split = full_topic.split('/');
+  var topic = topic_split[0];
+  var topic_user = topic_split[1];
+
   return {
     topic: topic,
-    topic_user: topic_user,
-    topic_receiver: topic_receiver
+    topic_user: topic_user
   }
 }

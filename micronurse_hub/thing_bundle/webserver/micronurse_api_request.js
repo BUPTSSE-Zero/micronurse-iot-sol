@@ -7,7 +7,7 @@ exports.start_request = function(host, url, method, json_data, callback, token, 
 
   var opt = {
     method: method,
-    url: 'http://'+ host + ':13000/micronurse' + url,
+    url: 'http://'+ host + '/micronurse' + url,
     headers: {},
     json: true
   };

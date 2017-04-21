@@ -1,20 +1,32 @@
 {
-  "description": "Report the humidity at intervals.",
+  "description": "Report and send the humidity and temperature at intervals.",
   "id": "humidometer_report",
   "name": "Report",
   "spec": {
     "config": [
       {
-        "name": "interval",
-        "display": "Report Interval(ms)",
+        "name": "read_interval",
+        "display": "Read Interval(ms)",
+        "type": "int",
+        "default": 1000
+      },
+      {
+        "name": "send_interval",
+        "display": "Send Interval(ms)",
         "type": "int",
         "default": 5000
       },
       {
-        "name": "name",
-        "display": "Instance Name",
+        "name": "humidometer_instance_name",
+        "display": "Humidometer Instance Name",
         "type": "string",
         "default": "humidometer"
+      },
+      {
+        "name": "thermometer_instance_name",
+        "display": "Thermometer Instance Name",
+        "type": "string",
+        "default": "thermometer"
       },
       {
         "name": "dht11_sensor_pin",
@@ -26,12 +38,12 @@
     "out": {
       "ports": [
         {
-          "name": "value",
-          "type": "int"
+          "name": "humidity",
+          "type": "float"
         },
         {
-          "name": "name",
-          "type": "string"
+          "name": "temperature",
+          "type": "float"
         },
         {
           "name": "timestamp",

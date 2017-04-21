@@ -1,24 +1,9 @@
-console.log("Micro nurse hub - Smoke Transducer " + CONFIG.name + " after resume");
-var mq2sensor = require('mq2-sensor');
-
-shared.smoketransducer.start(function() {
-  mq2sensor.read_smoke(CONFIG.mq2_sensor_pin, shared.smoketransducer.r0, function (result, smoke) {
-    if(result == 0){
-      var value = smoke;
-      console.log("[Micro nurse hub - Smoke Transducer " + CONFIG.name + "]:", value);
-      var outdata = {
-        value: value.toFixed(0),
-        sensor_type: "smoke_transducer",
-        name: CONFIG.name,
-        timestamp: Date.parse(new Date())
-      };
-
-      sendOUT({
-        value: outdata.value,
-        name: outdata.name,
-        timestamp: outdata.timestamp,
-        json_data: JSON.stringify(outdata)
-      });
-    }
-  });
-}, CONFIG.interval);
+shared.smoke_transducer.start(function() {
+  var len = shared.smoke_transducer.mq2_sensor.getSampledWindow(3, shared.smoke_transducer.buffer_len,
+    shared.smoke_transducer.buffer);
+  if(len){
+    var thresh = shared.smoke_transducer.mq2_sensor.findThreshold(shared.smoke_transducer.mq2_thresh, 30,
+      shared.smoke_transducer.buffer, len);
+    shared.smoke_transducer.mq2_sensor.printGraph(shared.smoke_transducer.mq2_thresh, 5);
+  }
+}, CONFIG.read_interval);

@@ -1,6 +1,6 @@
 console.log('Micro nurse hub - report sensor data kernel');
 
-if(hub_shared.user_id) {
+if(hub_shared.has_login && hub_shared.user_id) {
   sendOUT({
     mqtt_publish: JSON.stringify({
       action: 'publish',

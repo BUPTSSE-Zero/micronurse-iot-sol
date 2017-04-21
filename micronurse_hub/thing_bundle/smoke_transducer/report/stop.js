@@ -1,3 +1,2 @@
-console.log("Micro nurse hub - Smoke stop")
-shared.smoketransducer.stop();
+shared.smoke_transducer.stop();
 done();

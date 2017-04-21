@@ -1,4 +1,4 @@
-shared.pulse_transducer = {
+shared.humidometer_thermometer = {
   timer: null,
   send_timestamp: 0,
   send_interval: parseInt(CONFIG.send_interval),
@@ -11,12 +11,15 @@ shared.pulse_transducer = {
     }
     this.timer = null;
   },
+
   stop: function() {
     this.pause();
   },
+
   resume: function() {
-    this.timer = setInterval(this.callback, this.send_interval);
+    this.timer = setInterval(this.callback, this.timer_interval);
   },
+
   start: function(cb, interval) {
     if(!this.timer)
       this.stop();
@@ -26,7 +29,7 @@ shared.pulse_transducer = {
   }
 };
 
-if(shared.pulse_transducer.send_interval < 1000)
-  shared.pulse_transducer.send_interval = 1000;
+if(shared.humidometer_thermometer.send_interval < 1000)
+  shared.humidometer_thermometer.send_interval = 1000;
 
 done();

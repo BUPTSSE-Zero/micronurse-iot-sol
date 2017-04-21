@@ -1,0 +1,41 @@
+{
+  "id": "UI_2fd8dda0-23f9-11e7-86a3-85be6a9192d8",
+  "name": "Main UI",
+  "description": {
+    "type": "User UI",
+    "name": "Main UI",
+    "desc": ""
+  },
+  "app": "HOPE_APP_f0338ec0_1b16_11e6_888e_1fb72398316c",
+  "widgets": [
+    {
+      "config": {
+        "align": "center",
+        "font_weight": "bold",
+        "defval": "微保姆",
+        "font_size": 32
+      },
+      "spec": "micronurse_single_line_text",
+      "x": 0,
+      "y": 0,
+      "width": 30,
+      "height": 6,
+      "id": "WIDGET_b84521d0-24ad-11e7-83f0-397a415f7e60",
+      "name": "txt_title"
+    },
+    {
+      "config": {
+        "align": "center",
+        "font_size": 18,
+        "img_size": 180
+      },
+      "spec": "micronurse_ui_account",
+      "x": 0,
+      "y": 6,
+      "width": 30,
+      "height": 30,
+      "id": "WIDGET_5afa8170-25be-11e7-b478-03e0c3cb4ad0",
+      "name": "account"
+    }
+  ]
+}

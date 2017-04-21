@@ -8,20 +8,18 @@
         "name": "webserver_host",
         "display": "Web Server Host",
         "type": "string",
-        "default": "micronurse-webserver"
-      },
-      {
-        "name": "interval",
-        "display": "Interval of Checking Login Status",
-        "type": "int",
-        "default": 1000
+        "default": "localhost"
       }
     ],
     "in": {
       "ports": [
         {
-          "name": "action",
+          "name": "mqtt_message_json",
           "type": "string"
+        },
+        {
+          "name": "mqtt_connected",
+          "type": "boolean"
         }
       ]
     },
@@ -32,7 +30,7 @@
           "type": "string"
         },
         {
-          "name": "mqtt_connect",
+          "name": "mqtt_action_json",
           "type": "string"
         }
       ]

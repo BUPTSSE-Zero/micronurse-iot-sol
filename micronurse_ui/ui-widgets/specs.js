@@ -880,6 +880,10 @@ var specs = [{
       display: "Font Size",
       type: "int",
     },{
+      name: "img_size",
+      display: "Image Size",
+      type: "int",
+    },{
       name: "align",
       display: "Align",
       type: "option",
@@ -890,13 +894,6 @@ var specs = [{
     in: {
       ports: [{
         name: "action_result",
-        type: "string"
-      }]
-    },
-
-    out: {
-      ports: [{
-        name: "action",
         type: "string"
       }]
     }

@@ -1,64 +1,37 @@
 /**
  * Created by shengyun-zhou on 5/19/16.
  */
+var qrcode = require('qrcode');
 
 export default class AccountWidget extends Widget {
-  $phone_number = '';
-  $password = '';
-  $is_login = false;
+  $qr_code_str = null;
 
-  _login(){
-    var outdata = JSON.stringify({
-      action: 'login',
-      phone_number: this.$phone_number,
-      password: this.$password
-    });
-    this.send_data({
-      action: outdata
-    });
+  componentDidMount() {
+    super.componentDidMount();
+    this.init_widget();
   }
 
-  _on_login_phone_number_change(e){
-    if (this.$phone_number !== e.target.value) {
-      this.$phone_number = e.target.value;
+  componentDidUpdate() {
+    this.init_widget();
+  }
+
+  init_widget(){
+    if(this.$qr_code_str) {
+      qrcode.toCanvas(this.refs.qrcode_canvas, this.$qr_code_str, function (error) {
+        if (error)
+          console.error(error);
+      });
     }
-  }
-
-  _on_login_password_change(e){
-    if (this.$password !== e.target.value) {
-      this.$password = e.target.value;
-    }
-  }
-
-  _on_login_key_down(e) {
-    if (e.keyCode === 13) {   // enter
-      this._login();
-    }
-  }
-
-  _on_login_button_click(e) {
-    e.stopPropagation();
-    this._login();
-  }
-
-  _on_logout_button_click(e) {
-    e.stopPropagation();
-    var outdata = JSON.stringify({
-      action: 'logout',
-    });
-    this.send_data({
-      action: outdata
-    });
   }
 
   render() {
     var w = this.props.widget;
     var data = this.get_data();
-    var table_style = {height: this.get_height()};
-    var text_style = {paddingLeft: 12, paddingRight: 12};
-    var edit_box_style = {paddingTop: 4, paddingBottom: 4};
-    var button_style = {paddingLeft: 30, paddingRight: 30};
+    var table_style = {width: this.get_width()};
+    var text_style = {margin: 5};
+    var img_style = {width: 128, height: 128, margin: 20};
     var action_result = null;
+    this.$qr_code_str = null;
 
     if (_.isArray(data) && data.length > 0) {
       try {
@@ -70,26 +43,44 @@ export default class AccountWidget extends Widget {
 
     if (w.config.font_size) {
       table_style.fontSize = w.config.font_size;
-      edit_box_style.fontSize = w.config.font_size;
-      button_style.fontSize = w.config.font_size;
+      text_style.fontSize = w.config.font_size;
+    }
+
+    if (w.config.img_size){
+      img_style.width = img_style.height = w.config.img_size;
     }
 
     if (w.config.align) {
-      if (w.config.align == 'center'){
-        table_style.margin = 'auto'
-      }else if(w.config.align == 'left'){
-        table_style.marginRight = 'auto';
+      if (w.config.align === 'center'){
+        table_style.textAlign = 'center'
+      }else if(w.config.align === 'left'){
+        table_style.textAlign = 'left';
       }else{
-        table_style.marginLeft = 'auto';
+        table_style.textAlign = 'right';
       }
     }
 
-    if(!action_result || action_result.action === 'logout' || (action_result.action === 'login' && action_result.result_code !== 0)) {
+    if(!action_result)
+      return super.render(
+        <table style={table_style}>
+          <tr>
+            <td>
+              <img style={img_style} src="images/micronurse/logo.png"/>
+            </td>
+          </tr>
+          <tr>
+            <td style={text_style}>
+              正在获取登录信息……
+            </td>
+          </tr>
+        </table>
+      );
+    if(action_result.action === 'logout' || (action_result.action === 'login' && action_result.result_code !== 0)) {
       var message = '';
       if(action_result && action_result.message) {
           message = action_result.message;
       }
-      var message_td = <td></td>;
+      var message_td = <td/>;
       if(message.length > 0) {
         message_td =
           <td style={text_style}>
@@ -98,47 +89,44 @@ export default class AccountWidget extends Widget {
             </span>
           </td>
       }
-      return super.render(
-        <form>
-          <table style={table_style}>
-            <tr>
-              <td style={text_style}>
-                手机号:
-              </td>
-              <td>
-                <input type="text" ref="input_phone_number" className="form-control" style={edit_box_style}
-                       onChange={this._on_login_phone_number_change}/>
-              </td>
-              <td style={text_style}>
-                密码:
-              </td>
-              <td>
-                <input type="password" ref="input_password" className="form-control" style={edit_box_style}
-                       onChange={this._on_login_password_change}/>
-              </td>
-              <td style={text_style}>
-                <div className="btn btn-primary" style={button_style}
-                     onClick={this._on_login_button_click}>
-                  登 录
-                </div>
-              </td>
-              {message_td}
-            </tr>
-          </table>
-        </form>
-      );
-    }else if(action_result.action === 'login' && action_result.result_code === 0){
+      this.$qr_code_str = JSON.stringify({
+        action: 'iot_login',
+        token: action_result.token
+      });
       return super.render(
         <table style={table_style}>
           <tr>
-            <td style={text_style}>
-              {"欢迎您，" + action_result.nickname}
+            <td>
+              <canvas style={img_style} ref="qrcode_canvas"/>
             </td>
+          </tr>
+          <tr>
+            {message_td}
+          </tr>
+          <tr>
             <td style={text_style}>
-              <div className="btn btn-danger" style={button_style}
-                   onClick={this._on_logout_button_click}>
-                注 销
-              </div>
+              请在手机应用内扫描二维码登录
+            </td>
+          </tr>
+        </table>
+      );
+    }else if(action_result.action === 'login' && action_result.result_code === 0){
+      img_style.borderRadius = '50%';
+      return super.render(
+        <table style={table_style}>
+          <tr>
+            <td>
+              <img style={img_style} src={'data:image/png;base64,' + action_result.user.portrait}/>
+            </td>
+          </tr>
+          <tr>
+            <td style={text_style}>
+              {'欢迎您，' + action_result.user.nickname}
+            </td>
+          </tr>
+          <tr>
+            <td style={text_style}>
+              若要注销账号，请通过手机应用内的应用设置注销
             </td>
           </tr>
         </table>

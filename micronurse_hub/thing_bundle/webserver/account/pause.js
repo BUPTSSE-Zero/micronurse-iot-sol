@@ -1,2 +1,0 @@
-shared.account.pause();
-done();

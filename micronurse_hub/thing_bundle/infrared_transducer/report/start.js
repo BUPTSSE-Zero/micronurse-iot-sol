@@ -4,6 +4,7 @@ shared.infrared_transducer= {
   timer: null,
   interval: 100,
   warning: false,
+  pin: null,
 
   callback: function() {},
   pause: function() {
@@ -33,5 +34,9 @@ shared.infrared_transducer= {
     this.resume();
   }
 };
+
+var m = require("mraa");
+shared.infrared_transducer.pin = new m.Gpio(CONFIG.pir_sensor_pin);
+shared.infrared_transducer.pin.dir(1);
 
 done();

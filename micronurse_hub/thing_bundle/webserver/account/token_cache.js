@@ -17,8 +17,8 @@ exports.read_cache_token = function (cb) {
       cb(token_info.user_id, token_info.token);
     }catch (e){
       console.log(e);
+      cb();
     }
-    cb();
   });
 };
 

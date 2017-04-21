@@ -1,8 +1,13 @@
-console.log("Micro nurse hub - Smoke init");
-
-shared.smoketransducer = {
+shared.smoke_transducer = {
   timer: null,
-  interval: 2000,
+  send_timestamp: 0,
+  send_interval: parseInt(CONFIG.send_interval),
+  timer_interval: null,
+  mq2_sensor: null,
+  mq2_thresh: null,
+  buffer: null,
+  buffer_len: 64,
+
   callback: function() {},
   pause: function() {
     if (this.timer) {
@@ -16,29 +21,28 @@ shared.smoketransducer = {
   },
   
   resume: function() {
-    this.timer = setInterval(this.callback, this.interval);
+    this.timer = setInterval(this.callback, this.send_interval);
   },
     
   start: function(cb, interval) {
-    if (this.interval !== interval || this.callback !== cb) {
+    if(!this.timer)
       this.stop();
-      this.callback = cb;
-      this.interval = interval;
-      if (this.interval <= 500) {
-        this.interval = 500;
-      }
-    }
+    this.callback = cb;
+    this.timer_interval = parseInt(interval);
     this.resume();
   }
 };
 
-var mq2sensor = require('mq2-sensor');
-mq2sensor.calibrate(CONFIG.mq2_sensor_pin, function (result, r0) {
-  if(result == 0){
-    shared.smoketransducer.r0 = r0;
-    done();
-  }else{
-    //fail();
-    done();
-  }
-});
+if(shared.smoke_transducer.send_interval < 1000)
+  shared.smoke_transducer.send_interval = 1000;
+
+var upm_mq2 = require("jsupm_gas");
+shared.smoke_transducer.mq2_sensor = new upm_mq2.MQ2(0);
+
+shared.smoke_transducer.mq2_thresh = new upm_mq2.thresholdContext;
+shared.smoke_transducer.mq2_thresh.averageReading = 0;
+shared.smoke_transducer.mq2_thresh.runningAverage = 0;
+shared.smoke_transducer.mq2_thresh.averagedOver = 2;
+shared.smoke_transducer.buffer = upm_mq2.uint16Array(shared.smoke_transducer.buffer_len);
+
+done();

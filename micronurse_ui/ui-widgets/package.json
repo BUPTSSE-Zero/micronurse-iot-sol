@@ -30,7 +30,8 @@
     "d3": "^3.5.8",
     "d3-gauge-x": "^0.2.1",
     "hope-widget-digital-clock": "^2.0.5",
-    "hope-widget-liquid-fill-gauge": "^2.0.6"
+    "hope-widget-liquid-fill-gauge": "^2.0.6",
+    "qrcode": "^0.8.1"
   },
   "devDependencies": {
     "babel-eslint": "^4.1.6",

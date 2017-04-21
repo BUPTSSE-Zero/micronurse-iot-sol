@@ -1,3 +1,2 @@
-console.log("Micro nurse hub - pulseTransduce stop")
-shared.pulseTransduce.stop();
+shared.pulse_transducer.stop();
 done();

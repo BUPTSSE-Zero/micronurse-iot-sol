@@ -1,2 +1,0 @@
-shared.account.resume();
-done();

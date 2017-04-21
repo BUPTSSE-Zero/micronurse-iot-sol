@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 quick_build=0
-grid_col=0
+grid_col=30
 
 function show_help(){
     echo "Usage: buildui.sh [options]"
@@ -36,7 +36,7 @@ if [ $# -gt 0 ]; then
         npm install
         sed -i -e '1i\@import "properties";' ./src/gridstack.scss
         sed -i -e '1i\@import "properties";' ./src/gridstack-extra.scss
-        echo "\$gridstack-columns: 12;" > ./src/_properties.scss
+        echo "\$gridstack-columns: ${grid_col};" > ./src/_properties.scss
         cd ../../../../ui-user
         npm install
         bower --allow-root install
@@ -44,7 +44,7 @@ if [ $# -gt 0 ]; then
         npm install
         sed -i -e '1i\@import "properties";' ./src/gridstack.scss
         sed -i -e '1i\@import "properties";' ./src/gridstack-extra.scss
-        echo "\$gridstack-columns: 12;" > ./src/_properties.scss
+        echo "\$gridstack-columns: ${grid_col};" > ./src/_properties.scss
         exit 0
     elif [ $1 == "--link-widgets" ]; then
         cd ./ui-dev/
