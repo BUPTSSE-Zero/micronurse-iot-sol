@@ -1,9 +1,8 @@
 //
-// Created by zhou-shengyun on 16-11-1.
+// Created by shengyun-zhou on 17-5-2.
 //
 
-#include "heartrate_sensor.h"
-#include <mraa.h>
+#include "DFRobotHeartrate.h"
 #include <algorithm>
 #include <sys/time.h>
 
@@ -14,42 +13,46 @@
 #define HIGH 1000
 #define SAMPLE_NUM 5
 
-long get_current_timestamp() {
-    struct timeval tv;
+DFRobotHeartrate::DFRobotHeartrate(int pin) {
+    aio_ = new Aio(pin);
+}
+
+DFRobotHeartrate::~DFRobotHeartrate() {
+    if(aio_ != nullptr)
+        delete aio_;
+}
+
+long GetCurrentTimestamp() {
+    timeval tv;
     gettimeofday(&tv,NULL);
     return tv.tv_sec * 1000 + tv.tv_usec / 1000;
 }
 
-int wait_cycle(mraa_aio_context aio){
+int DFRobotHeartrate::WaitCycle_(){
     for(int i = 0; i <= MAX_LOOP; i++){
-        if(mraa_aio_read(aio) < LOW)
+        if(aio_->read() < LOW)
             break;
         if(i == MAX_LOOP)
-            return HEARTRATE_TIMEOUT;
+            return DFRobotHeartrate::RESULT_ERROR_TIMEOUT;
     }
     for(int i = 0; i <= MAX_LOOP; i++){
-        if(mraa_aio_read(aio) > HIGH)
+        if(aio_->read() > HIGH)
             break;
         if(i == MAX_LOOP)
-            return HEARTRATE_TIMEOUT;
+            return DFRobotHeartrate::RESULT_ERROR_TIMEOUT;
     }
     return 0;
 }
 
-
-int heartrate_read_heartrate(int pin){
-    mraa_aio_context aio = mraa_aio_init(pin);
-    if(aio == NULL)
-        return HEARTRATE_INIT_ERROR;
+int DFRobotHeartrate::ReadHeartrate(int &heartrate) {
     long timestamp[SAMPLE_NUM] = {0};
     int time_interval[SAMPLE_NUM - 1] = {0};
     usleep(100 * 1000);
     for(int i = 0; i < SAMPLE_NUM; i++){
-        if(wait_cycle(aio) == HEARTRATE_TIMEOUT)
-            return HEARTRATE_TIMEOUT;
-        timestamp[i] = get_current_timestamp();
+        if(WaitCycle_() == DFRobotHeartrate::RESULT_ERROR_TIMEOUT)
+            return DFRobotHeartrate::RESULT_ERROR_TIMEOUT;
+        timestamp[i] = GetCurrentTimestamp();
     }
-    mraa_aio_close(aio);
     for(int i = 0; i < SAMPLE_NUM - 1; i++)
         time_interval[i] = timestamp[i + 1] - timestamp[i];
     std::sort(time_interval, time_interval + SAMPLE_NUM - 1);
@@ -68,14 +71,15 @@ int heartrate_read_heartrate(int pin){
     }
 
     if(calc_start_pos < 0 || calc_end_pos < 0)
-        return HEARTRATE_INVALID_DATA;
+        return DFRobotHeartrate::RESULT_ERROR_INVALID_DATA;
     int sum = 0;
     for(int i = calc_start_pos; i <= calc_end_pos; i++)
         sum += time_interval[i];
     if(sum == 0)
-        return HEARTRATE_INVALID_DATA;
+        return DFRobotHeartrate::RESULT_ERROR_INVALID_DATA;
     int result = 60000 * (calc_end_pos - calc_start_pos + 1) / sum;
     if(result >= DATA_INVALID)
-        return HEARTRATE_INVALID_DATA;
-    return result;
+        return DFRobotHeartrate::RESULT_ERROR_INVALID_DATA;
+    heartrate = result;
+    return DFRobotHeartrate::RESULT_SUCCESS;
 }

@@ -8,11 +8,11 @@
         "name": "instance_name",
         "display": "Instance Name",
         "type": "string",
-        "default": "infrared_transducer"
+        "default": "infrared transducer"
       },
       {
         "name": "interval",
-        "display": "Report Interval(ms)",
+        "display": "Read Interval(ms)",
         "type": "int",
         "default": 100
       },

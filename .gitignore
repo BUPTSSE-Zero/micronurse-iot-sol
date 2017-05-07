@@ -49,4 +49,6 @@ ui-dev/*
 ui-user/*
 ui-widgets/*
 **/build/*
-/token-cache
+**/cmake-build-debug/*
+token-cache
+sync_config.sh

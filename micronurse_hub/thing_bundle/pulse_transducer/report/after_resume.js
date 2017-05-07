@@ -1,26 +1,32 @@
-var heartrate_sensor = require('heartrate-sensor');
-
 shared.pulse_transducer.start(function(){
-  heartrate_sensor.read_heart_rate(CONFIG.heartrate_sensor_pin, function (heartrate) {
-    if(heartrate > 0){
+  var value = shared.pulse_transducer.sensor.read_heartrate();
+  switch (value.result){
+    case 0:
+      heartrate = value.heartrate;
       console.log("Heart rate: ", heartrate);
       var now = Date.parse(new Date());
       sendOUT({
         heart_rate: heartrate,
         timestamp: now,
       });
-
-      if(now - shared.pulse_transducer.send_timestamp >= shared.pulse_transducer.send_interval){
-        shared.pulse_transducer.send_timestamp = now;
-        var outdata = {
-          value: heartrate,
-          sensor_type: "pulse_transducer",
-          timestamp: now / 1000
-        };
-        sendOUT({
-          json_data: JSON.stringify(outdata)
-        });
-      }
-     }
+      shared.pulse_transducer.value_cache = {
+        heart_rate: heartrate,
+        timestamp: now,
+      };
+      break;
+  }
+}, function () {
+  if(!shared.pulse_transducer.value_cache)
+    return;
+  var heartrate = shared.pulse_transducer.value_cache.heart_rate;
+  var read_time = shared.pulse_transducer.value_cache.timestamp;
+  var outdata = {
+    value: heartrate,
+    sensor_type: "pulse_transducer",
+    timestamp: read_time / 1000
+  };
+  sendOUT({
+    json_data: JSON.stringify(outdata)
   });
-}, CONFIG.read_interval);
+  shared.pulse_transducer.value_cache = null;
+});

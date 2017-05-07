@@ -1,14 +1,14 @@
 {
-  "name": "heartrate-sensor",
+  "name": "ds18b20-sensor",
   "version": "0.0.1",
-  "description": "Read heartrate value from DFRobot heartrate sensor.",
-  "main": "./build/Release/heartrate-sensor",
+  "description": "Read temperature value from DS18B20 sensor.",
+  "main": "./build/Release/ds18b20-sensor",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "install": "cmake-js compile"
   },
   "keywords": [
-    "DFRobot Heart Rate"
+    "DS18B20"
   ],
   "author": "Shengyun Zhou",
   "license": "GPL-3.0"

@@ -3,9 +3,10 @@ cmake_minimum_required(VERSION 2.8)
 project(heartrate-sensor)
 
 set(SOURCE_FILES
-        src/heartrate_sensor_node.cpp
-        src/heartrate_sensor.h
-        src/heartrate_sensor.cpp)
+        src/DFRobotHeartrate.cc
+        src/DFRobotHeartrate.h
+        src/DFRobotHeartrateNodeObject.cc
+        src/DFRobotHeartrateNodeObject.h)
 
 include_directories(${CMAKE_JS_INC})
 
@@ -23,8 +24,8 @@ target_link_libraries(heartrate-sensor ${CMAKE_JS_LIB})
 project(heartrate-sensor-test)
 
 set(TEST_SOURCE_FILES
-        src/heartrate_sesnor_test.cpp
-        src/heartrate_sensor.h
-        src/heartrate_sensor.cpp)
+        src/DFRobotHeartrate.cc
+        src/DFRobotHeartrate.h
+        src/DFRobotHeartrateTest.cc)
 
 add_executable(heartrate-sensor-test ${TEST_SOURCE_FILES})

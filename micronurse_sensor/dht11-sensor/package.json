@@ -8,8 +8,8 @@
     "install": "cmake-js compile"
   },
   "keywords": [
-    "DHT11 Sensor"
+    "DHT11"
   ],
-  "author": "Zhou Shengyun",
+  "author": "Shengyun Zhou",
   "license": "GPL-3.0"
 }

@@ -1,12 +1,13 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.1)
 
 project(dht11-sensor)
 
 set(SOURCE_FILES
-        src/dht11_sensor_node.cpp
-        src/dht11_sensor.h
-        src/dht11_sensor.cpp)
-
+        src/DHT11.cc
+        src/DHT11.h
+        src/DHT11NodeObject.cc
+        src/DHT11NodeObject.h)
+set (CMAKE_CXX_STANDARD 11)
 include_directories(${CMAKE_JS_INC})
 
 message(STATUS "Try to find MRAA modules...")
@@ -23,7 +24,7 @@ target_link_libraries(dht11-sensor ${CMAKE_JS_LIB})
 project(dht11-test)
 
 set(TEST_SOURCE_FILES
-        src/dht11_sensor.h
-        src/dht11_sensor.cpp
-        src/dht11_test.cpp)
+        src/DHT11.cc
+        src/DHT11.h
+        src/DHT11Test.cc)
 add_executable(dht11-test ${TEST_SOURCE_FILES})

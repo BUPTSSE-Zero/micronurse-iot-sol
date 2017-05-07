@@ -3,7 +3,7 @@
 function show_help(){
     echo "Usage: build.sh [options]"
     echo "Options:"
-    echo "--install-cmake-js         Install build tool cmake-js(may need root permission on Linux)"
+    echo "--install-cmake-js         Install build tool cmake-js"
 }
 
 if [ $# -gt 0 ]; then
@@ -23,3 +23,7 @@ cd ./dht11-sensor
 cmake-js compile && cp -r ../dht11-sensor ../../node_modules
 cd ../heartrate-sensor
 cmake-js compile && cp -r ../heartrate-sensor ../../node_modules
+cd ../mq2-sensor
+cmake-js compile && cp -r ../mq2-sensor ../../node_modules
+cd ../ds18b20-sensor
+cmake-js compile && cp -r ../ds18b20-sensor ../../node_modules

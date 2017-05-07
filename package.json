@@ -69,7 +69,8 @@
     "tgz.js": "^1.0.7",
     "ipaddr.js": "^1.1.0",
     "clone": "1.0.2",
-    "mongodb": "^2.0.46"
+    "mongodb": "^2.0.46",
+    "mraa": "^1.6.1"
   },
   "bundledDependencies": [
     "hope-base",

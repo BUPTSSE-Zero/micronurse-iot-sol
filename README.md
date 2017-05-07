@@ -1,18 +1,16 @@
-#Micro Nurse IoT-SOL
+# Micro Nurse IoT-SOL
 The IoT-SOL client of Micro Nurse IoT application. 
 
 Please visit [https://github.com/01org/intel-iot-services-orchestration-layer](https://github.com/01org/intel-iot-services-orchestration-layer) for more information about IoT-SOL.
 
 ## Prerequisite
 
-+ [Node.js](https://Node.js.org)(with NPM) >= 4.4.3
++ [Node.js](https://Node.js.org)(with NPM) >= 6.0.0
 
-Linux:
 
-+ [libmraa](https://github.com/intel-iot-devkit/mraa)(C/C++ lib and Node.js module)
++ [libmraa](https://github.com/intel-iot-devkit/mraa)(C/C++ lib)
++ [libupm](https://github.com/intel-iot-devkit/upm)(C/C++ lib)
 + [CMake](https://cmake.org)
-
-NOTE: if you run IoT-SOL on Windows, you will NOT be able build any sensor module, and relative sensor services in IoT-SOL will NOT work.
 
 ## Build
 
@@ -30,23 +28,23 @@ Execute following commands in root directory of project:
 
 ```shell
 cd ./micronurse_ui
-# Install all  needed Node.js build tools(may need root permission on Linux)
+# Install all  needed Node.js build tools
 sh ./buildui.sh --install-build-tools
+# Link ui-widgets to ui-dev and ui-user
+sh ./buildui.sh --link-widgets
 # Install all  needed Node.js module dependencies
 sh ./buildui.sh --install-dependencies
-# Link ui-widgets to ui-dev and ui-user(may need root permission on Linux)
-sh ./buildui.sh --link-widgets
 # Build UI with 30 columns of grid layout of UI-IDE and UI
 sh ./buildui.sh --grid-columns 30
 ```
 
-### 3.Build sensor modules(for Linux only).
+### 3.Build sensor modules.
 
 Execute following commands in root directory of project:
 
 ```shell
 cd ./micronurse_sensor
-# Install build tool cmake-js(may need root permission on Linux)
+# Install build tool cmake-js
 sh ./build.sh --install-cmake-js 
 # Build modules
 sh ./build.sh
@@ -91,18 +89,18 @@ NOTE: After executing successfully, a new Systemd service `micronurse` will be e
 systemctl start micronurse
 ```
 
-##  Sync Code to Remote Host
+## Sync Code to Remote Host
 
-You can use `sync.sh` in root directory of project to sync your code to remote host. This script will sync your code via command  `rsync`.
+You can use `sync.sh` to sync your code to remote host. This script will sync your code via `rsync`.
 
-Basic usage of `sync.sh`:
+Write into `sync_config.sh` as below to configure it.
 
-```shell
-sync.sh ${REMOTE_HOST}
+```
+remote_path=/root/micronurse-iot-sol
+remote_user=root
+remote_host=127.0.0.1
 ```
 
-`$REMOTE_HOST` refer to address of remote host that you want to sync code to.
+Lines in `sync_config.sh` will override the configuration set in `sync.sh`.
 
-By default, remote user is `root`, and syncing path on remote host is `/home/root/micronurse-iot-sol`.
-
-NOTE: This script will NOT sync any file under directories `node_modules` and `bower_components`.
+After that, you could sync your code.

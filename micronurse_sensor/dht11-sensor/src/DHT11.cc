@@ -1,65 +1,60 @@
 //
-// Created by zhou-shengyun on 16-10-23.
+// Created by shengyun-zhou on 17-4-22.
 //
 
-#include "dht11_sensor.h"
-#include <mraa.h>
-#include <unistd.h>
-#include <stdio.h>
+#include "DHT11.h"
+#include <iostream>
+using namespace std;
+
+#define HIGH 0x1
+#define LOW  0x0
 
 #define MAX_LOOP 100000
 #define DATA_BITS 40
 
-void print_pulse(int* pulse, int start, int end){
-    printf("Bit Pulse:");
+DHT11::DHT11(int pin) {
+    gpio_ = new Gpio(pin);
+}
+
+DHT11::~DHT11() {
+    if(gpio_ != nullptr)
+        delete gpio_;
+}
+
+void PrintPulse_(int *pulse, int start, int end){
+    cout << "Bit Pulse:" << endl;
     for(int i = start; i <= end; i++)
-        printf("%d ", pulse[i]);
-    printf("\n");
+        cout << pulse[i] << ' ';
+    cout << endl;
 }
 
-void dht11_init(mraa_gpio_context gpio){
-    mraa_gpio_dir(gpio, MRAA_GPIO_OUT);
-    mraa_gpio_write(gpio, LOW);
-    usleep(5500);
-    mraa_gpio_write(gpio, HIGH);
-    mraa_gpio_use_mmaped(gpio, 1);
-    mraa_gpio_dir(gpio, MRAA_GPIO_IN);
-}
-
-int dht11_read(int pin, int& temperature, int& humidity, bool debug){
+int DHT11::ReadTemperatureHumidity(float &temperature, float &humidity, bool debug) {
     uint8_t bits[DATA_BITS / 8] = {0};
-    int pulse[100] = {0};
+    int pulse[DATA_BITS * 2] = {0};
     uint8_t cnt = 7;
     uint8_t idx = 0;
     int i, j, start_pos = 1, end_pos = DATA_BITS;
-
-    mraa_gpio_context gpio;
-    gpio = mraa_gpio_init(pin);
-    dht11_init(gpio);
+    InitSensor_();
 
     // Acknowledge or Timeout
     for(i = 1; i <= MAX_LOOP; i++){
-        if(mraa_gpio_read(gpio) == HIGH)
+        if(gpio_->read() == HIGH)
             break;
-        if(i == MAX_LOOP) {
-            mraa_gpio_close(gpio);
-            return DHT11_ERROR_ACK_TIMEOUT;
-        }
+        if(i == MAX_LOOP)
+            return RESULT_ERROR_ACK_TIMEOUT;
     }
 
     for(i = 1; i <= MAX_LOOP; i++){
-        if(mraa_gpio_read(gpio) == LOW)
+        if(gpio_->read() == LOW)
             break;
-        if(i == MAX_LOOP) {
-            mraa_gpio_close(gpio);
-            return DHT11_ERROR_ACK_TIMEOUT;
-        }
+        if(i == MAX_LOOP)
+            return RESULT_ERROR_ACK_TIMEOUT;
     }
 
     // Read DATA_BITS+1 bits of data(the first bit data may be invalid sometime)
     for (i = 0; i < DATA_BITS + 1; i++) {
         for(j = 1; j <= MAX_LOOP; j++){
-            if(mraa_gpio_read(gpio) == HIGH)
+            if(gpio_->read() == HIGH)
                 break;
             if(j == MAX_LOOP) {
                 if(i == DATA_BITS){      //All bits of data have been read when (i == DATA_BITS - 1)
@@ -67,13 +62,12 @@ int dht11_read(int pin, int& temperature, int& humidity, bool debug){
                     end_pos = DATA_BITS - 1;
                     break;
                 }
-                mraa_gpio_close(gpio);
-                return DHT11_ERROR_READ_DATA_TIMEOUT;
+                return RESULT_ERROR_READ_DATA_TIMEOUT;
             }
         }
 
         for(j = 1; j <= MAX_LOOP; j++){
-            if(mraa_gpio_read(gpio) == LOW)
+            if(gpio_->read() == LOW)
                 break;
             if(j == MAX_LOOP) {
                 if(i == DATA_BITS){       //All bits of data have been read when (i == DATA_BITS - 1)
@@ -81,17 +75,15 @@ int dht11_read(int pin, int& temperature, int& humidity, bool debug){
                     end_pos = DATA_BITS - 1;
                     break;
                 }
-                mraa_gpio_close(gpio);
-                return DHT11_ERROR_READ_DATA_TIMEOUT;
+                return RESULT_ERROR_READ_DATA_TIMEOUT;
             }
         }
 
         pulse[i] = j;
     }
-    mraa_gpio_close(gpio);
 
     if(debug)
-        print_pulse(pulse, start_pos, end_pos);
+        PrintPulse_(pulse, start_pos, end_pos);
     int max_pulse = pulse[start_pos];
     for(i = start_pos + 1; i <= end_pos; i++){
         if(pulse[i] > max_pulse)
@@ -112,6 +104,15 @@ int dht11_read(int pin, int& temperature, int& humidity, bool debug){
 
     uint8_t sum = bits[0] + bits[2];
     if (bits[4] != sum)
-        return DHT11_ERROR_CHECKSUM;
-    return DHT11_SUCCESS;
+        return RESULT_ERROR_CHECKSUM;
+    return RESULT_SUCCESS;
+}
+
+void DHT11::InitSensor_() {
+    gpio_->dir(DIR_OUT);
+    gpio_->write(LOW);
+    usleep(5500);
+    gpio_->write(HIGH);
+    gpio_->useMmap(true);
+    gpio_->dir(DIR_IN);
 }

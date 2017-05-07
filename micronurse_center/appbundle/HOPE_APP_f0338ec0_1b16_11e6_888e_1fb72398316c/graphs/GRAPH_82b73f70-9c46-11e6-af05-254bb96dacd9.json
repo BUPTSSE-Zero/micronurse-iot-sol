@@ -13,16 +13,36 @@
   "styles": {
     "nodes": {
       "NODE_4e0dbfa0-25bd-11e7-96f1-e99052c81871": {
-        "x": 404.0386425050121,
-        "y": 562.9559255224133
+        "x": 522,
+        "y": 272
       },
       "NODE_5a3a0d10-25bd-11e7-96f1-e99052c81871": {
-        "x": 174.9406064221092,
-        "y": 567.8524207972777
+        "x": 752,
+        "y": 272
       },
       "NODE_0b3e0820-25c1-11e7-a089-5b719e909c0d": {
-        "x": 342.9999694824219,
-        "y": 705.9999923706055
+        "x": 982,
+        "y": 272
+      },
+      "NODE_6b6e3ee0-32eb-11e7-9910-8d602ccf13e3": {
+        "x": 22,
+        "y": 492
+      },
+      "NODE_d0863850-32eb-11e7-9910-8d602ccf13e3": {
+        "x": 22,
+        "y": 12
+      },
+      "NODE_5d3b5690-32ec-11e7-9910-8d602ccf13e3": {
+        "x": 292,
+        "y": 272
+      },
+      "NODE_605567d0-32ec-11e7-9910-8d602ccf13e3": {
+        "x": 22,
+        "y": 172
+      },
+      "NODE_a0771980-32ec-11e7-9910-8d602ccf13e3": {
+        "x": 22,
+        "y": 332
       }
     },
     "edges": {
@@ -50,6 +70,36 @@
       "hub": "micro_nurse_iot_sol_center__built_in_hub__",
       "service": "UI_SERVICE__WIDGET_5afa8170-25be-11e7-b478-03e0c3cb4ad0",
       "widget": "WIDGET_5afa8170-25be-11e7-b478-03e0c3cb4ad0"
+    },
+    "NODE_6b6e3ee0-32eb-11e7-9910-8d602ccf13e3": {
+      "type": "fixed",
+      "thing": "micronurse_hub_humidometer_thermometer",
+      "hub": "micronurse_hub",
+      "service": "humidometer_report"
+    },
+    "NODE_d0863850-32eb-11e7-9910-8d602ccf13e3": {
+      "type": "fixed",
+      "thing": "micronurse_hub_infrared_transducer",
+      "hub": "micronurse_hub",
+      "service": "infrared_report"
+    },
+    "NODE_5d3b5690-32ec-11e7-9910-8d602ccf13e3": {
+      "type": "fixed",
+      "thing": "micronurse_hub_mqtt_broker",
+      "hub": "micronurse_hub",
+      "service": "mqtt_broker_report_sensor_data"
+    },
+    "NODE_605567d0-32ec-11e7-9910-8d602ccf13e3": {
+      "type": "fixed",
+      "thing": "micronurse_hub_pulse_transducer",
+      "hub": "micronurse_hub",
+      "service": "pulse_transducer_report"
+    },
+    "NODE_a0771980-32ec-11e7-9910-8d602ccf13e3": {
+      "type": "fixed",
+      "thing": "micronurse_hub_smoke_transducer",
+      "hub": "micronurse_hub",
+      "service": "smoke_transducer_report"
     }
   },
   "graph": {
@@ -85,6 +135,55 @@
       {
         "spec": "micronurse_ui_account",
         "id": "NODE_0b3e0820-25c1-11e7-a089-5b719e909c0d",
+        "is_debug": true
+      },
+      {
+        "spec": "__HOPE_SPEC__9ee9ddc0_9cd6_11e6_a459_319df607ebfc",
+        "config": {
+          "read_interval": 1000,
+          "send_interval": 5000,
+          "humidometer_instance_name": "卧室湿度",
+          "thermometer_instance_name": "卧室温度",
+          "dht11_sensor_pin": 3
+        },
+        "id": "NODE_6b6e3ee0-32eb-11e7-9910-8d602ccf13e3",
+        "is_debug": true
+      },
+      {
+        "spec": "__HOPE_SPEC__9eeb1640_9cd6_11e6_a459_319df607ebfc",
+        "config": {
+          "instance_name": "红外防盗",
+          "interval": 100,
+          "pir_sensor_pin": 5
+        },
+        "id": "NODE_d0863850-32eb-11e7-9910-8d602ccf13e3",
+        "is_debug": true
+      },
+      {
+        "spec": "__HOPE_SPEC__415ba660_9cc3_11e6_93f5_2759676a557a",
+        "id": "NODE_5d3b5690-32ec-11e7-9910-8d602ccf13e3",
+        "config": {},
+        "is_debug": true
+      },
+      {
+        "spec": "__HOPE_SPEC__eba190a0_9cd5_11e6_800a_1d5cb60d697c",
+        "config": {
+          "read_interval": 1500,
+          "send_interval": 5000,
+          "heartrate_sensor_pin": 4
+        },
+        "id": "NODE_605567d0-32ec-11e7-9910-8d602ccf13e3",
+        "is_debug": true
+      },
+      {
+        "spec": "__HOPE_SPEC__9eed3920_9cd6_11e6_a459_319df607ebfc",
+        "config": {
+          "read_interval": 1000,
+          "send_interval": 5000,
+          "instance_name": "客厅烟雾量",
+          "mq2_sensor_pin": 0
+        },
+        "id": "NODE_a0771980-32ec-11e7-9910-8d602ccf13e3",
         "is_debug": true
       }
     ],
@@ -131,6 +230,61 @@
         "target": {
           "node": "NODE_5a3a0d10-25bd-11e7-96f1-e99052c81871",
           "port": "mqtt_connected"
+        }
+      },
+      {
+        "id": "EDGE_a84e8bc0-32ec-11e7-9910-8d602ccf13e3",
+        "source": {
+          "node": "NODE_6b6e3ee0-32eb-11e7-9910-8d602ccf13e3",
+          "port": "json_data"
+        },
+        "target": {
+          "node": "NODE_5d3b5690-32ec-11e7-9910-8d602ccf13e3",
+          "port": "json_data"
+        }
+      },
+      {
+        "id": "EDGE_a9eaaf90-32ec-11e7-9910-8d602ccf13e3",
+        "source": {
+          "node": "NODE_a0771980-32ec-11e7-9910-8d602ccf13e3",
+          "port": "json_data"
+        },
+        "target": {
+          "node": "NODE_5d3b5690-32ec-11e7-9910-8d602ccf13e3",
+          "port": "json_data"
+        }
+      },
+      {
+        "id": "EDGE_ab6ede90-32ec-11e7-9910-8d602ccf13e3",
+        "source": {
+          "node": "NODE_d0863850-32eb-11e7-9910-8d602ccf13e3",
+          "port": "json_data"
+        },
+        "target": {
+          "node": "NODE_5d3b5690-32ec-11e7-9910-8d602ccf13e3",
+          "port": "json_data"
+        }
+      },
+      {
+        "id": "EDGE_ad781c10-32ec-11e7-9910-8d602ccf13e3",
+        "source": {
+          "node": "NODE_605567d0-32ec-11e7-9910-8d602ccf13e3",
+          "port": "json_data"
+        },
+        "target": {
+          "node": "NODE_5d3b5690-32ec-11e7-9910-8d602ccf13e3",
+          "port": "json_data"
+        }
+      },
+      {
+        "id": "EDGE_b0f004c0-32ec-11e7-9910-8d602ccf13e3",
+        "source": {
+          "node": "NODE_5d3b5690-32ec-11e7-9910-8d602ccf13e3",
+          "port": "mqtt_publish"
+        },
+        "target": {
+          "node": "NODE_4e0dbfa0-25bd-11e7-96f1-e99052c81871",
+          "port": "mqtt_action_json"
         }
       }
     ],

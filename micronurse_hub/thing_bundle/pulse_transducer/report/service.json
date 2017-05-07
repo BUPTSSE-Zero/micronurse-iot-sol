@@ -6,7 +6,7 @@
     "config": [
       {
         "name": "read_interval",
-        "display": "Report Interval(ms)",
+        "display": "Read Interval(ms)",
         "type": "int",
         "default": 2000
       },

@@ -1,10 +1,8 @@
-console.log("Micro nurse hub - infrared_transducer init");
-
 shared.infrared_transducer= {
   timer: null,
   interval: 100,
   warning: false,
-  pin: null,
+  sensor: null,
 
   callback: function() {},
   pause: function() {
@@ -36,7 +34,7 @@ shared.infrared_transducer= {
 };
 
 var m = require("mraa");
-shared.infrared_transducer.pin = new m.Gpio(CONFIG.pir_sensor_pin);
-shared.infrared_transducer.pin.dir(1);
+shared.infrared_transducer.sensor = new m.Gpio(CONFIG.pir_sensor_pin);
+shared.infrared_transducer.sensor.dir(1);
 
 done();

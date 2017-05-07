@@ -1,14 +1,14 @@
 {
-  "name": "heartrate-sensor",
+  "name": "mq2-sensor",
   "version": "0.0.1",
-  "description": "Read heartrate value from DFRobot heartrate sensor.",
-  "main": "./build/Release/heartrate-sensor",
+  "description": "Get LPG, CO and smoke concentration from MQ2 sensor.",
+  "main": "./build/Release/mq2-sensor",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "install": "cmake-js compile"
   },
   "keywords": [
-    "DFRobot Heart Rate"
+    "MQ2"
   ],
   "author": "Shengyun Zhou",
   "license": "GPL-3.0"

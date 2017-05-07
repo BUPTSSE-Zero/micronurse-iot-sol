@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 
 quick_build=0
-grid_col=30
+grid_col=0      # Default value: 30
 
 function show_help(){
     echo "Usage: buildui.sh [options]"
     echo "Options:"
-    echo "--install-build-tools         Install all the needed Node.js build tools(may need root permission on Linux)"
+    echo "--install-build-tools         Install all the needed Node.js build tools"
     echo "--install-dependencies        Install all the needed Node.js module dependencies"
-    echo "--link-widgets                Link ui-widgets to ui-dev and ui-user(may need root permission on Linux)"
+    echo "--link-widgets                Link ui-widgets to ui-dev and ui-user"
     echo "--quick                       Quick building, only build widgets into hope.js of ui-dev and ui-user"
     echo "--grid-columns <col-num>      Specify number of columns of grid layout of UI-IDE and UI"
 }
@@ -27,6 +27,7 @@ if [ $# -gt 0 ]; then
 		npm install -g babel
 		exit 0
     elif [ $1 == "--install-dependencies" ]; then
+        grid_col=30
         cd ./ui-widgets
         npm install
         cd ../ui-dev
@@ -87,11 +88,11 @@ if [ $quick_build -eq 0 ]; then
 	if [ $grid_col -gt 0 ]; then
         sed -i "s/widget_cols:.*,/widget_cols: ${grid_col},/1" ui/js/config.js
     fi
-    NODE_ENV=production gulp build
+    gulp build
     cd ../
     cp -r ./ui-dev/public ../ui-dev
 else
-    NODE_ENV=production gulp hope_js
+    gulp hope_js
     cd ../
     cp ./ui-dev/public/js/hope.js ../ui-dev/public/js
 fi
@@ -112,11 +113,11 @@ if [ $quick_build -eq 0 ]; then
 	if [ $grid_col -gt 0 ]; then
         sed -i "s/widget_cols:.*,/widget_cols: ${grid_col},/1" ui/js/config.js
     fi
-    NODE_ENV=production gulp build
+    gulp build
     cd ../
     cp -r ./ui-user/public ../ui-user/.
 else
-    NODE_ENV=production gulp hope_js
+    gulp hope_js
     cd ../
     cp ./ui-user/public/js/hope.js ../ui-user/public/js
 fi

@@ -1,45 +1,62 @@
-var dht11sensor = require('dht11-sensor');
+var humidometer_instance_name = CONFIG.humidometer_instance_name.toString();
+var thermometer_instance_name = CONFIG.thermometer_instance_name.toString();
 
 shared.humidometer_thermometer.start(function() {
-  dht11sensor.read_temperature_humidity(CONFIG.dht11_sensor_pin, function (result, tempurature, humidity) {
-    if(result == 0){
-      console.log(CONFIG.humidometer_instance_name.toString() + ': ' + humidity);
-      console.log(CONFIG.thermometer_instance_name.toString() + ': ' + tempurature);
+  var value = shared.humidometer_thermometer.sensor.read_temperature_humidity();
+  switch (value.result){
+    case 0:
+      var humidity = value.humidity;
+      var temperature = value.temperature;
+      console.log(humidometer_instance_name + ': ' + humidity);
+      console.log(thermometer_instance_name + ': ' + temperature);
 
       var now = Date.parse(new Date());
       sendOUT({
         humidity: humidity.toFixed(1),
-        temperature: tempurature.toFixed(1),
+        temperature: temperature.toFixed(1),
         timestamp: now,
       });
 
-      if(now - shared.humidometer_thermometer.send_timestamp >= parseInt(CONFIG.send_interval)){
-        shared.humidometer_thermometer.send_timestamp = now;
-        var humidometer_outdata = {
-          value: humidity.toFixed(1),
-          sensor_type: "humidometer",
-          name: CONFIG.humidometer_instance_name,
-          timestamp: now / 1000
-        };
-        sendOUT({
-          json_data: JSON.stringify(humidometer_outdata)
-        });
-        var thermometer_outdate = {
-          value: tempurature.toFixed(1),
-          sensor_type: "thermometer",
-          name: CONFIG.thermometer_instance_name,
-          timestamp: now / 1000
-        };
-        sendOUT({
-          json_data: JSON.stringify(thermometer_outdate)
-        });
-      }
-    }else if(result == -1){
+      shared.humidometer_thermometer.value_cache = {
+        humidity: humidity,
+        temperature: temperature,
+        timestamp: now
+      };
+      break;
+    case -1:
       console.log('DHT11 sensor on GPIO ' + CONFIG.dht11_sensor_pin + ' ACK timeout.');
-    }else if(result == -2){
+      break;
+    case -2:
       console.log('DHT11 sensor on GPIO ' + CONFIG.dht11_sensor_pin + ' read data timeout.');
-    }else if(result == -3){
+      break;
+    case -3:
       console.log('DHT11 sensor on GPIO ' + CONFIG.dht11_sensor_pin + ' checksum error.');
-    }
+      break;
+  }
+}, function () {
+  if(!shared.humidometer_thermometer.value_cache)
+    return;
+  var read_time = shared.humidometer_thermometer.value_cache.timestamp;
+  var humidity = shared.humidometer_thermometer.value_cache.humidity;
+  var temperature = shared.humidometer_thermometer.value_cache.temperature;
+
+  var humidometer_outdata = {
+    value: humidity.toFixed(1),
+    sensor_type: "humidometer",
+    name: humidometer_instance_name,
+    timestamp: read_time / 1000
+  };
+  sendOUT({
+    json_data: JSON.stringify(humidometer_outdata)
   });
-}, CONFIG.read_interval);
+  var thermometer_outdate = {
+    value: temperature.toFixed(1),
+    sensor_type: "thermometer",
+    name: thermometer_instance_name,
+    timestamp: read_time / 1000
+  };
+  sendOUT({
+    json_data: JSON.stringify(thermometer_outdate)
+  });
+  shared.humidometer_thermometer.value_cache = null;
+});

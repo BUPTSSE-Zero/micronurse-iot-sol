@@ -19,7 +19,8 @@
       {
         "name": "instance_name",
         "display": "Instance Name",
-        "type": "string"
+        "type": "string",
+        "default": "smoke transducer"
       },
       {
         "name": "mq2_sensor_pin",
@@ -31,7 +32,7 @@
     "out": {
       "ports": [
         {
-          "name": "value",
+          "name": "smoke",
           "type": "int"
         },
         {
