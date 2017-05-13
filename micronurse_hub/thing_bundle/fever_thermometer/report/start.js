@@ -1,15 +1,19 @@
-console.log("Micro nurse hub - feverThermometer init");
+var ds18b20 = require('ds18b20-sensor');
 
-shared.feverThermometer = {
-  timer: null,
-  interval: 5000,
-  base_value: 36 + Math.random(),
-  callback: function() {},
+shared.fever_thermometer = {
+  read_timer: null,
+  read_interval: parseInt(CONFIG.read_interval),
+  send_interval: 1000,
+  send_timestamp: 0,
+  sensor: new ds18b20.DS18B20(),
+  value_cache: null,
+
+  read_cb: function() {},
+
   pause: function() {
-    if (this.timer) {
-      clearInterval(this.timer);
-    }
-    this.timer = null;
+    if(this.read_timer)
+      clearInterval(this.read_timer);
+    this.read_timer = null;
   },
 
   stop: function() {
@@ -17,20 +21,17 @@ shared.feverThermometer = {
   },
 
   resume: function() {
-    this.timer = setInterval(this.callback, this.interval);
+    this.read_timer = setInterval(this.read_cb, this.read_interval);
   },
 
-  start: function(cb, interval) {
-    if (this.interval !== interval || this.callback !== cb) {
-      this.stop();
-      this.callback = cb;
-      this.interval = interval;
-      if (this.interval <= 1000) {
-        this.interval = 1000;
-      }
-    }
+  start: function(read_cb) {
+    this.stop();
+    this.read_cb = read_cb;
     this.resume();
   }
 };
+
+if(shared.fever_thermometer.read_interval < 500)
+  shared.fever_thermometer.read_interval = 500;
 
 done();

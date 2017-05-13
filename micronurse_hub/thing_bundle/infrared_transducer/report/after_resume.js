@@ -3,8 +3,8 @@ shared.infrared_transducer.start(function() {
   if(warning && !shared.infrared_transducer.warning){
     var now = Date.parse(new Date());
     var outdata = {
-      value: "Warning",
-      sensor_type: "infrared_transducer",
+      value: 'Warning',
+      sensor_type: 'infrared_transducer',
       name: CONFIG.instance_name,
       timestamp: now / 1000
     };

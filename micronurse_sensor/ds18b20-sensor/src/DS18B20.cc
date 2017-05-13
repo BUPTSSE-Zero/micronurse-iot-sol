@@ -6,7 +6,6 @@
 
 DS18B20::DS18B20() {
     sensor_ = new upm::DS18B20(0);
-    sensor_->init();
 }
 
 DS18B20::~DS18B20() {
@@ -14,9 +13,6 @@ DS18B20::~DS18B20() {
 }
 
 int DS18B20::readTemperature(float &temperature) {
-    if (!sensor_->devicesFound())
-        sensor_->init();
-
     if(!sensor_->devicesFound())
         return RESULT_ERROR_DEVICE_NOT_FOUND;
 

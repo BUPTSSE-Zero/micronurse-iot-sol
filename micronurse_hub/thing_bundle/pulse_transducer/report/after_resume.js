@@ -3,7 +3,7 @@ shared.pulse_transducer.start(function(){
   switch (value.result){
     case 0:
       heartrate = value.heartrate;
-      console.log("Heart rate: ", heartrate);
+      console.log('Heart rate: ', heartrate);
       var now = Date.parse(new Date());
       sendOUT({
         heart_rate: heartrate,
@@ -22,7 +22,7 @@ shared.pulse_transducer.start(function(){
   var read_time = shared.pulse_transducer.value_cache.timestamp;
   var outdata = {
     value: heartrate,
-    sensor_type: "pulse_transducer",
+    sensor_type: 'pulse_transducer',
     timestamp: read_time / 1000
   };
   sendOUT({

@@ -7,8 +7,8 @@ shared.humidometer_thermometer.start(function() {
     case 0:
       var humidity = value.humidity;
       var temperature = value.temperature;
-      console.log(humidometer_instance_name + ': ' + humidity);
-      console.log(thermometer_instance_name + ': ' + temperature);
+      console.log(`${humidometer_instance_name}: ${humidity}`);
+      console.log(`${thermometer_instance_name}: ${temperature}`);
 
       var now = Date.parse(new Date());
       sendOUT({
@@ -24,13 +24,13 @@ shared.humidometer_thermometer.start(function() {
       };
       break;
     case -1:
-      console.log('DHT11 sensor on GPIO ' + CONFIG.dht11_sensor_pin + ' ACK timeout.');
+      console.log(`DHT11 sensor on GPIO ${CONFIG.dht11_sensor_pin} ACK timeout.`);
       break;
     case -2:
-      console.log('DHT11 sensor on GPIO ' + CONFIG.dht11_sensor_pin + ' read data timeout.');
+      console.log(`DHT11 sensor on GPIO ${CONFIG.dht11_sensor_pin} read data timeout.`);
       break;
     case -3:
-      console.log('DHT11 sensor on GPIO ' + CONFIG.dht11_sensor_pin + ' checksum error.');
+      console.log(`DHT11 sensor on GPIO ${CONFIG.dht11_sensor_pin} checksum error.`)
       break;
   }
 }, function () {
@@ -42,7 +42,7 @@ shared.humidometer_thermometer.start(function() {
 
   var humidometer_outdata = {
     value: humidity.toFixed(1),
-    sensor_type: "humidometer",
+    sensor_type: 'humidometer',
     name: humidometer_instance_name,
     timestamp: read_time / 1000
   };
@@ -51,7 +51,7 @@ shared.humidometer_thermometer.start(function() {
   });
   var thermometer_outdate = {
     value: temperature.toFixed(1),
-    sensor_type: "thermometer",
+    sensor_type: 'thermometer',
     name: thermometer_instance_name,
     timestamp: read_time / 1000
   };

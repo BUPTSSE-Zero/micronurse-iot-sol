@@ -1,31 +1,31 @@
 {
-  "name": "iot-sol",
+  "name": "micronurse-iot-sol",
   "version": "2.0.3",
-  "description": "Intel(r) IoT Services Orchestration Layer - HTML5 IDE + Node.js middleware to create and host distributed IoT Apps in minutes",
-  "main": "index.js",
+  "description": "Intel(r) IoT-SOL client of Micro Nurse IoT application",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/01org/intel-iot-services-orchestration-layer.git"
+    "url": "git+https://github.com/micronurse-iot/micronurse-iot-sol.git"
   },
   "keywords": [
     "iot",
     "graphical",
     "programming",
     "app",
-    "dev"
+    "dev",
+    "micronurse"
   ],
   "author": {
-    "name": "Jonathan Ding",
-    "email": "jonathan.ding@intel.com"
+    "name": "Shengyun Zhou",
+    "email": "GGGZ-1101-28@Live.cn"
   },
-  "license": "BSD-3-Clause",
+  "license": "GPL-3",
   "bugs": {
-    "url": "https://github.com/01org/intel-iot-services-orchestration-layer/issues"
+    "url": "https://github.com/micronurse-iot/micronurse-iot-sol/issues"
   },
-  "homepage": "https://github.com/01org/intel-iot-services-orchestration-layer#readme",
+  "homepage": "https://github.com/micronurse-iot/micronurse-iot-sol#readme",
   "dependencies": {
     "MD5": "^1.3.0",
     "body-parser": "^1.13.3",
@@ -70,7 +70,7 @@
     "ipaddr.js": "^1.1.0",
     "clone": "1.0.2",
     "mongodb": "^2.0.46",
-    "mraa": "^1.6.1"
+    "mraa": "^1.7.0"
   },
   "bundledDependencies": [
     "hope-base",
@@ -84,6 +84,11 @@
     "hope-session-manager",
     "hope-store",
     "hope-workflow",
-    "hope-demo"
+    "hope-demo",
+
+    "dht11-sensor",
+    "ds18b20-sensor",
+    "heartrate-sensor",
+    "mq2-sensor"
   ]
 }

@@ -1,3 +1,2 @@
-console.log("Micro nurse hub - feverThermometer init");
-shared.feverThermometer.resume();
+shared.fever_thermometer.resume();
 done();

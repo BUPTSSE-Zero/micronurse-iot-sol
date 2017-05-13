@@ -33,7 +33,7 @@ shared.infrared_transducer= {
   }
 };
 
-var m = require("mraa");
+var m = require('mraa');
 shared.infrared_transducer.sensor = new m.Gpio(CONFIG.pir_sensor_pin);
 shared.infrared_transducer.sensor.dir(1);
 

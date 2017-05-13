@@ -5,31 +5,35 @@
   "spec": {
     "config": [
       {
-        "name": "interval",
+        "name": "read_interval",
         "display": "Report Interval(ms)",
         "type": "int",
-        "default": 5000
+        "default": 1000
       },
       {
         "name": "sensor_pin",
-        "display": "Sensor PIN",
+        "display": "DS18B20 Sensor PIN",
         "type": "int",
         "default": 0
       }
     ],
+    "in": {
+      "ports": [
+        {
+          "name": "send_trigger",
+          "type": "boolean"
+        }
+      ]
+    },
     "out": {
       "ports": [
         {
-          "name": "value",
+          "name": "temperature",
           "type": "double"
         },
         {
           "name": "timestamp",
           "type": "long"
-        },
-        {
-          "name": "message",
-          "type": "string"
         },
         {
           "name": "json_data",

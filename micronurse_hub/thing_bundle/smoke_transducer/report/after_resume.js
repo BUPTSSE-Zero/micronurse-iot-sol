@@ -22,7 +22,7 @@ shared.smoke_transducer.start(function() {
 
   var outdata = {
     value: smoke,
-    sensor_type: "smoke_transducer",
+    sensor_type: 'smoke_transducer',
     name: instance_name,
     timestamp: read_time / 1000
   };
