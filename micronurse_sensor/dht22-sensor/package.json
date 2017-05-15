@@ -1,0 +1,15 @@
+{
+  "name": "dht22-sensor",
+  "version": "0.0.1",
+  "description": "Read temperature and humidity value from DHT22 sensor.",
+  "main": "./build/Release/dht22-sensor",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install": "cmake-js compile"
+  },
+  "keywords": [
+    "DHT22"
+  ],
+  "author": "Shengyun Zhou",
+  "license": "GPL-3.0"
+}

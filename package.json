@@ -87,6 +87,7 @@
     "hope-demo",
 
     "dht11-sensor",
+    "dht22-sensor",
     "ds18b20-sensor",
     "heartrate-sensor",
     "mq2-sensor"

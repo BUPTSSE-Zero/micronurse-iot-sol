@@ -21,6 +21,8 @@ fi
 
 cd ./dht11-sensor
 cmake-js compile && cp -r ../dht11-sensor ../../node_modules
+cd ../dht22-sensor
+cmake-js compile && cp -r ../dht22-sensor ../../node_modules
 cd ../heartrate-sensor
 cmake-js compile && cp -r ../heartrate-sensor ../../node_modules
 cd ../mq2-sensor
