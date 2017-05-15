@@ -1,0 +1,30 @@
+{
+  "id": "push_touch_button_detect_press",
+  "name": "Detect",
+  "description": "Detect pushing or touching at intervals.",
+  "spec": {
+    "config": [
+      {
+        "name": "detect_interval",
+        "display": "Detect Interval(ms)",
+        "type": "int",
+        "default": 200
+      },
+      {
+        "name": "sensor_pin",
+        "display": "Sensor PIN",
+        "type": "int",
+        "default": 0
+      }
+    ],
+    "out": {
+      "ports": [
+        {
+          "name": "press_touch",
+          "type": "boolean"
+        }
+      ]
+    },
+    "id": "__HOPE_SPEC__f26b3b60_3920_11e7_b7b4_ef000c97b1a4"
+  }
+}
