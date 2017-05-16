@@ -1,7 +1,10 @@
 shared.infrared_transducer.start(function() {
   var warning = !!(shared.infrared_transducer.sensor.read());
-  if(warning && !shared.infrared_transducer.warning){
+  if(warning){
     var now = Date.parse(new Date());
+    if(now - shared.infrared_transducer.warning_timestamp < shared.infrared_transducer.warning_interval)
+      return;
+    shared.infrared_transducer.warning_timestamp = now;
     var outdata = {
       value: 'Warning',
       sensor_type: 'infrared_transducer',
@@ -14,6 +17,5 @@ shared.infrared_transducer.start(function() {
       json_data: JSON.stringify(outdata)
     });
   }
-  shared.infrared_transducer.warning = warning;
 }, CONFIG.interval);
 

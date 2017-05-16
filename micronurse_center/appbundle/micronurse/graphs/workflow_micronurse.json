@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
   "type": "graph",
-  "id": "GRAPH_82b73f70-9c46-11e6-af05-254bb96dacd9",
+  "id": "workflow_micronurse",
   "name": "Micro Nurse Workflow",
   "description": {
     "type": "Workflow",
@@ -74,8 +74,8 @@
     },
     "NODE_0b3e0820-25c1-11e7-a089-5b719e909c0d": {
       "type": "fixed",
-      "thing": "HOPE_UI_THING__micro_nurse_iot_sol_center__built_in_hub__HOPE_APP_f0338ec0_1b16_11e6_888e_1fb72398316c",
       "hub": "micro_nurse_iot_sol_center__built_in_hub__",
+      "thing": "HOPE_UI_THING__micro_nurse_iot_sol_center__built_in_hub__micronurse",
       "service": "UI_SERVICE__WIDGET_5afa8170-25be-11e7-b478-03e0c3cb4ad0",
       "widget": "WIDGET_5afa8170-25be-11e7-b478-03e0c3cb4ad0"
     },
@@ -349,5 +349,5 @@
     ],
     "tags": []
   },
-  "app": "HOPE_APP_f0338ec0_1b16_11e6_888e_1fb72398316c"
+  "app": "micronurse"
 }
