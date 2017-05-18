@@ -1,11 +1,9 @@
-var dht11 = require('dht11-sensor');
-
 shared.humidometer_thermometer = {
   read_timer: null,
   read_interval: parseInt(CONFIG.read_interval),
   send_timer: null,
   send_interval: parseInt(CONFIG.send_interval),
-  sensor: new dht11.DHT11(CONFIG.dht11_sensor_pin),
+  sensor: null,
   value_cache: null,
 
   read_cb: function() {},
@@ -41,5 +39,12 @@ if(shared.humidometer_thermometer.read_interval < 300)
   shared.humidometer_thermometer.read_interval = 300;
 if(shared.humidometer_thermometer.send_interval < 1000)
   shared.humidometer_thermometer.send_interval = 1000;
+
+if(CONFIG.sensor_vendor.toLowerCase() === 'dht11')
+  shared.humidometer_thermometer.sensor = new require('dht11-sensor').DHT11(parseInt(CONFIG.sensor_pin));
+else if(CONFIG.sensor_vendor.toLowerCase() === 'dht22')
+  shared.humidometer_thermometer.sensor = new require('dht22-sensor').DHT22(parseInt(CONFIG.sensor_pin));
+else
+  fail();
 
 done();

@@ -7,7 +7,7 @@ switch(mqtt_action.action.toLowerCase()) {
       shared.broker_manager.mqtt_client.end();
       shared.broker_manager.mqtt_client = null;
     }
-    var client = mqtt.connect('mqtt://' + CONFIG.broker_host, {
+    var client = mqtt.connect("mqtt://${CONFIG.broker_host}", {
       clientId: mqtt_action.connect_info.client_id,
       connectTimeout: 15 * 1000,
       username: mqtt_action.connect_info.username,

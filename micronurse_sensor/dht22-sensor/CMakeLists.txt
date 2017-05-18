@@ -17,6 +17,7 @@ pkg_check_modules(MRAA mraa REQUIRED)
 include_directories(${MRAA_INCLUDE_DIRS})
 link_directories(${MRAA_LIBRARY_DIRS})
 link_libraries(${MRAA_LIBRARIES})
+link_libraries(pthread)
 
 add_library(dht22-sensor SHARED ${SOURCE_FILES})
 set_target_properties(dht22-sensor PROPERTIES PREFIX "" SUFFIX ".node")

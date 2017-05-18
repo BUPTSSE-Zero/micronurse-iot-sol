@@ -18,7 +18,11 @@ public:
     ~DHT22();
     int ReadTemperatureHumidity(float& temperature, float& humidity, bool debug = false);
 private:
+    static void* ReadThreadFunc_(void* arg);
+
     Gpio* gpio_;
+    int* buf_;
+    int miss_bits_count_;
     void InitSensor_();
 };
 

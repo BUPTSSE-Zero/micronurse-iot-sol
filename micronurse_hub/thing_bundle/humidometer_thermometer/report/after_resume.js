@@ -24,13 +24,13 @@ shared.humidometer_thermometer.start(function() {
       };
       break;
     case -1:
-      console.log(`DHT11 sensor on GPIO ${CONFIG.dht11_sensor_pin} ACK timeout.`);
+      console.log(`DHT11/22 sensor on GPIO ${CONFIG.sensor_pin} ACK timeout.`);
       break;
     case -2:
-      console.log(`DHT11 sensor on GPIO ${CONFIG.dht11_sensor_pin} read data timeout.`);
+      console.log(`DHT11/22 sensor on GPIO ${CONFIG.sensor_pin} read data timeout.`);
       break;
     case -3:
-      console.log(`DHT11 sensor on GPIO ${CONFIG.dht11_sensor_pin} checksum error.`)
+      console.log(`DHT11/22 sensor on GPIO ${CONFIG.sensor_pin} checksum error.`)
       break;
   }
 }, function () {

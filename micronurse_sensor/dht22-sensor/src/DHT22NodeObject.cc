@@ -9,6 +9,14 @@ using namespace node;
 
 Persistent<Function> DHT22NodeObject::constructor;
 
+DHT22NodeObject::DHT22NodeObject(int pin) {
+    sensor_ = new DHT22(pin);
+}
+
+DHT22NodeObject::~DHT22NodeObject() {
+    delete sensor_;
+}
+
 void DHT22NodeObject::Init(Local<Object> exports) {
     Isolate* isolate = exports->GetIsolate();
 
@@ -30,8 +38,8 @@ void DHT22NodeObject::New(const FunctionCallbackInfo<Value>& args) {
 
     if (args.IsConstructCall()) {
         // Invoked as constructor: `new Object(...)`
-        DHT22NodeObject* obj = new DHT22NodeObject;
-        obj->pin_ = args[0]->IsUndefined() ? 0 : args[0]->Int32Value();
+        int pin = args[0]->IsUndefined() ? 0 : args[0]->Int32Value();
+        DHT22NodeObject* obj = new DHT22NodeObject(pin);
         obj->Wrap(args.This());
         args.GetReturnValue().Set(args.This());
     } else {
@@ -51,8 +59,7 @@ void DHT22NodeObject::ReadTemperatureHumidity(const FunctionCallbackInfo<Value>&
 
     DHT22NodeObject* obj = ObjectWrap::Unwrap<DHT22NodeObject>(args.Holder());
     float temperature, humidity;
-    DHT22 sensor(obj->pin_);
-    int result = sensor.ReadTemperatureHumidity(temperature, humidity);
+    int result = obj->sensor_->ReadTemperatureHumidity(temperature, humidity);
 
     Local<Object> result_object = Object::New(isolate);
     result_object->Set(String::NewFromUtf8(isolate, "result"), Integer::New(isolate, result));

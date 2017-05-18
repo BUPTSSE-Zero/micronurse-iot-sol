@@ -11,6 +11,7 @@ using namespace std;
 
 #define MAX_LOOP 100000
 #define DATA_BITS 40
+#define BIT_1_BORDER 75
 
 DHT11::DHT11(int pin) {
     gpio_ = new Gpio(pin);
@@ -26,6 +27,16 @@ void PrintPulse_(int *pulse, int start, int end){
     for(int i = start; i <= end; i++)
         cout << pulse[i] << ' ';
     cout << endl;
+}
+
+int GetByte(int b, int* buf) {
+    int result = 0;
+    b = (b - 1) * 8;
+    for (int i = b; i <= b + 7; i++) {
+        result <<= 1;
+        result |= buf[i];
+    }
+    return result;
 }
 
 int DHT11::ReadTemperatureHumidity(float &temperature, float &humidity, bool debug) {
@@ -78,33 +89,27 @@ int DHT11::ReadTemperatureHumidity(float &temperature, float &humidity, bool deb
                 return RESULT_ERROR_READ_DATA_TIMEOUT;
             }
         }
-
-        pulse[i] = j;
+        pulse[i] = 0;
+        if(j > BIT_1_BORDER)
+            pulse[i] = 1;
     }
 
     if(debug)
         PrintPulse_(pulse, start_pos, end_pos);
-    int max_pulse = pulse[start_pos];
-    for(i = start_pos + 1; i <= end_pos; i++){
-        if(pulse[i] > max_pulse)
-            max_pulse = pulse[i];
+    if(start_pos > 0){
+        for(int t = start_pos; t <= end_pos; t++)
+            pulse[t - 1] = pulse[t];
     }
-    for(i = start_pos; i <= end_pos; i++){
-        if(pulse[i] * 2 > max_pulse){
-            bits[idx] |= (1 << cnt);
-        }
-        if(cnt == 0){
-            idx++;
-            cnt = 7;
-        }else
-            cnt--;
-    }
-    humidity = bits[0];
-    temperature = bits[2];
 
-    uint8_t sum = bits[0] + bits[2];
-    if (bits[4] != sum)
+    int bytes[DATA_BITS / 8 + 1] = {0};
+    for(i = 1; i <= DATA_BITS / 8; i++)
+        bytes[i] = GetByte(i, pulse);
+
+    if(bytes[1] + bytes[3] != bytes[5])
         return RESULT_ERROR_CHECKSUM;
+
+    humidity = bytes[1];
+    temperature = bytes[3];
     return RESULT_SUCCESS;
 }
 

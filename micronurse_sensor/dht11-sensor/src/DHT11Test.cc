@@ -3,7 +3,7 @@
 //
 
 #include "DHT11.h"
-#define GPIO_PIN 3
+#define GPIO_PIN 5
 #define TEST_COUNT 10
 #include <iostream>
 using namespace std;
@@ -27,7 +27,7 @@ int main(){
                 cout << "Temperature: " << temperature << " Humidity: " << humidity << endl;
                 break;
         }
-        usleep(500 * 1000);
+        usleep(1000 * 1000);
     }
     return 0;
 }

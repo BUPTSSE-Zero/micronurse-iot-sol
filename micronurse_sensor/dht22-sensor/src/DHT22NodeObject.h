@@ -11,6 +11,8 @@
 
 class DHT22NodeObject : public node::ObjectWrap {
 public:
+    DHT22NodeObject(int pin);
+    ~DHT22NodeObject();
     static void Init(v8::Local<v8::Object> exports);
 
 private:
@@ -18,7 +20,7 @@ private:
     static void ReadTemperatureHumidity(const v8::FunctionCallbackInfo<v8::Value> &args);
     static v8::Persistent<v8::Function> constructor;
 
-    int pin_;
+    DHT22* sensor_;
 };
 
 

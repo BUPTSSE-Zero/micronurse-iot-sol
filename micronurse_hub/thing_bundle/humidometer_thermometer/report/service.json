@@ -29,8 +29,15 @@
         "default": "thermometer"
       },
       {
-        "name": "dht11_sensor_pin",
-        "display": "DHT11 Sensor PIN",
+        "name": "sensor_vendor",
+        "display": "Sensor Vendor",
+        "type": "option",
+        "default": "DHT11",
+        "options": ["DHT11", "DHT22"]
+      },
+      {
+        "name": "sensor_pin",
+        "display": "Sensor PIN",
         "type": "int",
         "default": 0
       }

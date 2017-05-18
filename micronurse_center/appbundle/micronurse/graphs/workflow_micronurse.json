@@ -13,24 +13,24 @@
   "styles": {
     "nodes": {
       "NODE_4e0dbfa0-25bd-11e7-96f1-e99052c81871": {
-        "x": 752,
-        "y": 352
+        "x": 832,
+        "y": 522
       },
       "NODE_5a3a0d10-25bd-11e7-96f1-e99052c81871": {
-        "x": 982,
-        "y": 352
+        "x": 1062,
+        "y": 522
       },
       "NODE_0b3e0820-25c1-11e7-a089-5b719e909c0d": {
-        "x": 1212,
-        "y": 352
+        "x": 1292,
+        "y": 522
       },
       "NODE_6b6e3ee0-32eb-11e7-9910-8d602ccf13e3": {
         "x": 252,
-        "y": 652
+        "y": 992
       },
       "NODE_5d3b5690-32ec-11e7-9910-8d602ccf13e3": {
-        "x": 522,
-        "y": 352
+        "x": 602,
+        "y": 522
       },
       "NODE_605567d0-32ec-11e7-9910-8d602ccf13e3": {
         "x": 252,
@@ -38,7 +38,7 @@
       },
       "NODE_a0771980-32ec-11e7-9910-8d602ccf13e3": {
         "x": 252,
-        "y": 332
+        "y": 492
       },
       "NODE_2bc2e290-37b5-11e7-bd5d-8da5f2fed7f3": {
         "x": 252,
@@ -46,11 +46,19 @@
       },
       "NODE_d0863850-32eb-11e7-9910-8d602ccf13e3": {
         "x": 252,
-        "y": 492
+        "y": 832
       },
       "NODE_56787b90-3921-11e7-970a-65bfda2fe6be": {
-        "x": 13.575145209461336,
-        "y": 182.09876172413664
+        "x": 0.7559136381668079,
+        "y": 182.0946182106688
+      },
+      "NODE_22dadae0-3afb-11e7-9c10-a57425940113": {
+        "x": 252,
+        "y": 332
+      },
+      "NODE_63101490-3afb-11e7-9c10-a57425940113": {
+        "x": 252,
+        "y": 652
       }
     },
     "edges": {
@@ -120,6 +128,18 @@
       "thing": "micronurse_hub_push_touch_button",
       "hub": "micronurse_hub",
       "service": "push_touch_button_detect_press"
+    },
+    "NODE_22dadae0-3afb-11e7-9c10-a57425940113": {
+      "type": "fixed",
+      "thing": "micronurse_hub_infrared_transducer",
+      "hub": "micronurse_hub",
+      "service": "infrared_report"
+    },
+    "NODE_63101490-3afb-11e7-9c10-a57425940113": {
+      "type": "fixed",
+      "thing": "micronurse_hub_humidometer_thermometer",
+      "hub": "micronurse_hub",
+      "service": "humidometer_report"
     }
   },
   "graph": {
@@ -164,7 +184,9 @@
           "send_interval": 5000,
           "humidometer_instance_name": "卧室湿度",
           "thermometer_instance_name": "卧室温度",
-          "dht11_sensor_pin": 3
+          "sensor_vendor": "DHT22",
+          "sensor_pin": 5,
+          "dht11_sensor_pin": 5
         },
         "id": "NODE_6b6e3ee0-32eb-11e7-9910-8d602ccf13e3",
         "is_debug": false
@@ -190,7 +212,7 @@
         "config": {
           "read_interval": 1000,
           "send_interval": 5000,
-          "instance_name": "客厅烟雾量",
+          "instance_name": "厨房烟雾量",
           "mq2_sensor_pin": 0
         },
         "id": "NODE_a0771980-32ec-11e7-9910-8d602ccf13e3",
@@ -208,9 +230,9 @@
       {
         "spec": "__HOPE_SPEC__9eeb1640_9cd6_11e6_a459_319df607ebfc",
         "config": {
-          "instance_name": "红外防盗",
+          "instance_name": "门口防盗",
           "interval": 100,
-          "pir_sensor_pin": 4
+          "pir_sensor_pin": 7
         },
         "id": "NODE_d0863850-32eb-11e7-9910-8d602ccf13e3",
         "is_debug": false
@@ -219,9 +241,31 @@
         "spec": "__HOPE_SPEC__f26b3b60_3920_11e7_b7b4_ef000c97b1a4",
         "config": {
           "detect_interval": 200,
-          "sensor_pin": 6
+          "sensor_pin": 11
         },
         "id": "NODE_56787b90-3921-11e7-970a-65bfda2fe6be"
+      },
+      {
+        "spec": "__HOPE_SPEC__9eeb1640_9cd6_11e6_a459_319df607ebfc",
+        "config": {
+          "instance_name": "卧室防盗",
+          "interval": 100,
+          "pir_sensor_pin": 9
+        },
+        "id": "NODE_22dadae0-3afb-11e7-9c10-a57425940113"
+      },
+      {
+        "spec": "__HOPE_SPEC__9ee9ddc0_9cd6_11e6_a459_319df607ebfc",
+        "config": {
+          "read_interval": 1000,
+          "send_interval": 5000,
+          "humidometer_instance_name": "客厅湿度",
+          "thermometer_instance_name": "客厅温度",
+          "sensor_vendor": "DHT22",
+          "sensor_pin": 3,
+          "dht11_sensor_pin": 3
+        },
+        "id": "NODE_63101490-3afb-11e7-9c10-a57425940113"
       }
     ],
     "edges": [
@@ -344,6 +388,28 @@
         "target": {
           "node": "NODE_2bc2e290-37b5-11e7-bd5d-8da5f2fed7f3",
           "port": "send_trigger"
+        }
+      },
+      {
+        "id": "EDGE_25fcb450-3afb-11e7-9c10-a57425940113",
+        "source": {
+          "node": "NODE_22dadae0-3afb-11e7-9c10-a57425940113",
+          "port": "json_data"
+        },
+        "target": {
+          "node": "NODE_5d3b5690-32ec-11e7-9910-8d602ccf13e3",
+          "port": "json_data"
+        }
+      },
+      {
+        "id": "EDGE_acb95980-3afb-11e7-9c10-a57425940113",
+        "source": {
+          "node": "NODE_63101490-3afb-11e7-9c10-a57425940113",
+          "port": "json_data"
+        },
+        "target": {
+          "node": "NODE_5d3b5690-32ec-11e7-9910-8d602ccf13e3",
+          "port": "json_data"
         }
       }
     ],
