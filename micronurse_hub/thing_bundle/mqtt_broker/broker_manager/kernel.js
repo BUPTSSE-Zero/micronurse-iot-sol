@@ -7,17 +7,18 @@ switch(mqtt_action.action.toLowerCase()) {
       shared.broker_manager.mqtt_client.end();
       shared.broker_manager.mqtt_client = null;
     }
-    var client = mqtt.connect("mqtt://${CONFIG.broker_host}", {
+    var client = mqtt.connect(`mqtt://${CONFIG.broker_host}`, {
       clientId: mqtt_action.connect_info.client_id,
       connectTimeout: 15 * 1000,
       username: mqtt_action.connect_info.username,
       password: mqtt_action.connect_info.password,
       reconnectPeriod: 3000,
       clean: false,
-      queueQoSZero: false
+      queueQoSZero: true,
+      keepalive: 60
     });
 
-    client.on('connect', function () {
+    client.on('connect', function (connack) {
       console.log('Connect to MQTT broker successfully.');
       shared.broker_manager.mqtt_client = client;
       sendOUT({
@@ -25,15 +26,11 @@ switch(mqtt_action.action.toLowerCase()) {
       });
     });
 
-    /*client.on('error', function (error) {
-      console.error(error);
-      if(!client.connected){
-        shared.broker_manager.mqtt_client = null;
-        sendOUT({
-          connected: false
-        });
-      }
-    });*/
+    client.on('offline', function () {
+      sendOUT({
+        connected: false
+      });
+    });
 
     client.on('message', function (topic, message) {
       var message_info = parse_full_topic(topic);
@@ -48,6 +45,9 @@ switch(mqtt_action.action.toLowerCase()) {
       shared.broker_manager.mqtt_client.end();
       shared.broker_manager.mqtt_client = null;
       console.log('Disconnected from MQTT broker.');
+      sendOUT({
+        connected: false
+      });
     }
     break;
   case 'publish':

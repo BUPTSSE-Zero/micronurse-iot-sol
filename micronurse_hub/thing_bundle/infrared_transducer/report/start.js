@@ -2,7 +2,7 @@ shared.infrared_transducer= {
   timer: null,
   interval: 100,
   warning_timestamp: 0,
-  warning_interval: 2000,
+  warning_interval: 5000,
   sensor: null,
 
   callback: function() {},

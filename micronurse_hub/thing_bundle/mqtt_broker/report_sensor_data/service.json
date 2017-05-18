@@ -8,6 +8,10 @@
         {
           "name": "json_data",
           "type": "string"
+        },
+        {
+          "name": "mqtt_connected",
+          "type": "boolean"
         }
       ]
     },

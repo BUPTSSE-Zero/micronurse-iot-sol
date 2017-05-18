@@ -5,23 +5,33 @@ shared.humidometer_thermometer.start(function() {
   var value = shared.humidometer_thermometer.sensor.read_temperature_humidity();
   switch (value.result){
     case 0:
-      var humidity = value.humidity;
-      var temperature = value.temperature;
+      var humidity = value.humidity.toFixed(1);
+      var temperature = value.temperature.toFixed(1);
       console.log(`${humidometer_instance_name}: ${humidity}`);
       console.log(`${thermometer_instance_name}: ${temperature}`);
 
       var now = Date.parse(new Date());
       sendOUT({
-        humidity: humidity.toFixed(1),
-        temperature: temperature.toFixed(1),
+        humidity: humidity,
+        temperature: temperature,
         timestamp: now,
       });
 
-      shared.humidometer_thermometer.value_cache = {
-        humidity: humidity,
-        temperature: temperature,
-        timestamp: now
-      };
+      if(Math.abs(humidity - shared.humidometer_thermometer.humidometer_value_cache) >= 1.0){
+        if(now - shared.humidometer_thermometer.humidometer_send_timestamp >= shared.humidometer_thermometer.send_interval) {
+          send_humidity_json(humidity, now);
+          shared.humidometer_thermometer.humidometer_value_cache = humidity;
+          shared.humidometer_thermometer.humidometer_send_timestamp = now;
+        }
+      }
+
+      if(Math.abs(temperature - shared.humidometer_thermometer.thermometer_value_cache) >= 0.5){
+        if(now - shared.humidometer_thermometer.thermometer_send_timestamp >= shared.humidometer_thermometer.send_interval) {
+          send_temperature_json(temperature, now);
+          shared.humidometer_thermometer.thermometer_value_cache = temperature;
+          shared.humidometer_thermometer.thermometer_send_timestamp = now;
+        }
+      }
       break;
     case -1:
       console.log(`DHT11/22 sensor on GPIO ${CONFIG.sensor_pin} ACK timeout.`);
@@ -33,24 +43,11 @@ shared.humidometer_thermometer.start(function() {
       console.log(`DHT11/22 sensor on GPIO ${CONFIG.sensor_pin} checksum error.`)
       break;
   }
-}, function () {
-  if(!shared.humidometer_thermometer.value_cache)
-    return;
-  var read_time = shared.humidometer_thermometer.value_cache.timestamp;
-  var humidity = shared.humidometer_thermometer.value_cache.humidity;
-  var temperature = shared.humidometer_thermometer.value_cache.temperature;
+});
 
-  var humidometer_outdata = {
-    value: humidity.toFixed(1),
-    sensor_type: 'humidometer',
-    name: humidometer_instance_name,
-    timestamp: read_time / 1000
-  };
-  sendOUT({
-    json_data: JSON.stringify(humidometer_outdata)
-  });
+function send_temperature_json(temperature, read_time) {
   var thermometer_outdate = {
-    value: temperature.toFixed(1),
+    value: temperature,
     sensor_type: 'thermometer',
     name: thermometer_instance_name,
     timestamp: read_time / 1000
@@ -58,5 +55,17 @@ shared.humidometer_thermometer.start(function() {
   sendOUT({
     json_data: JSON.stringify(thermometer_outdate)
   });
-  shared.humidometer_thermometer.value_cache = null;
-});
+}
+
+function send_humidity_json(humidity, read_time) {
+  var humidometer_outdata = {
+    value: humidity,
+    sensor_type: 'humidometer',
+    name: humidometer_instance_name,
+    timestamp: read_time / 1000
+  };
+  sendOUT({
+    json_data: JSON.stringify(humidometer_outdata)
+  });
+}
+
